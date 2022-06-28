@@ -1,12 +1,8 @@
 <template>
   <div>
     <label v-if="label">{{ label }}</label>
-    <select v-model="seletedValue">
-      <option
-        v-bind:key="option.id"
-        v-for="option in options"
-        value="option.value"
-      >
+    <select v-model="seletedValue" @change="handleValue">
+      <option v-bind:key="option.id" v-for="option in options">
         {{ option.text }}
       </option>
     </select>
@@ -19,6 +15,7 @@ export default {
   name: 'SelectView',
   data() {
     return {
+      seletedValue: '',
       options: [
         { id: 1, value: 1, text: '프릴' },
         { id: 2, value: 2, text: '제임스' },
