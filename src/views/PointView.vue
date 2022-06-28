@@ -1,16 +1,18 @@
 <template>
   <div class="point">
     <h1>ATNP 포인트</h1>
+    <select-view />
     <input-view />
   </div>
 </template>
 
 <script>
 import InputView from '@/components/InputView.vue';
+import SelectView from '@/components/SelectView.vue';
 
 export default {
   name: 'PointView',
-  components: { InputView },
+  components: { InputView, SelectView },
   data() {
     return {
       userName: 'April',

@@ -1,6 +1,8 @@
 <template>
-  <label v-if="label">{{ label }}</label>
-  <input type="text" v-model="inputValue" @input="getValue" />
+  <div>
+    <label v-if="label">{{ label }}</label>
+    <input type="text" v-model.number="inputValue" @input="handleValue" />
+  </div>
 </template>
 
 <script>
@@ -13,7 +15,7 @@ export default {
     };
   },
   methods: {
-    getValue() {
+    handleValue() {
       console.log(this.inputValue);
     },
   },
