@@ -3,16 +3,18 @@
     <h1>ATNP 포인트</h1>
     <select-view />
     <input-view />
+    <check-box-view />
   </div>
 </template>
 
 <script>
 import InputView from '@/components/InputView.vue';
 import SelectView from '@/components/SelectView.vue';
+import CheckBoxView from '@/components/CheckBoxView.vue';
 
 export default {
   name: 'PointView',
-  components: { InputView, SelectView },
+  components: { InputView, SelectView, CheckBoxView },
   data() {
     return {
       userName: 'April',
