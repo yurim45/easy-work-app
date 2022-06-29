@@ -23,8 +23,13 @@ export default {
         { id: 4, value: 4, text: '주드' },
         { id: 5, value: 5, text: '워렌' },
       ],
-      label: '대상',
     };
+  },
+  props: {
+    label: {
+      type: String,
+      default: '라벨',
+    },
   },
   methods: {
     handleValue() {
@@ -37,7 +42,7 @@ export default {
 <style scoped lang="scss">
 label {
   margin-right: 50px;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: 10px;
 }
@@ -55,8 +60,7 @@ select {
 
 span {
   position: relative;
-  margin: -9px;
-  right: 10px;
+  margin: -6.5px;
   color: var(--primary);
 }
 </style>

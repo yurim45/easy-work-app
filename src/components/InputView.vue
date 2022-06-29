@@ -11,8 +11,13 @@ export default {
   data() {
     return {
       inputValue: '',
-      label: '금액',
     };
+  },
+  props: {
+    label: {
+      type: String,
+      default: '라벨',
+    },
   },
   methods: {
     handleValue() {
@@ -25,7 +30,7 @@ export default {
 <style scoped lang="scss">
 label {
   margin-right: 50px;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: 10px;
 }

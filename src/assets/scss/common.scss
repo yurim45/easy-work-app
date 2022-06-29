@@ -1,0 +1,83 @@
+@import './reset.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+    'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    sans-serif;
+  color: #2c3e50;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}
+
+input,
+select,
+button {
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  font-size: inherit;
+  color: inherit;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+pre {
+  white-space: pre-line;
+}
+
+:root {
+  --primary: #db0234;
+  --line: #e5e5e5;
+  --dim: #d5d5d5;
+  --red: #f85151;
+  --blue: #0085ff;
+  --white: #ffffff;
+  --black: #000000;
+  --deepGrey: #7c8986;
+  --lightGrey: #eef1f1;
+  --green: #00c092;
+
+  // text
+  --text-primary: #2c3e50;
+  --text-333: #333333;
+  --text-555: #555555;
+  --text-777: #777777;
+  --text-999: #999999;
+  --text-disabled: #d5d5d5;
+  --text-green: #00b98d;
+  --text-red: #f85151;
+  --text-blue: #0085ff;
+  --text-dim: #d5d5d5;
+}

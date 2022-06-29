@@ -1,6 +1,6 @@
 <template>
   <label v-for="item in items" v-bind:key="item.id" @change="handleValue">
-    <input type="checkbox" :value="item.text" v-model="checkedValue" />{{
+    <input type="radio" :value="item.text" v-model="selectedValue" />{{
       item.text
     }}</label
   >
@@ -8,10 +8,10 @@
 
 <script>
 export default {
-  name: 'CheckBoxView',
+  name: 'radioView',
   data() {
     return {
-      checkedValue: [],
+      selectedValue: '',
       items: [
         { id: 1, value: 1, text: '프릴' },
         { id: 2, value: 2, text: '제임스' },
@@ -19,25 +19,14 @@ export default {
         { id: 4, value: 4, text: '주드' },
         { id: 5, value: 5, text: '워렌' },
       ],
+      label: '금액',
     };
   },
   methods: {
     handleValue() {
-      console.log(this.checkedValue);
+      console.log(this.selectedValue);
     },
   },
-  // props: {
-  //   items: {
-  //     type: Array,
-  //     default: [
-  //       { id: 1, value: 1, text: '프릴' },
-  //       { id: 2, value: 2, text: '제임스' },
-  //       { id: 3, value: 3, text: '위드' },
-  //       { id: 4, value: 4, text: '주드' },
-  //       { id: 5, value: 5, text: '워렌' },
-  //     ],
-  //   },
-  // },
 };
 </script>
 
@@ -47,19 +36,19 @@ label {
   font-size: 18px;
   accent-color: var(--primary);
 
-  input[type='checkbox'] {
+  input[type='radio'] {
     -webkit-appearance: none;
     position: relative;
     width: 16px;
     height: 16px;
     background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 2px;
+    border: 2px solid var(--line);
+    border-radius: 50%;
     cursor: pointer;
   }
 
-  input[type='checkbox']::before {
-    content: '\2713';
+  input[type='radio']::before {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -68,17 +57,16 @@ label {
     line-height: 1;
   }
 
-  input[type='checkbox']:hover {
+  input[type='radio']:hover {
     border-color: var(--primary);
   }
 
-  input[type='checkbox']:checked {
-    background-color: var(--primary);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: var(--white);
+  input[type='radio']:checked {
+    border: 5px solid var(--primary);
+    border-radius: 100%;
   }
 
-  input[type='checkbox']:checked::before {
+  input[type='radio']:checked::before {
     border-radius: 2px;
     transform: scale(1) translate(-50%, -50%);
   }

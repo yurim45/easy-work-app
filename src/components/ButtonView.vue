@@ -1,20 +1,34 @@
 <template>
-  <button type="버튼" @click="onClick">버튼</button>
+  <button :type="type" class="button" @click="$emit('onClick')">
+    {{ label }}
+  </button>
 </template>
 
 <script>
 export default {
   name: 'ButtonView',
-  methods: {
-    onClick() {
-      console.log('===== onClick');
+  props: {
+    label: {
+      type: String,
+      default: '버튼',
+    },
+    type: {
+      type: String,
+      default: 'button',
+    },
+    bgcolor: {
+      type: String,
+      default: 'primary',
+    },
+    onClick: {
+      type: Function,
     },
   },
 };
 </script>
 
-<style scoped>
-button {
+<style scoped lang="scss">
+.button {
   width: 100px;
   height: 50px;
   background: var(--primary);
