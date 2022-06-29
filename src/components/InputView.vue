@@ -28,16 +28,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+div {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
+
 label {
-  margin-right: 50px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 10px;
 }
 
 input {
-  width: 250px;
-  height: 40px;
+  width: 100%;
+  height: 35px;
   padding: 10px 15px;
   border-bottom: 1px solid var(--line);
 

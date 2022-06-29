@@ -17,20 +17,22 @@
       @closePage="closePage"
       @sendPoint="sendPoint"
     />
+    <point-history />
   </main>
 </template>
 
 <script>
 import ButtonView from '@/components/ButtonView.vue';
 import SendPoint from '@/components/SendPoint.vue';
+import PointHistory from '@/components/PointHistory.vue';
 
 export default {
   name: 'PointView',
-  components: { ButtonView, SendPoint },
+  components: { ButtonView, SendPoint, PointHistory },
   data() {
     return {
       userName: 'April',
-      points: 200000,
+      points: 50000,
       isSendPoint: false,
     };
   },
@@ -61,30 +63,26 @@ export default {
 
 h1 {
   padding: 30px;
-  font-size: 36px;
-  font-weight: 600;
-}
-
-h2 {
-  padding: 20px;
   font-size: 28px;
   font-weight: 600;
 }
 
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .btnWrapper {
-  width: 250px;
-  margin: 10px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  padding: 0 30px 25px;
 }
 
 p {
   max-width: 350px;
-  margin: 0 auto 20px;
+  margin: 0 auto;
   padding: 30px 0;
-  /* border: 0.5px dashed var(--deepGrey); */
-  /* border-radius: 10px; */
 
   strong {
     font-size: 22px;

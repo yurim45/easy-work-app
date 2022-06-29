@@ -27,7 +27,7 @@ header {
 
   section {
     margin: auto;
-    padding: 30px;
+    padding: 25px 20px;
     max-width: 1200px;
     height: 30px;
     display: flex;
@@ -47,14 +47,14 @@ header {
   }
 
   strong {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.5px;
   }
 }
 
 a {
-  margin: 0 15px;
+  margin: 0 5px;
   font-weight: bold;
   text-decoration: none;
 }

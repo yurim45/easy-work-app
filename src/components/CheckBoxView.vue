@@ -1,5 +1,5 @@
 <template>
-  <label v-for="item in items" v-bind:key="item.id" @change="handleValue">
+  <label v-for="item in items" :key="item.id" @change="handleValue">
     <input type="checkbox" :value="item.text" v-model="checkedValue" />{{
       item.text
     }}</label

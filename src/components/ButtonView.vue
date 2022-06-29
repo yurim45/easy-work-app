@@ -29,8 +29,8 @@ export default {
 
 <style scoped lang="scss">
 .button {
-  width: 100px;
-  height: 50px;
+  min-width: 120px;
+  height: 40px;
   background: var(--primary);
   color: var(--white);
   border-radius: 10px;

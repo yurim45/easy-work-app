@@ -55,28 +55,35 @@ export default {
 
 <style scoped lang="scss">
 .modalBg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 30px;
+  padding: 25px;
   background: rgba(0, 0, 0, 0.6);
   z-index: 100;
 }
 
 main {
-  position: relative;
-  top: 20%;
-  max-width: 500px;
-  margin: auto;
-  padding: 50px;
+  width: 100%;
+  padding: 30px 20px;
   background: var(--white);
   border-radius: 10px;
 }
 
 h3 {
-  margin: 20px;
-  font-size: 28px;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px 0;
 }
 </style>

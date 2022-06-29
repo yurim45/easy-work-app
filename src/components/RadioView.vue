@@ -32,8 +32,8 @@ export default {
 
 <style scoped lang="scss">
 label {
-  margin: 0 10px;
-  font-size: 18px;
+  margin-right: 10px;
+  font-size: 16px;
   accent-color: var(--primary);
 
   input[type='radio'] {
