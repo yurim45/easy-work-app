@@ -1,27 +1,27 @@
 <template>
   <div>
     <label v-if="label">{{ label }}</label>
-    <input type="text" v-model.number="inputValue" @input="handleValue" />
+    <input type="text" v-model="iValue" @input="handleValue()" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'InputView',
+  props: {
+    label: String,
+    name: String,
+    inputValue: String,
+  },
   data() {
     return {
-      inputValue: '',
+      iValue: this.inputValue,
+      iName: this.name,
     };
-  },
-  props: {
-    label: {
-      type: String,
-      default: '라벨',
-    },
   },
   methods: {
     handleValue() {
-      console.log(this.inputValue);
+      this.$emit('handleValue', { name: this.iName, value: this.iValue });
     },
   },
 };
@@ -36,15 +36,15 @@ div {
 }
 
 label {
+  margin-bottom: -5px;
   font-size: 16px;
   font-weight: 600;
-  letter-spacing: 10px;
 }
 
 input {
   width: 100%;
   height: 35px;
-  padding: 10px 15px;
+  padding: 10px 0;
   border-bottom: 1px solid var(--line);
 
   &:focus {

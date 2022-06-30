@@ -8,21 +8,16 @@
 
     <div class="btnWrapper">
       <button-view label="보내기" @onClick="sendPointOpen" />
-      <button-view label="기록하기" @onClick="recordPoint" />
+      <router-link class="button" to="/point/record">기록하기</router-link>
     </div>
 
-    <send-point
-      v-if="isSendPoint"
-      title="포인트 보내기"
-      @closePage="closePage"
-      @sendPoint="sendPoint"
-    />
+    <send-point v-if="isSendPoint" @closePage="closePage" />
     <point-history />
   </main>
 </template>
 
 <script>
-import ButtonView from '@/components/ButtonView.vue';
+import { ButtonView } from '@/components/common/index';
 import SendPoint from '@/components/SendPoint.vue';
 import PointHistory from '@/components/PointHistory.vue';
 
@@ -46,10 +41,6 @@ export default {
     closePage() {
       this.isSendPoint = false;
       console.log('===== closePage Click');
-    },
-    sendPoint() {
-      this.isSendPoint = false;
-      console.log('===== sendPoint');
     },
   },
 };
@@ -86,6 +77,21 @@ p {
 
   strong {
     font-size: 22px;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  height: 40px;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: 10px;
+
+  &:visited {
+    color: var(--white);
   }
 }
 </style>

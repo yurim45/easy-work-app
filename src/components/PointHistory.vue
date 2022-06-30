@@ -1,21 +1,26 @@
 <template>
   <ul>
     <li v-for="history in historyList" :key="history.id">
-      {{ history.date }}
+      <span class="date">{{
+        history.date.substring(5).replace('-', '.')
+      }}</span>
       <div class="history">
         {{ history.useItem }}
         <div class="historyDetail">
           <p>{{ history.usePlace }}</p>
           <div>
-            <span v-for="(target, i) in history.targets" :key="i">{{
-              target
-            }}</span>
+            <span
+              v-for="(target, i) in history.targets"
+              :key="i"
+              class="target"
+              >{{ target }}</span
+            >
           </div>
         </div>
       </div>
       <div class="amt">
         <div>{{ history.perAmount }}</div>
-        <div>{{ history.total }}</div>
+        <div>{{ history.perAmount * history.targets.length }}</div>
       </div>
     </li>
   </ul>
@@ -23,7 +28,7 @@
 
 <script>
 export default {
-  name: 'pointHistory',
+  name: 'PointHistory',
   data() {
     return {
       historyList: [
@@ -34,7 +39,6 @@ export default {
           usePlace: '서부족발',
           targets: ['프릴', '제임스', '주드'],
           perAmount: -1000,
-          total: -3000,
         },
         {
           id: 2,
@@ -43,7 +47,6 @@ export default {
           usePlace: '서부족발',
           targets: ['프릴', '제임스'],
           perAmount: -1000,
-          total: -2000,
         },
         {
           id: 3,
@@ -52,7 +55,6 @@ export default {
           usePlace: '서부족발',
           targets: ['프릴', '제임스', '주드', '위드'],
           perAmount: -1000,
-          total: -4000,
         },
       ],
     };
@@ -81,6 +83,20 @@ li {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.target {
+  margin: 0 3px;
+  padding: 3px;
+  background: #e9f6ff;
+  color: #2f86c5;
+  font-size: 11px;
+  white-space: nowrap;
 }
 
 .amt {

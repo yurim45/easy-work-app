@@ -1,18 +1,29 @@
 <template>
   <div class="modalBg" @click.self="$emit('closePage')">
     <main>
-      <h3>{{ title }}</h3>
+      <h3>포인트 보내기</h3>
       <form>
-        <radio-view />
-        <input-view label="금액" />
+        <div class="inputRadio">
+          <label
+            v-for="user in users"
+            v-bind:key="user.id"
+            @change="handleValue"
+          >
+            <input type="radio" :value="user.text" v-model="target" />{{
+              user.text
+            }}</label
+          >
+        </div>
+        <input-view
+          label="금액"
+          name="amount"
+          :inputValue="amount"
+          @handleValue="handleValue($event)"
+        />
 
         <div class="btnWrapper">
           <button-view label="닫기" @onClick="$emit('closePage')" />
-          <button-view
-            type="submit"
-            label="보내기"
-            @onClick="$emit('sendPoint')"
-          />
+          <button-view label="보내기" @onClick="onSubmitSendPoints" />
         </div>
       </form>
     </main>
@@ -20,13 +31,11 @@
 </template>
 
 <script>
-import InputView from '@/components/InputView.vue';
-import ButtonView from '@/components/ButtonView.vue';
-import RadioView from './RadioView.vue';
+import { ButtonView, InputView } from '@/components/common/index';
 
 export default {
-  name: 'sendPointModal',
-  components: { InputView, ButtonView, RadioView },
+  name: 'SendPointModal',
+  components: { ButtonView, InputView },
   data() {
     return {
       users: [
@@ -36,18 +45,22 @@ export default {
         { id: 4, value: 4, text: '주드' },
         { id: 5, value: 5, text: '워렌' },
       ],
+      target: '',
+      amount: '',
     };
   },
   props: {
-    title: {
-      type: String,
-      default: '타이틀',
-    },
     closePage: {
       type: Function,
     },
-    sendPoint: {
-      type: Function,
+  },
+  methods: {
+    handleValue(value) {
+      this.amount = value.name === 'amount' ? value.value : '';
+    },
+    onSubmitSendPoints() {
+      console.log(this.amount);
+      this.$emit('closePage');
     },
   },
 };
@@ -85,5 +98,30 @@ h3 {
   justify-content: space-around;
   align-items: center;
   margin: 50px 0;
+}
+
+.inputForm {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+
+  label {
+    margin-bottom: -5px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  input {
+    width: 100%;
+    height: 35px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+
+    &:focus {
+      border-bottom: 2px solid var(--primary);
+    }
+  }
 }
 </style>

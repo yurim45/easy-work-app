@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'radioView',
+  name: 'RadioView',
   data() {
     return {
       selectedValue: '',

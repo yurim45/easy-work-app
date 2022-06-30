@@ -15,6 +15,14 @@ const routes = [
         /* webpackChunkName: 'point', webpackPrefetch: true */ '../views/PointView.vue'
       ),
   },
+  {
+    path: '/point/record',
+    name: 'pointRecord',
+    component: () =>
+      import(
+        /* webpackChunkName: 'pointRecord', webpackPrefetch: true */ '../views/RecordPorinsView.vue'
+      ),
+  },
 ];
 
 const router = createRouter({
