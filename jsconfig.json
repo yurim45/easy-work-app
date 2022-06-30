@@ -5,12 +5,12 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@assets": ["src/assets/*"],
-      "@components": ["src/components/*"],
-      "@util": ["src/util/*"],
-      "@store": ["src/store/*"],
-      "@views": ["src/views/*"]
+      "@/*": ["./src/*"],
+      "@assets": ["./src/assets/*"],
+      "@components": ["./src/components/*"],
+      "@util": ["./src/util/*"],
+      "@store": ["./src/store/*"],
+      "@views": ["./src/views/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   }

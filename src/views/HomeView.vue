@@ -5,18 +5,16 @@
     <img alt="logo" src="../assets/logo.png" />
     <h2>새로운 BUSINESS의 시작, <br /><strong>Easy Work</strong></h2>
 
-    <nav class="gnb">
-      <router-link to="/">HOME</router-link>
-      <router-link to="/point">POINT</router-link>
-    </nav>
+    <gnb />
   </main>
 </template>
 
 <script>
 import HomeHeader from '@/components/common/header/HomeHeader.vue';
+import { Gnb } from '@/components/common/index';
 
 export default {
-  components: { HomeHeader },
+  components: { HomeHeader, Gnb },
   name: 'HomeView',
   data() {
     return {
@@ -29,16 +27,6 @@ export default {
 <style scoped lang="scss">
 main {
   text-align: center;
-}
-
-a {
-  margin: 0 5px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #42b983;
 }
 
 h1 {

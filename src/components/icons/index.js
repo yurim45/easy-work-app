@@ -1,4 +1,5 @@
 import IconHamberger from './IconHamberger.vue';
 import IconHome from './IconHome.vue';
+import IconClose from './IconClose.vue';
 
-export { IconHamberger, IconHome };
+export { IconHamberger, IconHome, IconClose };
