@@ -1,10 +1,12 @@
 <template>
+  <basic-header title="ATNP 포인트" />
   <main class="point">
-    <h1>ATNP 포인트</h1>
-    <h2>Hello! {{ userName }} 👋</h2>
-    <p>
-      {{ userName }}의 잔여 포인트: <strong>{{ points }} p</strong>
-    </p>
+    <div class="content">
+      <h2>Hello! {{ userName }} 👋</h2>
+      <p>
+        {{ userName }}의 잔여 포인트: <strong>{{ points }} p</strong>
+      </p>
+    </div>
 
     <div class="btnWrapper">
       <button-view label="보내기" @onClick="sendPointOpen" />
@@ -20,10 +22,11 @@
 import { ButtonView } from '@/components/common/index';
 import SendPoint from '@/components/SendPoint.vue';
 import PointHistory from '@/components/PointHistory.vue';
+import BasicHeader from '@/components/common/header/BasicHeader.vue';
 
 export default {
   name: 'PointView',
-  components: { ButtonView, SendPoint, PointHistory },
+  components: { ButtonView, SendPoint, PointHistory, BasicHeader },
   data() {
     return {
       userName: 'April',
@@ -51,16 +54,20 @@ export default {
   max-width: 1200px;
   margin: auto;
 }
-
-h1 {
-  padding: 30px;
-  font-size: 28px;
+.content {
+  padding: 30px 20px;
+}
+h2 {
+  font-size: 22px;
   font-weight: 600;
 }
 
-h2 {
-  font-size: 18px;
-  font-weight: 600;
+p {
+  max-width: 350px;
+
+  strong {
+    font-size: 22px;
+  }
 }
 
 .btnWrapper {
@@ -68,16 +75,6 @@ h2 {
   justify-content: space-around;
   align-items: center;
   padding: 0 30px 25px;
-}
-
-p {
-  max-width: 350px;
-  margin: 0 auto;
-  padding: 30px 0;
-
-  strong {
-    font-size: 22px;
-  }
 }
 
 .button {

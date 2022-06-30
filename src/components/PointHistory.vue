@@ -19,8 +19,8 @@
         </div>
       </div>
       <div class="amt">
-        <div>{{ history.perAmount }}</div>
-        <div>{{ history.perAmount * history.targets.length }}</div>
+        <div class="perAmount">{{ history.perAmount }} p</div>
+        <div>{{ history.perAmount * history.targets.length }} p</div>
       </div>
     </li>
   </ul>
@@ -59,12 +59,16 @@ export default {
       ],
     };
   },
+  methods: {
+    handleNumFormat() {},
+  },
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 ul {
   margin-top: 20px;
+  font-size: 16px;
   border-top: 5px solid var(--line);
 }
 
@@ -82,7 +86,13 @@ li {
 .historyDetail {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 100%;
+  padding-left: 20px;
+
+  p {
+    font-weight: 600;
+  }
 }
 
 .date {
@@ -101,6 +111,12 @@ li {
 
 .amt {
   display: flex;
+  align-items: flex-end;
   flex-direction: column;
+}
+
+.perAmount {
+  font-size: 18px;
+  font-weight: 600;
 }
 </style>

@@ -99,29 +99,4 @@ h3 {
   align-items: center;
   margin: 50px 0;
 }
-
-.inputForm {
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-direction: column;
-
-  label {
-    margin-bottom: -5px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  input {
-    width: 100%;
-    height: 35px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--line);
-
-    &:focus {
-      border-bottom: 2px solid var(--primary);
-    }
-  }
-}
 </style>
