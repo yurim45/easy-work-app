@@ -75,6 +75,10 @@ p {
   justify-content: space-around;
   align-items: center;
   padding: 0 30px 25px;
+
+  :first-child {
+    background: var(--deepGrey);
+  }
 }
 
 .button {

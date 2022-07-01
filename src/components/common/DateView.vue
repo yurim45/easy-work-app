@@ -1,33 +1,27 @@
 <template>
   <div>
     <label v-if="label">{{ label }}</label>
-    <input
-      type="text"
-      v-model="iValue"
-      @input="handleValue()"
-      :placeholder="placeholder"
-    />
+    <input type="date" v-model="date" @input="handleValue()" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'InputView',
+  name: 'DateView',
   props: {
     label: String,
     name: String,
-    placeholder: String,
     inputValue: String,
   },
   data() {
     return {
-      iValue: this.inputValue,
+      date: new Date().toISOString().substr(0, 10),
       iName: this.name,
     };
   },
   methods: {
     handleValue() {
-      this.$emit('handleValue', { name: this.iName, value: this.iValue });
+      this.$emit('handleValue', { name: this.iName, value: this.date });
     },
   },
 };
@@ -54,14 +48,6 @@ input {
 
   &:focus {
     border-bottom: 2px solid var(--primary);
-  }
-
-  &::placeholder {
-    padding: 10px;
-    color: var(--text-999);
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: -0.2px;
   }
 }
 </style>

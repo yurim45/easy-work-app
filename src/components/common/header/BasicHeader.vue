@@ -48,6 +48,13 @@ export default {
 }
 
 .menu {
+  position: fixed;
+  top: 52px;
+  width: 100%;
+  height: calc(100% - 52px);
+  padding: 80px 30px;
+  background: var(--white);
+  z-index: 100;
 }
 
 .close {

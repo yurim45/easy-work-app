@@ -98,5 +98,9 @@ h3 {
   justify-content: space-around;
   align-items: center;
   margin: 50px 0;
+
+  :first-child {
+    background: var(--deepGrey);
+  }
 }
 </style>

@@ -19,8 +19,10 @@
         </div>
       </div>
       <div class="amt">
-        <div class="perAmount">{{ history.perAmount }} p</div>
-        <div>{{ history.perAmount * history.targets.length }} p</div>
+        <div class="perAmount">
+          {{ history.amount / history.targets.length }} p
+        </div>
+        <div>{{ history.amount }} p</div>
       </div>
     </li>
   </ul>
@@ -38,7 +40,7 @@ export default {
           useItem: '아이콘',
           usePlace: '서부족발',
           targets: ['프릴', '제임스', '주드'],
-          perAmount: -1000,
+          amount: -3000,
         },
         {
           id: 2,
@@ -46,7 +48,7 @@ export default {
           useItem: '아이콘',
           usePlace: '서부족발',
           targets: ['프릴', '제임스'],
-          perAmount: -1000,
+          amount: -3000,
         },
         {
           id: 3,
@@ -54,7 +56,7 @@ export default {
           useItem: '아이콘',
           usePlace: '서부족발',
           targets: ['프릴', '제임스', '주드', '위드'],
-          perAmount: -1000,
+          amount: -4000,
         },
       ],
     };

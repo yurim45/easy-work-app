@@ -1,56 +1,59 @@
 <template>
   <div>
     <label v-if="label">{{ label }}</label>
-    <select v-model="seletedValue" @change="handleValue">
+    <select v-model="sValue" @change="handleValue()">
+      <option value="" disabled selected>{{ placeholder }}</option>
       <option v-bind:key="option.id" v-for="option in options">
         {{ option.text }}
       </option>
     </select>
     <span>▼</span>
+    <!-- <span class="placeholder">{{ placeholder }}</span> -->
   </div>
 </template>
 
 <script>
 export default {
   name: 'SelectView',
+  props: {
+    label: String,
+    optionList: Object,
+    name: String,
+    selectValue: String,
+    placeholder: String,
+    // multiple: Boolean,
+  },
   data() {
     return {
       seletedValue: '',
-      options: [
-        { id: 1, value: 1, text: '프릴' },
-        { id: 2, value: 2, text: '제임스' },
-        { id: 3, value: 3, text: '위드' },
-        { id: 4, value: 4, text: '주드' },
-        { id: 5, value: 5, text: '워렌' },
-      ],
+      options: this.optionList,
+      sValue: this.selectValue,
+      sName: this.name,
     };
   },
-  props: {
-    label: {
-      type: String,
-      default: '라벨',
-    },
-  },
+
   methods: {
     handleValue() {
-      console.log(this.seletedValue);
+      this.$emit('handleValue', { name: this.sName, value: this.sValue });
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
+div {
+  height: 51px;
+}
+
 label {
-  margin-right: 50px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: 10px;
 }
 
 select {
-  width: 250px;
-  height: 40px;
-  padding: 10px 15px;
+  width: 100%;
+  height: 35px;
+  padding: 10px 0 0;
   border-bottom: 1px solid var(--line);
 
   &:focus {
@@ -60,7 +63,19 @@ select {
 
 span {
   position: relative;
-  margin: -6.5px;
+  top: -25px;
+  left: 95%;
   color: var(--primary);
+  opacity: 0.4;
+}
+
+.placeholder {
+  top: -22px;
+  left: 0;
+  color: var(--text-999);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  opacity: 1;
 }
 </style>
