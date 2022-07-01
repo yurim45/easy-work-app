@@ -48,6 +48,10 @@
 
       <button-view label="기록하기" @onClick="onSubmitSendPoints" />
       <multi-select-view label="대상인원" :items="targetList" />
+
+      <div>
+        <Multiselect v-model="value" :options="options" />
+      </div>
     </form>
   </main>
 </template>
@@ -61,6 +65,7 @@ import {
   SelectView,
   MultiSelectView,
 } from '@/components/common/index';
+import Multiselect from '@vueform/multiselect';
 
 export default {
   name: 'RecordPorinsView',
@@ -71,6 +76,7 @@ export default {
     SelectView,
     InputView,
     MultiSelectView,
+    Multiselect,
   },
   data() {
     return {
@@ -94,6 +100,8 @@ export default {
         { id: 4, value: 4, text: '주드' },
         { id: 5, value: 5, text: '워렌' },
       ],
+      value: null,
+      options: ['Batman', 'Robin', 'Joker'],
     };
   },
   methods: {
@@ -137,6 +145,7 @@ export default {
 };
 </script>
 
+<style src="@vueform/multiselect/themes/default.css"></style>
 <style scoped lang="scss">
 main {
   padding: 25px;
