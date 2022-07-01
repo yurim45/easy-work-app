@@ -21,7 +21,6 @@ export default {
     name: String,
     selectValue: String,
     placeholder: String,
-    // multiple: Boolean,
   },
   data() {
     return {

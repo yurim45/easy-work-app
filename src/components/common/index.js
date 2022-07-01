@@ -4,6 +4,7 @@ import InputView from './InputView.vue';
 import DateView from './DateView.vue';
 import RadioView from './RadioView.vue';
 import SelectView from './SelectView.vue';
+import MultiSelectView from './MultiSelectView.vue';
 import Gnb from './Gnb.vue';
 
 export {
@@ -13,5 +14,6 @@ export {
   DateView,
   RadioView,
   SelectView,
+  MultiSelectView,
   Gnb,
 };

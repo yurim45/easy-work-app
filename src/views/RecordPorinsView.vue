@@ -45,19 +45,33 @@
         :inputValue="amount"
         @handleValue="handleValue($event)"
       />
+
       <button-view label="기록하기" @onClick="onSubmitSendPoints" />
+      <multi-select-view label="대상인원" :items="targetList" />
     </form>
   </main>
 </template>
 
 <script>
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
-import { DateView, ButtonView, SelectView } from '@/components/common/index';
-import InputView from '@/components/common/InputView.vue';
+import {
+  DateView,
+  ButtonView,
+  InputView,
+  SelectView,
+  MultiSelectView,
+} from '@/components/common/index';
 
 export default {
   name: 'RecordPorinsView',
-  components: { BasicHeader, DateView, ButtonView, SelectView, InputView },
+  components: {
+    BasicHeader,
+    DateView,
+    ButtonView,
+    SelectView,
+    InputView,
+    MultiSelectView,
+  },
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
@@ -72,6 +86,13 @@ export default {
         { id: 2, value: 2, text: '식음료' },
         { id: 3, value: 3, text: '문화' },
         { id: 4, value: 4, text: '물품' },
+      ],
+      targetList: [
+        { id: 1, value: 1, text: '프릴' },
+        { id: 2, value: 2, text: '제임스' },
+        { id: 3, value: 3, text: '위드' },
+        { id: 4, value: 4, text: '주드' },
+        { id: 5, value: 5, text: '워렌' },
       ],
     };
   },

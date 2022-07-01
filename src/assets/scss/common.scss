@@ -83,16 +83,44 @@ label {
     line-height: 1;
   }
 
-  input[type='radio']:hover {
-    border-color: var(--primary);
-  }
-
   input[type='radio']:checked {
     border: 5px solid var(--primary);
     border-radius: 100%;
   }
 
   input[type='radio']:checked::before {
+    border-radius: 2px;
+    transform: scale(1) translate(-50%, -50%);
+  }
+
+  input[type='checkbox'] {
+    -webkit-appearance: none;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  input[type='checkbox']:before {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    transform: scale(0) translate(-50%, -50%);
+    line-height: 1;
+  }
+
+  input[type='checkbox']:checked {
+    background-color: var(--primary);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--white);
+  }
+
+  input[type='checkbox']:checked::before {
     border-radius: 2px;
     transform: scale(1) translate(-50%, -50%);
   }
