@@ -8,19 +8,31 @@
   </div>
   <input class="stInput" :placeholder="placeholder" @click="openList()" />
   <span>▼</span>
-  <ul class="container" v-if="isOpenList">
+  <!-- <ul class="container" v-if="isOpenList">
     <li class="containerList">
       <label v-for="item in itemList" :key="item.id" @change="handleValue">
         <input type="checkbox" :value="item.text" v-model="checkedValue" />
         {{ item.text }}
       </label>
     </li>
-  </ul>
+  </ul> -->
+
+  <Multiselect
+    v-model="checkedValue"
+    :options="itemList"
+    :searchable="true"
+    :createTag="true"
+    placeholder="대상 인원을 선택하세요"
+    mode="tags"
+  />
 </template>
 
 <script>
+import Multiselect from '@vueform/multiselect';
+
 export default {
   name: 'MultiselectView',
+  components: { Multiselect },
   props: {
     label: String,
     items: Object,
@@ -28,7 +40,7 @@ export default {
   },
   data() {
     return {
-      checkedValue: [],
+      checkedValue: null,
       checkedAll: '',
       itemList: this.items,
       isOpenList: false,
@@ -53,6 +65,8 @@ export default {
   },
 };
 </script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
 
 <style scoped lang="scss">
 .textContainer {

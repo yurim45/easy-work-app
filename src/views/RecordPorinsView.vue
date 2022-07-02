@@ -48,9 +48,15 @@
 
       <button-view label="기록하기" @onClick="onSubmitSendPoints" />
       <multi-select-view label="대상인원" :items="targetList" />
-
       <div>
-        <Multiselect v-model="value" :options="options" />
+        <Multiselect
+          v-model="targets"
+          :options="targetList"
+          :searchable="true"
+          :createTag="true"
+          placeholder="대상 인원을 선택하세요"
+          mode="tags"
+        />
       </div>
     </form>
   </main>
@@ -63,7 +69,6 @@ import {
   ButtonView,
   InputView,
   SelectView,
-  MultiSelectView,
 } from '@/components/common/index';
 import Multiselect from '@vueform/multiselect';
 
@@ -75,7 +80,6 @@ export default {
     ButtonView,
     SelectView,
     InputView,
-    MultiSelectView,
     Multiselect,
   },
   data() {
@@ -84,7 +88,7 @@ export default {
       useItem: '',
       usePlace: '',
       useHistory: '',
-      targets: '',
+      targets: null,
       excludedTargets: '',
       amount: '',
       optionList: [
@@ -94,14 +98,12 @@ export default {
         { id: 4, value: 4, text: '물품' },
       ],
       targetList: [
-        { id: 1, value: 1, text: '프릴' },
-        { id: 2, value: 2, text: '제임스' },
-        { id: 3, value: 3, text: '위드' },
-        { id: 4, value: 4, text: '주드' },
-        { id: 5, value: 5, text: '워렌' },
+        { value: 1, label: '프릴' },
+        { value: 2, label: '제임스' },
+        { value: 3, label: '위드' },
+        { value: 4, label: '주드' },
+        { value: 5, label: '워렌' },
       ],
-      value: null,
-      options: ['Batman', 'Robin', 'Joker'],
     };
   },
   methods: {
@@ -153,5 +155,8 @@ main {
   button {
     width: 100%;
   }
+}
+
+.multiselect {
 }
 </style>

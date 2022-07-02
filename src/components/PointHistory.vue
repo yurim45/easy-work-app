@@ -1,9 +1,7 @@
 <template>
   <ul>
     <li v-for="history in historyList" :key="history.id">
-      <span class="date">{{
-        history.date.substring(5).replace('-', '.')
-      }}</span>
+      <span class="date">{{ date(history) }}</span>
       <div class="history">
         {{ history.useItem }}
         <div class="historyDetail">
@@ -19,9 +17,7 @@
         </div>
       </div>
       <div class="amt">
-        <div class="perAmount">
-          {{ history.amount / history.targets.length }} p
-        </div>
+        <div class="perAmount">{{ perAmount(history) }} p</div>
         <div>{{ history.amount }} p</div>
       </div>
     </li>
@@ -60,6 +56,14 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    date() {
+      return (history) => history.date.substring(5).replace('-', '.');
+    },
+    perAmount() {
+      return (history) => history.amount / history.targets.length;
+    },
   },
   methods: {
     handleNumFormat() {},
