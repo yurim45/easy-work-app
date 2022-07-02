@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="select">
     <div class="textContainer">
-      <label class="label">{{ label }}</label>
+      <strong class="label">{{ label }}</strong>
       <label @change="selectAll" v-if="mode === 'single' ? false : true">
         <input type="checkbox" v-model="checkedAll" :value="sValue" />
         전체선택
@@ -13,6 +13,7 @@
       :placeholder="placeholder"
       :mode="mode"
       @select="handleValue()"
+      ref="multiselect"
     />
   </div>
 </template>
@@ -28,7 +29,7 @@ export default {
     optionList: Object,
     name: String,
     mode: String,
-    selectValue: String,
+    selectValue: Array,
     placeholder: String,
   },
   data() {
@@ -37,28 +38,51 @@ export default {
       checkedAll: '',
     };
   },
+  watch: {
+    sValue: function () {
+      if (this.sValue.length < 5) {
+        this.checkedAll = false;
+      } else if (this.sValue.length === 5) {
+        this.checkedAll = true;
+      }
+    },
+  },
   methods: {
     handleValue() {
-      console.log({ name: this.name, value: this.sValue }, this.selectValue);
       this.$emit('handleValue', { name: this.name, value: this.sValue });
     },
     selectAll() {
       if (this.checkedAll) {
-        this.sValue = this.optionList;
+        this.$refs.multiselect.selectAll();
       } else {
-        this.sValue = [];
+        this.$refs.multiselect.clear();
       }
-      console.log('====openList', this.checkedAll, this.selectValue);
     },
   },
 };
 </script>
 
+<style src="./default.css"></style>
+
 <style scoped lang="scss">
-.textContainer {
+.select {
+  margin-bottom: 20px;
 }
 
-label {
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+}
+
+.label {
+  margin-bottom: 10px;
   font-size: 16px;
   font-weight: 600;
 }

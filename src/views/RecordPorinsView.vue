@@ -143,7 +143,6 @@ export default {
 };
 </script>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style scoped lang="scss">
 main {
   padding: 25px;

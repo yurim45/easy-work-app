@@ -46,18 +46,19 @@ label {
 }
 
 input {
+  margin: 10px 0 20px;
   width: 100%;
-  height: 35px;
-  padding: 10px 0 0;
-  border-bottom: 1px solid var(--line);
+  height: 40px;
+  padding: 15px 10px 15px 15px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
 
   &:focus {
-    border-bottom: 2px solid var(--primary);
+    border: 2px solid var(--primary);
   }
 
   &::placeholder {
-    padding: 10px;
-    color: var(--text-999);
+    color: #9ca3af;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: -0.2px;
