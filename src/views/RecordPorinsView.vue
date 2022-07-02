@@ -11,8 +11,9 @@
       <select-view
         label="구분"
         name="useItem"
+        mode="single"
         placeholder="카테고리를 선택하세요"
-        selectValue="useItem"
+        :selectValue="useItem"
         :optionList="optionList"
         @handleValue="handleValue($event)"
       />
@@ -30,7 +31,15 @@
         :inputValue="useHistory"
         @handleValue="handleValue($event)"
       />
-
+      <select-view
+        label="대상인원"
+        name="targets"
+        mode="tags"
+        placeholder="대상 인원을 선택하세요"
+        :selectValue="targets"
+        :optionList="targetList"
+        @handleValue="handleValue($event)"
+      />
       <input-view
         label="제외인원"
         name="excludedTargets"
@@ -47,17 +56,6 @@
       />
 
       <button-view label="기록하기" @onClick="onSubmitSendPoints" />
-      <multi-select-view label="대상인원" :items="targetList" />
-      <div>
-        <Multiselect
-          v-model="targets"
-          :options="targetList"
-          :searchable="true"
-          :createTag="true"
-          placeholder="대상 인원을 선택하세요"
-          mode="tags"
-        />
-      </div>
     </form>
   </main>
 </template>
@@ -70,7 +68,6 @@ import {
   InputView,
   SelectView,
 } from '@/components/common/index';
-import Multiselect from '@vueform/multiselect';
 
 export default {
   name: 'RecordPorinsView',
@@ -80,29 +77,28 @@ export default {
     ButtonView,
     SelectView,
     InputView,
-    Multiselect,
   },
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
-      useItem: '',
+      useItem: null,
       usePlace: '',
       useHistory: '',
       targets: null,
       excludedTargets: '',
       amount: '',
       optionList: [
-        { id: 1, value: 1, text: '식대초과' },
-        { id: 2, value: 2, text: '식음료' },
-        { id: 3, value: 3, text: '문화' },
-        { id: 4, value: 4, text: '물품' },
+        { value: '식대초과', label: '식대초과' },
+        { value: '식음료', label: '식음료' },
+        { value: '문화', label: '문화' },
+        { value: '물품', label: '물품' },
       ],
       targetList: [
-        { value: 1, label: '프릴' },
-        { value: 2, label: '제임스' },
-        { value: 3, label: '위드' },
-        { value: 4, label: '주드' },
-        { value: 5, label: '워렌' },
+        { value: '프릴', label: '프릴' },
+        { value: '제임스', label: '제임스' },
+        { value: '위드', label: '위드' },
+        { value: '주드', label: '주드' },
+        { value: '워렌', label: '워렌' },
       ],
     };
   },
@@ -157,6 +153,7 @@ main {
   }
 }
 
-.multiselect {
+.multiselect-tag {
+  background: var(--primary);
 }
 </style>

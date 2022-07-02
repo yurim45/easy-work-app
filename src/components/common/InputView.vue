@@ -22,12 +22,11 @@ export default {
   data() {
     return {
       iValue: this.inputValue,
-      iName: this.name,
     };
   },
   methods: {
     handleValue() {
-      this.$emit('handleValue', { name: this.iName, value: this.iValue });
+      this.$emit('handleValue', { name: this.name, value: this.iValue });
     },
   },
 };
