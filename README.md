@@ -1,24 +1,21 @@
 # annual-leave-app
 
-## Project setup
-```
-yarn install
-```
+`vue`를 배우면서 연습겸 사내용 포인트 관리 프로그램 제작. <br />
+[netlify](https://app.netlify.com/)를 이용하여 배포 완료.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+- 사이트 주소: https://easywork.today/
 
-### Compiles and minifies for production
-```
-yarn build
-```
+<br />
 
-### Lints and fixes files
-```
-yarn lint
-```
+✔️ 기간: 2022.06.28 ~ 계속 구현 중
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+✔️ **Skills** : `Vue`, `Javascript`, `Sass/Scss`,
+
+<br />
+
+---
+
+<br />
+
+![](https://velog.velcdn.com/images/april_5/post/983ad36c-bbd2-472b-b69a-818f4f4f9394/image.gif)
+![](https://velog.velcdn.com/images/april_5/post/58d85c2e-7271-4511-a452-ceca598ace8c/image.gif)
