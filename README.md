@@ -1,4 +1,4 @@
-# annual-leave-app
+# easy-work-app
 
 `vue`를 배우면서 연습겸 사내용 프로그램 제작. <br />
 [netlify](https://app.netlify.com/)를 이용하여 배포 완료.
