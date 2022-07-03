@@ -129,8 +129,7 @@ h3 {
   @include flex;
   width: 50px;
   height: 50px;
-  background: #e9f6ff;
-  color: #2f86c5;
+  @include stIcon;
   font-size: 20px;
   font-weight: 800;
   border-radius: 50%;

@@ -135,8 +135,7 @@ li {
 .target {
   margin-right: 6px;
   padding: 3px;
-  background: #e9f6ff;
-  color: #2f86c5;
+  @include stIcon;
   font-size: 11px;
 }
 
