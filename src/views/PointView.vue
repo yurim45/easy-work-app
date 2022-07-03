@@ -71,9 +71,7 @@ p {
 }
 
 .btnWrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  @include flex(space-around);
   padding: 0 30px 25px;
 
   :first-child {
@@ -82,9 +80,7 @@ p {
 }
 
 .button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
   min-width: 120px;
   height: 40px;
   background: var(--primary);

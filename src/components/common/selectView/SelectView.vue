@@ -70,20 +70,17 @@ export default {
 }
 
 .textContainer {
-  display: flex;
-  justify-content: space-between;
+  @include flex(space-between);
 
   label {
+    @include flex();
     margin-right: 0;
-    display: flex;
-    align-items: center;
     font-size: 14px;
   }
 }
 
 .label {
   margin-bottom: 10px;
-  font-size: 16px;
-  font-weight: 600;
+  @include stLabel();
 }
 </style>

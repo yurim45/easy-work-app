@@ -79,8 +79,7 @@ ul {
 }
 
 li {
-  display: flex;
-  justify-content: space-between;
+  @include flex(space-between);
   padding: 20px;
 }
 
@@ -90,9 +89,7 @@ li {
 }
 
 .historyDetail {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  @include flex(center, flex-start, column);
   width: 100%;
   padding-left: 20px;
 
@@ -116,9 +113,7 @@ li {
 }
 
 .amt {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
+  @include flex(flex-start, flex-end, column);
 }
 
 .perAmount {

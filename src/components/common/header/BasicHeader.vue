@@ -37,9 +37,7 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between);
   height: 52px;
   padding: 0 20px;
   background: var(--white);

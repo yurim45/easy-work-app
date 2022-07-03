@@ -28,7 +28,6 @@ export default {
 
 <style scoped lang="scss">
 .label {
-  font-size: 16px;
-  font-weight: 600;
+  @include stLabel();
 }
 </style>

@@ -33,42 +33,7 @@ export default {
 <style scoped lang="scss">
 label {
   margin-right: 10px;
-  font-size: 16px;
+  @include stLabel();
   accent-color: var(--primary);
-
-  input[type='radio'] {
-    -webkit-appearance: none;
-    position: relative;
-    width: 16px;
-    height: 16px;
-    background: var(--white);
-    border: 2px solid var(--line);
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  input[type='radio']::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    overflow: hidden;
-    transform: scale(0) translate(-50%, -50%);
-    line-height: 1;
-  }
-
-  input[type='radio']:hover {
-    border-color: var(--primary);
-  }
-
-  input[type='radio']:checked {
-    border: 5px solid var(--primary);
-    border-radius: 100%;
-  }
-
-  input[type='radio']:checked::before {
-    border-radius: 2px;
-    transform: scale(1) translate(-50%, -50%);
-  }
 }
 </style>

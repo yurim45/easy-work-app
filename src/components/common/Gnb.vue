@@ -11,10 +11,7 @@ export default { name: 'GnbView' };
 
 <style scoped lang="scss">
 .gnb {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
+  @include flex(flex-start, center, column);
 }
 
 a {

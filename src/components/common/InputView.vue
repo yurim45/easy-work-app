@@ -34,34 +34,14 @@ export default {
 
 <style scoped lang="scss">
 div {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-direction: column;
+  @include flex(center, start, column);
 }
 
 label {
-  font-size: 16px;
-  font-weight: 600;
+  @include stLabel();
 }
 
 input {
-  margin: 10px 0 20px;
-  width: 100%;
-  height: 40px;
-  padding: 15px 10px 15px 15px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-
-  &:focus {
-    border: 2px solid var(--primary);
-  }
-
-  &::placeholder {
-    color: #9ca3af;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-  }
+  @include stInput();
 }
 </style>

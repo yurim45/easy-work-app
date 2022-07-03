@@ -68,9 +68,7 @@ export default {
 
 <style scoped lang="scss">
 .modalBg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
   position: fixed;
   top: 0;
   left: 0;
@@ -94,9 +92,7 @@ h3 {
 }
 
 .btnWrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  @include flex(space-around);
   margin: 50px 0;
 
   :first-child {
