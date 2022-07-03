@@ -10,6 +10,10 @@
   flex-direction: $flex-direction;
 }
 
+@mixin stLayout() {
+  padding: 25px 25px 10px;
+}
+
 @mixin stButton() {
   min-width: 120px;
   height: 40px;

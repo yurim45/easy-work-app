@@ -20,7 +20,23 @@ const routes = [
     name: 'pointRecord',
     component: () =>
       import(
-        /* webpackChunkName: 'pointRecord', webpackPrefetch: true */ '../views/RecordPorinsView.vue'
+        /* webpackChunkName: 'pointRecord', webpackPrefetch: true */ '../components/point/common/RecordPorinsView.vue'
+      ),
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () =>
+      import(
+        /* webpackChunkName: 'admin', webpackPrefetch: true */ '../views/AdminView.vue'
+      ),
+  },
+  {
+    path: '/admin/issuance',
+    name: 'pointsIssuance',
+    component: () =>
+      import(
+        /* webpackChunkName: 'adminpoint', webpackPrefetch: true */ '../components/point/admin/PointsIssuance.vue'
       ),
   },
 ];

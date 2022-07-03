@@ -1,7 +1,8 @@
 <template>
   <nav class="gnb">
     <router-link to="/">HOME</router-link>
-    <router-link to="/point">POINT</router-link>
+    <router-link to="/point">ATNP 포인트</router-link>
+    <router-link to="/admin">관리자</router-link>
   </nav>
 </template>
 

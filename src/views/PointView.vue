@@ -2,9 +2,9 @@
   <basic-header title="ATNP 포인트" />
   <main class="point">
     <div class="content">
-      <h2>Hello! {{ userName }} 👋</h2>
+      <h2>Hello! {{ me.name }} 👋</h2>
       <p>
-        {{ userName }}의 잔여 포인트: <strong>{{ points }} P</strong>
+        {{ me.name }}의 잔여 포인트: <strong>{{ userPoint }} P</strong>
       </p>
     </div>
 
@@ -20,19 +20,27 @@
 
 <script>
 import { ButtonView } from '@/components/common/index';
-import SendPoint from '@/components/SendPoint.vue';
-import PointHistory from '@/components/PointHistory.vue';
+import SendPoint from '@/components/point/user/SendPoint.vue';
+import PointHistory from '@/components/point/user/PointHistory.vue';
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
+import { getNumFormat } from '@/util';
 
 export default {
   name: 'PointView',
   components: { ButtonView, SendPoint, PointHistory, BasicHeader },
   data() {
     return {
-      userName: 'April',
-      points: 50000,
+      me: {
+        name: 'April',
+        point: 50000,
+      },
       isSendPoint: false,
     };
+  },
+  computed: {
+    userPoint() {
+      return getNumFormat(this.me.point);
+    },
   },
   methods: {
     sendPointOpen() {

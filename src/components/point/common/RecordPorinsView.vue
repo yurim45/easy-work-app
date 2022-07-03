@@ -170,7 +170,7 @@ export default {
 
 <style scoped lang="scss">
 main {
-  padding: 25px 25px 10px;
+  @include stLayout;
 }
 
 .multiselect-tag {
