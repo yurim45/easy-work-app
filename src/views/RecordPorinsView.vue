@@ -47,6 +47,7 @@
       @handleValue="handleValue($event)"
     />
     <input-view
+      type="number"
       label="사용금액"
       name="amount"
       placeholder="총 사용한 포인트를 입력하세요"
@@ -56,15 +57,15 @@
   </main>
   <footer class="result">
     <div class="list">
-      <span>사용금액</span> <strong>{{ amount }}</strong>
+      <span class="itemTitle">사용금액</span> <strong>{{ amt }}P</strong>
     </div>
     <div class="list">
-      <span>차감대상</span>
+      <span class="itemTitle">차감대상</span>
       <div>
-        <strong>{{ targets.length }}</strong>
+        <strong class="targets">{{ targets.length }}명</strong>
       </div>
     </div>
-    <div class="list">
+    <div class="list itemResult">
       <span>인당 차감</span><strong>{{ perAmount }}P</strong>
     </div>
     <button-view label="기록하기" @onClick="onSubmitSendPoints" />
@@ -79,6 +80,7 @@ import {
   InputView,
   SelectView,
 } from '@/components/common/index';
+import { getNumFormat } from '@/util';
 
 export default {
   name: 'RecordPorinsView',
@@ -114,9 +116,12 @@ export default {
     };
   },
   computed: {
+    amt() {
+      return getNumFormat(this.amount);
+    },
     perAmount() {
       if (this.amount && this.targets?.length) {
-        return (this.amount ?? 0) / (this.targets?.length ?? 0);
+        return getNumFormat((this.amount ?? 0) / (this.targets?.length ?? 0));
       }
       return 0;
     },
@@ -179,10 +184,29 @@ main {
   button {
     width: 100%;
     height: 50px;
+    font-size: 18px;
+    font-weight: 800;
   }
 }
 
 .list {
   @include flex(space-between);
+  margin: 10px 0;
+}
+
+.itemTitle {
+  @include stLabel();
+}
+
+.targets {
+  color: var(--primary);
+}
+
+.itemResult {
+  margin: 20px 0;
+  padding: 30px 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  border-top: 1px solid var(--line);
 }
 </style>

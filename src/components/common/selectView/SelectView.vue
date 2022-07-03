@@ -29,7 +29,7 @@ export default {
     optionList: Object,
     name: String,
     mode: String,
-    selectValue: Array,
+    selectValue: [Array, String],
     placeholder: String,
   },
   data() {

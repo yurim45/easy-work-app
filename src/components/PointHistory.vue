@@ -18,13 +18,14 @@
       </div>
       <div class="amt">
         <div class="perAmount">{{ perAmount(history) }} p</div>
-        <div>{{ history.amount }} p</div>
+        <div>{{ amount(history) }} p</div>
       </div>
     </li>
   </ul>
 </template>
 
 <script>
+import { getNumFormat } from '@/util';
 export default {
   name: 'PointHistory',
   data() {
@@ -62,7 +63,10 @@ export default {
       return (history) => history.date.substring(5).replace('-', '.');
     },
     perAmount() {
-      return (history) => history.amount / history.targets.length;
+      return (history) => getNumFormat(history.amount / history.targets.length);
+    },
+    amount() {
+      return (history) => getNumFormat(history.amount);
     },
   },
   methods: {

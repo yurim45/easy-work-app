@@ -2,7 +2,7 @@
   <div>
     <label v-if="label">{{ label }}</label>
     <input
-      type="text"
+      :type="type"
       v-model="iValue"
       @input="handleValue()"
       :placeholder="placeholder"
@@ -14,10 +14,14 @@
 export default {
   name: 'InputView',
   props: {
+    type: {
+      type: String,
+      default: 'text',
+    },
     label: String,
     name: String,
     placeholder: String,
-    inputValue: String,
+    inputValue: [String, Number],
   },
   data() {
     return {

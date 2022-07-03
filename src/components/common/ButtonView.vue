@@ -10,15 +10,11 @@ export default {
   props: {
     label: {
       type: String,
-      default: '버튼',
+      default: '확인',
     },
     type: {
       type: String,
       default: 'button',
-    },
-    bgcolor: {
-      type: String,
-      default: 'primary',
     },
     onClick: {
       type: Function,
