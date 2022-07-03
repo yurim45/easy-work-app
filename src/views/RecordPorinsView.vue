@@ -101,10 +101,10 @@ export default {
       excludedTargets: '',
       amount: '',
       optionList: [
-        { value: '식대초과', label: '식대초과' },
-        { value: '식음료', label: '식음료' },
-        { value: '문화', label: '문화' },
-        { value: '물품', label: '물품' },
+        { value: '식대초과', label: '식대초과', icon: '🍚' },
+        { value: '식음료', label: '식음료', icon: '🍻' },
+        { value: '문화', label: '문화', icon: '🎪' },
+        { value: '물품', label: '물품', icon: '🛍' },
       ],
       targetList: [
         { value: 'Warren', label: '워렌' },

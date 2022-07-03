@@ -3,15 +3,14 @@
     <li v-for="history in historyList" :key="history.id">
       <span class="date">{{ date(history) }}</span>
       <div class="history">
-        {{ history.useItem }}
+        <div class="icon">{{ history.useItem.icon }}</div>
         <div class="historyDetail">
           <p>{{ history.usePlace }}</p>
-          <div>
-            <span
-              v-for="(target, i) in history.targets"
-              :key="i"
-              class="target"
-              >{{ target }}</span
+          <div class="users">
+            <template v-for="(target, i) in history.targets" :key="i"
+              ><span v-if="i < 3" class="target">{{ target }}</span> </template
+            ><span v-if="history.targets.length > 3" class="targetOver"
+              >(외 {{ history.targets.length - 3 }}명)</span
             >
           </div>
         </div>
@@ -34,25 +33,33 @@ export default {
         {
           id: 1,
           date: '2022-04-05',
-          useItem: '아이콘',
-          usePlace: '서부족발',
-          targets: ['프릴', '제임스', '주드'],
+          useItem: { icon: '🍚', value: '식대초과' },
+          usePlace: '꼬기파티',
+          targets: ['프릴', '워렌', '위드', '제임스', '주드'],
           amount: -3000,
         },
         {
           id: 2,
           date: '2022-04-06',
-          useItem: '아이콘',
-          usePlace: '서부족발',
-          targets: ['프릴', '제임스'],
+          useItem: { icon: '🍻', value: '식음료' },
+          usePlace: '치킨앤맥주',
+          targets: ['제임스', '주드', '위드'],
           amount: -3000,
         },
         {
           id: 3,
           date: '2022-04-07',
-          useItem: '아이콘',
+          useItem: { icon: '🎪', value: '문화' },
+          usePlace: '탑건',
+          targets: ['케빈', '찰스', '프릴', '제임스', '주드', '위드'],
+          amount: -4000,
+        },
+        {
+          id: 3,
+          date: '2022-04-10',
+          useItem: { icon: '🛍', value: '물품' },
           usePlace: '서부족발',
-          targets: ['프릴', '제임스', '주드', '위드'],
+          targets: ['주드', '위드'],
           amount: -4000,
         },
       ],
@@ -63,7 +70,8 @@ export default {
       return (history) => history.date.substring(5).replace('-', '.');
     },
     perAmount() {
-      return (history) => getNumFormat(history.amount / history.targets.length);
+      return (history) =>
+        getNumFormat(Math.round(history.amount / history.targets.length));
     },
     amount() {
       return (history) => getNumFormat(history.amount);
@@ -89,7 +97,22 @@ li {
 
 .history {
   display: flex;
-  width: 60%;
+  width: 65%;
+}
+
+.icon {
+  @include flex;
+  width: 50px;
+  height: 40px;
+  background: var(--lightGrey);
+  font-size: 30px;
+  border-radius: 50%;
+}
+
+.users {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 .historyDetail {
@@ -98,6 +121,7 @@ li {
   padding-left: 20px;
 
   p {
+    padding-bottom: 5px;
     font-weight: 600;
   }
 }
@@ -108,20 +132,28 @@ li {
 }
 
 .target {
-  margin: 0 3px;
+  margin-right: 6px;
   padding: 3px;
   background: #e9f6ff;
   color: #2f86c5;
   font-size: 11px;
-  white-space: nowrap;
+}
+
+.targetOver {
+  color: var(--text-gray);
+  font-size: 12px;
+  letter-spacing: -0.5px;
 }
 
 .amt {
   @include flex(flex-start, flex-end, column);
+  font-size: 14px;
+  letter-spacing: -0.5px;
 }
 
 .perAmount {
-  font-size: 18px;
-  font-weight: 600;
+  padding-bottom: 3px;
+  font-size: 16px;
+  font-weight: 800;
 }
 </style>
