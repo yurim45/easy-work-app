@@ -127,6 +127,7 @@ li {
 }
 
 .date {
+  margin-right: 10px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -142,13 +143,14 @@ li {
 .targetOver {
   color: var(--text-gray);
   font-size: 12px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.8px;
 }
 
 .amt {
   @include flex(flex-start, flex-end, column);
+  width: 100px;
   font-size: 14px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 }
 
 .perAmount {
