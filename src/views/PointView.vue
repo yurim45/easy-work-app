@@ -4,7 +4,7 @@
     <div class="content">
       <h2>Hello! {{ userName }} 👋</h2>
       <p>
-        {{ userName }}의 잔여 포인트: <strong>{{ points }} p</strong>
+        {{ userName }}의 잔여 포인트: <strong>{{ points }} P</strong>
       </p>
     </div>
 
@@ -38,12 +38,8 @@ export default {
     sendPointOpen() {
       this.isSendPoint = true;
     },
-    recordPoint() {
-      console.log('===== recordPoint Click');
-    },
     closePage() {
       this.isSendPoint = false;
-      console.log('===== closePage Click');
     },
   },
 };
@@ -54,9 +50,11 @@ export default {
   max-width: 1200px;
   margin: auto;
 }
+
 .content {
   padding: 30px 20px;
 }
+
 h2 {
   font-size: 22px;
   font-weight: 600;
@@ -80,7 +78,7 @@ p {
 }
 
 .button {
-  @include flex();
+  @include flex;
   min-width: 120px;
   height: 40px;
   background: var(--primary);

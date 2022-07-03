@@ -28,6 +28,6 @@ export default {
 
 <style scoped lang="scss">
 .label {
-  @include stLabel();
+  @include stLabel;
 }
 </style>

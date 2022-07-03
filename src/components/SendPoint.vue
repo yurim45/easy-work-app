@@ -1,49 +1,61 @@
 <template>
   <div class="modalBg" @click.self="$emit('closePage')">
     <main>
-      <h3>포인트 보내기</h3>
-      <form>
-        <div class="inputRadio">
-          <label
-            v-for="user in users"
-            v-bind:key="user.id"
-            @change="handleValue"
-          >
-            <input type="radio" :value="user.text" v-model="target" />{{
-              user.text
-            }}</label
-          >
-        </div>
+      <h3>💎 포인트 보내기 ✍</h3>
+      <section class="selectTarget" v-if="!target">
+        <h4>누구에게 포인트를 보낼까요?</h4>
+        <ul>
+          <li v-for="user in users" :key="user.id">
+            <button @click="seletUser(user)" class="userInfo">
+              <div class="icon">{{ icon(user) }}</div>
+              <div class="user">
+                <strong class="name">{{ user.name }}({{ user.nick }})</strong>
+                <span class="point">{{ userPoint(user.point) }} P</span>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </section>
+      <section class="inputPoints" v-if="target">
+        <p class="selecedUser">
+          {{ this.target.name }}({{ target.nick }}) 님에게
+        </p>
         <input-view
-          label="금액"
+          type="number"
+          label="보낼 포인트"
           name="amount"
           :inputValue="amount"
           @handleValue="handleValue($event)"
         />
-
-        <div class="btnWrapper">
-          <button-view label="닫기" @onClick="$emit('closePage')" />
+        <p class="myPoint">내 잔여 포인트: {{ userPoint(me.point) }} P</p>
+        <footer class="btnWrapper">
+          <button-view label="취소하기" @onClick="$emit('closePage')" />
           <button-view label="보내기" @onClick="onSubmitSendPoints" />
-        </div>
-      </form>
+        </footer>
+      </section>
     </main>
   </div>
 </template>
 
 <script>
 import { ButtonView, InputView } from '@/components/common/index';
+import { getNumFormat } from '@/util';
 
 export default {
   name: 'SendPointModal',
   components: { ButtonView, InputView },
   data() {
     return {
+      me: {
+        name: '프릴',
+        point: 23000,
+      },
       users: [
-        { id: 1, value: 1, text: '프릴' },
-        { id: 2, value: 2, text: '제임스' },
-        { id: 3, value: 3, text: '위드' },
-        { id: 4, value: 4, text: '주드' },
-        { id: 5, value: 5, text: '워렌' },
+        { id: 1, point: 1945, name: '워렌', nick: 'Warren' },
+        { id: 2, point: 1945, name: '위드', nick: 'With' },
+        { id: 3, point: 1945, name: '프릴', nick: 'April' },
+        { id: 4, point: 1945, name: '제임스', nick: 'James' },
+        { id: 5, point: 1945, name: '주드', nick: 'Jude' },
       ],
       target: '',
       amount: '',
@@ -54,12 +66,23 @@ export default {
       type: Function,
     },
   },
+  computed: {
+    icon() {
+      return (user) => user.name.substring(0, 1);
+    },
+    userPoint() {
+      return (point) => getNumFormat(point);
+    },
+  },
   methods: {
+    seletUser(user) {
+      this.target = user;
+    },
     handleValue(value) {
       this.amount = value.name === 'amount' ? value.value : '';
     },
     onSubmitSendPoints() {
-      console.log(this.amount);
+      console.log(this.target, this.amount);
       this.$emit('closePage');
     },
   },
@@ -68,7 +91,7 @@ export default {
 
 <style scoped lang="scss">
 .modalBg {
-  @include flex();
+  @include flex;
   position: fixed;
   top: 0;
   left: 0;
@@ -87,13 +110,55 @@ main {
 }
 
 h3 {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-size: 22px;
+}
+
+.userInfo {
+  @include flex(flex-start);
+  margin: 20px 10px;
+  width: 100%;
+}
+
+.user {
+  @include flex(center, flex-start, column);
+  margin-left: 20px;
+}
+
+.icon {
+  @include flex;
+  width: 50px;
+  height: 50px;
+  background: #e9f6ff;
+  color: #2f86c5;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.point {
+  font-size: 14px;
+}
+
+.selecedUser {
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.myPoint {
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .btnWrapper {
   @include flex(space-around);
-  margin: 50px 0;
+  margin-top: 40px;
 
   :first-child {
     background: var(--deepGrey);

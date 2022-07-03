@@ -73,7 +73,7 @@ export default {
   @include flex(space-between);
 
   label {
-    @include flex();
+    @include flex;
     margin-right: 0;
     font-size: 14px;
   }
@@ -81,6 +81,6 @@ export default {
 
 .label {
   margin-bottom: 10px;
-  @include stLabel();
+  @include stLabel;
 }
 </style>

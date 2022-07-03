@@ -33,10 +33,10 @@ export default {
 }
 
 label {
-  @include stLabel();
+  @include stLabel;
 }
 
 input {
-  @include stInput();
+  @include stInput;
 }
 </style>

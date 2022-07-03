@@ -107,11 +107,11 @@ export default {
         { value: '물품', label: '물품' },
       ],
       targetList: [
-        { value: '프릴', label: '프릴' },
-        { value: '제임스', label: '제임스' },
-        { value: '위드', label: '위드' },
-        { value: '주드', label: '주드' },
-        { value: '워렌', label: '워렌' },
+        { value: 'Warren', label: '워렌' },
+        { value: 'With', label: '위드' },
+        { value: 'Jude', label: '주드' },
+        { value: 'James', label: '제임스' },
+        { value: 'April', label: '프릴' },
       ],
     };
   },
@@ -195,7 +195,7 @@ main {
 }
 
 .itemTitle {
-  @include stLabel();
+  @include stLabel;
 }
 
 .targets {

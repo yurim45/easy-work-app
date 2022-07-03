@@ -17,8 +17,8 @@
         </div>
       </div>
       <div class="amt">
-        <div class="perAmount">{{ perAmount(history) }} p</div>
-        <div>{{ amount(history) }} p</div>
+        <div class="perAmount">{{ perAmount(history) }} P</div>
+        <div>{{ amount(history) }} P</div>
       </div>
     </li>
   </ul>

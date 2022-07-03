@@ -33,7 +33,7 @@ export default {
 <style scoped lang="scss">
 label {
   margin-right: 10px;
-  @include stLabel();
+  @include stLabel;
   accent-color: var(--primary);
 }
 </style>

@@ -21,7 +21,7 @@ header {
   box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
 
   section {
-    @include flex();
+    @include flex;
     margin: auto;
     padding: 25px 20px;
     max-width: 1200px;
