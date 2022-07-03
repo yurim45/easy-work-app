@@ -33,6 +33,7 @@ main {
 .menu {
   li {
     margin: 20px;
+    cursor: pointer;
   }
 }
 
