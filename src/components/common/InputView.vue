@@ -21,7 +21,7 @@ export default {
     label: String,
     name: String,
     placeholder: String,
-    inputValue: [String, Number],
+    inputValue: [String, Number, Array],
   },
   data() {
     return {

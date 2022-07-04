@@ -70,8 +70,7 @@ export default {
       return (history) => history.date.substring(5).replace('-', '.');
     },
     perAmount() {
-      return (history) =>
-        getNumFormat(Math.round(history.amount / history.targets.length));
+      return (history) => getNumFormat(history.amount / history.targets.length);
     },
     amount() {
       return (history) => getNumFormat(history.amount);
