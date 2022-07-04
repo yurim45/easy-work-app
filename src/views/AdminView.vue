@@ -9,7 +9,7 @@
         <ul class="subMenu">
           <li>포인트 현황</li>
           <li><router-link to="/admin/issuance">포인트 발급</router-link></li>
-          <li>사용내역 기록</li>
+          <li><router-link to="/point/record">사용내역 기록</router-link></li>
         </ul>
       </li>
       <li>(예정)휴가 관리</li>

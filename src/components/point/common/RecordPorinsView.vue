@@ -46,6 +46,13 @@
       :inputValue="excludedTargets"
       @handleValue="handleValue($event)"
     />
+    <!-- <input-search-view
+      label="제외인원"
+      name="excludedTargets"
+      placeholder="포인트 차감 제외 대상자를 입력하세요"
+      :inputValue="excludedTargets"
+      @handleValue="handleValue($event)"
+    /> -->
     <input-view
       type="number"
       label="사용금액"
@@ -88,6 +95,7 @@ import {
   ButtonView,
   InputView,
   SelectView,
+  // InputSearchView,
 } from '@/components/common/index';
 import { getNumFormat } from '@/util';
 
@@ -99,6 +107,7 @@ export default {
     ButtonView,
     SelectView,
     InputView,
+    // InputSearchView,
   },
   data() {
     return {
@@ -107,7 +116,7 @@ export default {
       usePlace: '',
       useHistory: '',
       targets: [],
-      excludedTargets: ['대표님'],
+      excludedTargets: ['대표님', '하울'],
       amount: '',
       optionList: [
         { value: '식대초과', label: '식대초과', icon: '🍚' },
@@ -209,7 +218,6 @@ main {
   button {
     width: 100%;
     height: 50px;
-    font-size: 18px;
     font-weight: 800;
   }
 }

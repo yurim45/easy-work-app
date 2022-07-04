@@ -47,9 +47,12 @@
   position: absolute;
   top: 0;
 }
+
+/* placeholder */
 .multiselect-placeholder {
+  color: #9ca3af;
   font-size: 14px;
-  color: var(--ms-placeholder-color, #9ca3af);
+  letter-spacing: -0.2px;
 }
 .multiselect-single-label-text {
   display: block;
@@ -95,7 +98,7 @@
 }
 .multiselect-tag {
   align-items: center;
-  background: var(--ms-tag-bg, #db0234);
+  background: var(--primary);
   border-radius: var(--ms-tag-radius, 4px);
   color: var(--ms-tag-color, #fff);
   display: flex;
@@ -191,7 +194,7 @@
 .multiselect-spinner {
   -webkit-animation: multiselect-spin 1s linear infinite;
   animation: multiselect-spin 1s linear infinite;
-  background-color: var(--ms-spinner-color, #db0234);
+  background-color: var(--primary);
   flex-grow: 0;
   flex-shrink: 0;
   height: 1rem;
@@ -322,7 +325,7 @@
   color: var(--ms-group-label-color-pointed, #374151);
 }
 .multiselect-group-label.is-selected {
-  background: var(--ms-group-label-bg-selected, #db0234);
+  background: var(--primary);
   color: var(--ms-group-label-color-selected, #fff);
 }
 .multiselect-group-label.is-disabled {
@@ -331,11 +334,11 @@
   cursor: not-allowed;
 }
 .multiselect-group-label.is-selected.is-pointed {
-  background: var(--ms-group-label-bg-selected-pointed, #db0234);
+  background: var(--primary);
   color: var(--ms-group-label-color-selected-pointed, #fff);
 }
 .multiselect-group-label.is-selected.is-disabled {
-  background: var(--ms-group-label-bg-selected-disabled, #db0234);
+  background: var(--primary);
   color: var(--ms-group-label-color-selected-disabled, #f3d5dc);
 }
 .multiselect-group-options {
@@ -359,7 +362,7 @@
   color: var(--ms-option-color-pointed, #1f2937);
 }
 .multiselect-option.is-selected {
-  background: var(--ms-option-bg-selected, #db0234);
+  background: var(--primary);
   color: var(--ms-option-color-selected, #fff);
 }
 .multiselect-option.is-disabled {
@@ -368,11 +371,11 @@
   cursor: not-allowed;
 }
 .multiselect-option.is-selected.is-pointed {
-  background: var(--ms-option-bg-selected-pointed, #db0234);
+  background: var(--primary);
   color: var(--ms-option-color-selected-pointed, #fff);
 }
 .multiselect-option.is-selected.is-disabled {
-  background: var(--ms-option-bg-selected-disabled, #db0234);
+  background: var(--primary);
   color: var(--ms-option-color-selected-disabled, #f3d5dc);
 }
 .multiselect-no-options,
