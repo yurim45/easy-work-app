@@ -1,6 +1,8 @@
 // 천단위 생성
 const getNumFormat = (data) => {
-  return data?.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  return Math.round(data)
+    ?.toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 };
 
 // 천단위 제거
