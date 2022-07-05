@@ -7,12 +7,15 @@
       @input="handleValue()"
       :placeholder="placeholder"
     />
+    <ul v-if="isOpen">
+      <li v-for="(value, i) in iValue" :key="i">{{ value }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'InputView',
+  name: 'InputSearchView',
   props: {
     type: {
       type: String,
@@ -21,16 +24,18 @@ export default {
     label: String,
     name: String,
     placeholder: String,
-    inputValue: [String, Number, Array],
+    inputValue: [Array],
   },
   data() {
     return {
       iValue: this.inputValue,
+      isOpen: true,
+      searchValue: [],
     };
   },
   methods: {
     handleValue() {
-      this.$emit('handleValue', { name: this.name, value: this.iValue });
+      this.$emit('handleSearchValue', { name: this.name, value: this.iValue });
     },
   },
 };

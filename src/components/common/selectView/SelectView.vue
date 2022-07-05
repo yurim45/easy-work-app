@@ -58,6 +58,9 @@ export default {
         this.$refs.multiselect.clear();
       }
     },
+    searchChange() {
+      console.log('searchChange');
+    },
   },
 };
 </script>

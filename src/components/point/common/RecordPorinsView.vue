@@ -46,6 +46,13 @@
       :inputValue="excludedTargets"
       @handleValue="handleValue($event)"
     />
+    <!-- <input-search-view
+      label="제외인원"
+      name="excludedTargets"
+      placeholder="포인트 차감 제외 대상자를 입력하세요"
+      :inputValue="excludedTargets"
+      @handleValue="handleValue($event)"
+    /> -->
     <input-view
       type="number"
       label="사용금액"
@@ -62,12 +69,21 @@
     <div class="list">
       <span class="itemTitle">차감대상</span>
       <div>
-        <strong class="targets">{{ targets.length }}명</strong>
+        <strong class="targets">{{ totalTarget }}명</strong
+        ><span class="targetInfo" v-if="excludedTargets.length > 0"
+          >(외부 {{ excludedTargets.length }}명 포함)</span
+        >
       </div>
     </div>
-    <div class="list itemResult">
-      <span>인당 차감</span><strong>{{ perAmount }}P</strong>
+    <div class="itemResult">
+      <div class="list">
+        <span>인당 차감 포인트</span><strong>{{ perAmount }}P</strong>
+      </div>
+      <div class="list">
+        <span>총 차감 포인트</span><strong>{{ totalAmount }}P</strong>
+      </div>
     </div>
+
     <button-view label="기록하기" @onClick="onSubmitSendPoints" />
   </footer>
 </template>
@@ -79,6 +95,7 @@ import {
   ButtonView,
   InputView,
   SelectView,
+  // InputSearchView,
 } from '@/components/common/index';
 import { getNumFormat } from '@/util';
 
@@ -90,6 +107,7 @@ export default {
     ButtonView,
     SelectView,
     InputView,
+    // InputSearchView,
   },
   data() {
     return {
@@ -98,7 +116,7 @@ export default {
       usePlace: '',
       useHistory: '',
       targets: [],
-      excludedTargets: '',
+      excludedTargets: ['대표님', '하울'],
       amount: '',
       optionList: [
         { value: '식대초과', label: '식대초과', icon: '🍚' },
@@ -121,7 +139,23 @@ export default {
     },
     perAmount() {
       if (this.amount && this.targets?.length) {
-        return getNumFormat((this.amount ?? 0) / (this.targets?.length ?? 0));
+        return getNumFormat(
+          (this.amount ?? 0) /
+            (this.targets?.length + this.excludedTargets.length ?? 0)
+        );
+      }
+      return 0;
+    },
+    totalTarget() {
+      return this.targets.length + this.excludedTargets.length;
+    },
+    totalAmount() {
+      if (this.perAmount && this.targets?.length) {
+        return getNumFormat(
+          ((this.amount ?? 0) /
+            (this.targets?.length + this.excludedTargets.length ?? 0)) *
+            (this.targets?.length ?? 0)
+        );
       }
       return 0;
     },
@@ -184,7 +218,6 @@ main {
   button {
     width: 100%;
     height: 50px;
-    font-size: 18px;
     font-weight: 800;
   }
 }
@@ -200,6 +233,11 @@ main {
 
 .targets {
   color: var(--primary);
+}
+
+.targetInfo {
+  color: var(--primary);
+  font-size: 11px;
 }
 
 .itemResult {
