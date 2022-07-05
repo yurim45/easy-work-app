@@ -32,11 +32,16 @@
           label="메세지"
           name="message"
           :inputValue="message"
+          placeholder="포인트와 함께 전달할 메세지를 입력하세요"
           @handleValue="handleValue($event)"
         />
         <footer class="btnWrapper">
           <button-view label="취소하기" @onClick="$emit('closePage')" />
-          <button-view label="보내기" @onClick="onSubmitSendPoints" />
+          <button-view
+            label="보내기"
+            @onClick="onSubmitSendPoints"
+            :disabled="isDisabled"
+          />
         </footer>
       </section>
     </main>
@@ -80,6 +85,9 @@ export default {
     userPoint() {
       return (point) => getNumFormat(point);
     },
+    isDisabled() {
+      return this.amount > 0 && this.amount < this.me.point ? false : true;
+    },
   },
   methods: {
     seletUser(user) {
@@ -88,7 +96,7 @@ export default {
     handleValue(value) {
       switch (value.name) {
         case 'amount':
-          this.date = value.value;
+          this.amount = value.value;
           return;
         case 'message':
           this.message = value.value;
@@ -165,7 +173,7 @@ h3 {
 }
 
 .myPoint {
-  margin-bottom: 20px;
+  margin: -10px 0 40px;
   font-size: 14px;
   font-weight: 400;
 }

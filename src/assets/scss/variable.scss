@@ -20,6 +20,10 @@
   background: var(--primary);
   color: var(--white);
   border-radius: 10px;
+
+  &:disabled {
+    background: var(--dim);
+  }
 }
 
 @mixin stLabel() {

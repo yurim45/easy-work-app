@@ -1,5 +1,10 @@
 <template>
-  <button :type="type" class="button" @click="$emit('onClick')">
+  <button
+    :type="type"
+    class="button"
+    @click="$emit('onClick')"
+    :disabled="disabled"
+  >
     {{ label }}
   </button>
 </template>
@@ -18,6 +23,10 @@ export default {
     },
     onClick: {
       type: Function,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
 };
