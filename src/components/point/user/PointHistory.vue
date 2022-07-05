@@ -5,7 +5,16 @@
       <div class="history">
         <div class="icon">{{ history.useItem.icon }}</div>
         <div class="historyDetail">
-          <p>{{ history.usePlace }}</p>
+          <p
+            v-if="
+              history.useItem.value !== '보내기' &&
+              history.useItem.value !== '받기'
+            "
+          >
+            {{ history.usePlace }}
+          </p>
+          <p v-if="history.useItem.value === '보내기'">보내기</p>
+          <p v-if="history.useItem.value === '받기'">받기</p>
           <div class="users">
             <template v-for="(target, i) in history.targets" :key="i"
               ><span v-if="i < 3" class="target">{{ target }}</span> </template
@@ -16,8 +25,20 @@
         </div>
       </div>
       <div class="amt">
-        <div class="perAmount">{{ perAmount(history) }} P</div>
-        <div>{{ amount(history) }} P</div>
+        <div
+          class="perAmount"
+          :class="{ red: history.amount < '0', blue: history.amount > '0' }"
+        >
+          {{ perAmount(history) }} P
+        </div>
+        <div
+          v-if="
+            history.useItem.value !== '보내기' &&
+            history.useItem.value !== '받기'
+          "
+        >
+          {{ amount(history) }} P
+        </div>
       </div>
     </li>
   </ul>
@@ -55,12 +76,28 @@ export default {
           amount: -4000,
         },
         {
-          id: 3,
+          id: 4,
           date: '2022-04-10',
           useItem: { icon: '🛍', value: '물품' },
-          usePlace: '서부족발',
+          usePlace: '물품 샀어요',
           targets: ['주드', '위드'],
           amount: -4000,
+        },
+        {
+          id: 4,
+          date: '2022-04-11',
+          useItem: { icon: '💎', value: '보내기' },
+          usePlace: '',
+          targets: ['주드'],
+          amount: -5000,
+        },
+        {
+          id: 4,
+          date: '2022-04-20',
+          useItem: { icon: '🎁', value: '받기' },
+          usePlace: '',
+          targets: ['프릴'],
+          amount: 5000,
         },
       ],
     };
@@ -127,7 +164,8 @@ li {
 }
 
 .date {
-  margin-right: 10px;
+  width: 50px;
+  margin-right: 5px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -156,5 +194,13 @@ li {
   padding-bottom: 3px;
   font-size: 16px;
   font-weight: 800;
+}
+
+.red {
+  color: var(--primary);
+}
+
+.blue {
+  color: var(--blue);
 }
 </style>

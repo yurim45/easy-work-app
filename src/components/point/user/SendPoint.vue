@@ -28,6 +28,12 @@
           @handleValue="handleValue($event)"
         />
         <p class="myPoint">내 잔여 포인트: {{ userPoint(me.point) }} P</p>
+        <input-view
+          label="메세지"
+          name="message"
+          :inputValue="message"
+          @handleValue="handleValue($event)"
+        />
         <footer class="btnWrapper">
           <button-view label="취소하기" @onClick="$emit('closePage')" />
           <button-view label="보내기" @onClick="onSubmitSendPoints" />
@@ -59,6 +65,7 @@ export default {
       ],
       target: '',
       amount: '',
+      message: '',
     };
   },
   props: {
@@ -79,10 +86,17 @@ export default {
       this.target = user;
     },
     handleValue(value) {
-      this.amount = value.name === 'amount' ? value.value : '';
+      switch (value.name) {
+        case 'amount':
+          this.date = value.value;
+          return;
+        case 'message':
+          this.message = value.value;
+          return;
+      }
     },
     onSubmitSendPoints() {
-      console.log(this.target, this.amount);
+      console.log(this.target, this.amount, this.message);
       this.$emit('closePage');
     },
   },
@@ -151,6 +165,7 @@ h3 {
 }
 
 .myPoint {
+  margin-bottom: 20px;
   font-size: 14px;
   font-weight: 400;
 }
