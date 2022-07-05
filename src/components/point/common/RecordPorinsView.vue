@@ -106,6 +106,14 @@ export const LIST = [
   { value: '물품', label: '물품', icon: '🛍' },
 ];
 
+const USER_LIST = [
+  { value: 'Warren', label: '워렌' },
+  { value: 'With', label: '위드' },
+  { value: 'Jude', label: '주드' },
+  { value: 'James', label: '제임스' },
+  { value: 'April', label: '프릴' },
+];
+
 export default {
   name: 'RecordPorinsView',
   components: {
@@ -128,17 +136,16 @@ export default {
       excludedTargets: [],
       amount: '',
       optionList: LIST,
-      targetList: [
-        { value: 'Warren', label: '워렌' },
-        { value: 'With', label: '위드' },
-        { value: 'Jude', label: '주드' },
-        { value: 'James', label: '제임스' },
-        { value: 'April', label: '프릴' },
-      ],
+      targetList: USER_LIST,
     };
   },
   created() {
-    console.log(this.$route.params.targets, this.$route.params.useItem);
+    console.log(
+      USER_LIST.map(
+        (user) =>
+          user[this.$route.params.targets?.filter((el) => el === user.label)]
+      )
+    );
     if (Object.keys(this.$route.params)?.length !== 0) {
       this.date = this.$route.params.date;
       this.useItem = this.$route.params.useItem;
