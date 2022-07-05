@@ -24,9 +24,9 @@
       @handleValue="handleValue($event)"
     />
     <input-view
-      label="사용내역"
+      label="내용"
       name="useHistory"
-      placeholder="포인트 사용내역을 기입하세요"
+      placeholder="포인트 사용내용을 기입하세요"
       :inputValue="useHistory"
       @handleValue="handleValue($event)"
     />
@@ -99,6 +99,13 @@ import {
 } from '@/components/common/index';
 import { getNumFormat } from '@/util';
 
+export const LIST = [
+  { value: '식대초과', label: '식대초과', icon: '🍚' },
+  { value: '식음료', label: '식음료', icon: '🍻' },
+  { value: '문화', label: '문화', icon: '🎪' },
+  { value: '물품', label: '물품', icon: '🛍' },
+];
+
 export default {
   name: 'RecordPorinsView',
   components: {
@@ -109,6 +116,8 @@ export default {
     InputView,
     // InputSearchView,
   },
+  inheritAttrs: false,
+
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
@@ -116,14 +125,9 @@ export default {
       usePlace: '',
       useHistory: '',
       targets: [],
-      excludedTargets: ['대표님', '하울'],
+      excludedTargets: [],
       amount: '',
-      optionList: [
-        { value: '식대초과', label: '식대초과', icon: '🍚' },
-        { value: '식음료', label: '식음료', icon: '🍻' },
-        { value: '문화', label: '문화', icon: '🎪' },
-        { value: '물품', label: '물품', icon: '🛍' },
-      ],
+      optionList: LIST,
       targetList: [
         { value: 'Warren', label: '워렌' },
         { value: 'With', label: '위드' },
@@ -132,6 +136,18 @@ export default {
         { value: 'April', label: '프릴' },
       ],
     };
+  },
+  created() {
+    console.log(this.$route.params.targets, this.$route.params.useItem);
+    if (Object.keys(this.$route.params)?.length !== 0) {
+      this.date = this.$route.params.date;
+      this.useItem = this.$route.params.useItem;
+      this.usePlace = this.$route.params.usePlace;
+      this.useHistory = this.$route.params.useHistory;
+      (this.targets = ['Warren']), //this.$route.params.targets;
+        // this.excludedTargets = this.$route.params.excludedTargets;
+        (this.amount = Number(this.$route.params.amount.replace('-', '')));
+    }
   },
   computed: {
     amt() {
@@ -160,7 +176,6 @@ export default {
       return 0;
     },
   },
-
   methods: {
     handleValue(value) {
       switch (value.name) {

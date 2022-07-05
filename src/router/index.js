@@ -22,6 +22,7 @@ const routes = [
       import(
         /* webpackChunkName: 'pointRecord', webpackPrefetch: true */ '../components/point/common/RecordPorinsView.vue'
       ),
+    props: true,
   },
   {
     path: '/admin',
