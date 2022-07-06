@@ -1,21 +1,22 @@
 <template>
   <ul>
     <li v-for="history in historyList" :key="history.id">
-      <button type="button" @click="goToEditPoint(history)">
+      <button
+        type="button"
+        @click="goToEditPoint(history)"
+        :class="{ disabled: history.writer !== me.name }"
+      >
         <span class="date">{{ date(history) }}</span>
         <div class="history">
           <div class="icon">{{ itemIcon(history.useItem) }}</div>
           <div class="historyDetail">
             <p
-              v-if="
-                history.useItem.value !== '보내기' &&
-                history.useItem.value !== '받기'
-              "
+              v-if="history.useItem !== '보내기' && history.useItem !== '받기'"
             >
               {{ history.usePlace }}
             </p>
-            <p v-if="history.useItem.value === '보내기'">보내기</p>
-            <p v-if="history.useItem.value === '받기'">받기</p>
+            <p v-else-if="history.useItem === '보내기'">보내기</p>
+            <p v-else-if="history.useItem === '받기'">받기</p>
             <div class="users">
               <template v-for="(target, i) in history.targets" :key="i"
                 ><span v-if="i < 3" class="target">{{
@@ -35,10 +36,7 @@
             {{ perAmount(history) }} P
           </div>
           <div
-            v-if="
-              history.useItem.value !== '보내기' &&
-              history.useItem.value !== '받기'
-            "
+            v-if="history.useItem !== '보내기' && history.useItem !== '받기'"
           >
             {{ amount(history) }} P
           </div>
@@ -55,9 +53,14 @@ export default {
   name: 'PointHistory',
   data() {
     return {
+      me: {
+        name: 'April',
+        point: 23000,
+      },
       historyList: [
         {
           id: 1,
+          writer: 'April',
           date: '2022-04-05',
           useItem: '식대초과',
           usePlace: '꼬기파티',
@@ -66,14 +69,16 @@ export default {
         },
         {
           id: 2,
+          writer: 'With',
           date: '2022-04-06',
           useItem: '식음료',
           usePlace: '치킨앤맥주',
-          targets: ['제임스', '주드', '위드'],
+          targets: ['제임스', '루니', '위드'],
           amount: -3000,
         },
         {
           id: 3,
+          writer: 'April',
           date: '2022-04-07',
           useItem: '문화',
           usePlace: '탑건',
@@ -82,14 +87,16 @@ export default {
         },
         {
           id: 4,
+          writer: 'With',
           date: '2022-04-10',
           useItem: '물품',
           usePlace: '물품 샀어요',
-          targets: ['주드', '위드'],
+          targets: ['주드', '로이'],
           amount: -4000,
         },
         {
-          id: 4,
+          id: 5,
+          writer: 'April',
           date: '2022-04-11',
           useItem: '보내기',
           usePlace: '',
@@ -97,11 +104,12 @@ export default {
           amount: -5000,
         },
         {
-          id: 4,
+          id: 6,
+          writer: 'Jude',
           date: '2022-04-20',
           useItem: '받기',
           usePlace: '',
-          targets: ['프릴'],
+          targets: ['헨리'],
           amount: 5000,
         },
       ],
@@ -129,10 +137,12 @@ export default {
   },
   methods: {
     goToEditPoint(history) {
-      this.$router.push({
-        name: 'pointRecord',
-        params: history,
-      });
+      if (history.writer === this.me.name) {
+        this.$router.push({
+          name: 'pointRecord',
+          params: history,
+        });
+      }
     },
   },
 };
@@ -221,5 +231,15 @@ li > button {
 
 .blue {
   color: var(--blue);
+}
+
+.disabled {
+  background: var(--lightGrey);
+  color: var(--deepGrey);
+}
+
+.disabled .red {
+  background: var(--lightGrey);
+  color: var(--deepGrey);
 }
 </style>
