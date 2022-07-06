@@ -235,11 +235,11 @@ li > button {
 
 .disabled {
   background: var(--lightGrey);
-  color: var(--deepGrey);
+  color: var(--grey);
 }
 
 .disabled .red {
   background: var(--lightGrey);
-  color: var(--deepGrey);
+  color: var(--grey);
 }
 </style>
