@@ -31,8 +31,8 @@
         <p class="myPoint">내 잔여 포인트: {{ userPoint(me.point) }} P</p>
         <input-view
           label="메세지"
-          name="message"
-          :inputValue="message"
+          name="content"
+          :inputValue="content"
           placeholder="포인트와 함께 전달할 메세지를 입력하세요"
           @handleValue="handleValue($event)"
         />
@@ -71,7 +71,7 @@ export default {
       users: USER_LIST,
       target: '',
       amount: '',
-      message: '',
+      content: '',
     };
   },
   computed: {
@@ -94,13 +94,13 @@ export default {
         case 'amount':
           this.amount = value.value;
           return;
-        case 'message':
-          this.message = value.value;
+        case 'content':
+          this.content = value.value;
           return;
       }
     },
     onSubmitSendPoints() {
-      console.log(this.target, this.amount, this.message);
+      console.log(this.target, this.amount, this.content);
       this.$emit('closePage');
     },
   },

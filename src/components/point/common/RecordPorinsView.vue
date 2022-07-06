@@ -99,7 +99,52 @@ import {
   InputSearchView,
 } from '@/components/common/index';
 import { getNumFormat } from '@/util';
-import { ITEM_LIST, USER_LIST } from '@/constants';
+
+export const LIST = [
+  { value: '식대초과', label: '식대초과', icon: '🍚' },
+  { value: '식음료', label: '식음료', icon: '🍻' },
+  { value: '문화', label: '문화', icon: '🎪' },
+  { value: '물품', label: '물품', icon: '🛍' },
+];
+
+export const USER_LIST = [
+  {
+    value: 'Warren',
+    label: '워렌',
+    point: 1945,
+    name: '원정연',
+    nick: 'Warren',
+  },
+  { value: 'Kevin', label: '케빈', point: 1945, name: '차영민', nick: 'Kevin' },
+  { value: 'With', label: '위드', point: 1945, name: '예상기', nick: 'With' },
+  { value: 'Sera', label: '세라', point: 1945, name: '신새나', nick: 'Sera' },
+  { value: 'Anna', label: '안나', point: 1945, name: '조현정', nick: 'Anna' },
+  {
+    value: 'Rooney',
+    label: '루니',
+    point: 1945,
+    name: '이기태',
+    nick: 'Rooney',
+  },
+  { value: 'Jude', label: '주드', point: 1945, name: '양주엽', nick: 'Jude' },
+  {
+    value: 'Charles',
+    label: '찰스',
+    point: 1945,
+    name: '이창희',
+    nick: 'Charles',
+  },
+  { value: 'Henry', label: '헨리', point: 1945, name: '황규영', nick: 'Henry' },
+  {
+    value: 'James',
+    label: '제임스',
+    point: 1945,
+    name: '오태석',
+    nick: 'James',
+  },
+  { value: 'Roy', label: '로이', point: 1945, name: '김석호', nick: 'Roy' },
+  { value: 'April', label: '프릴', point: 1945, name: '김유림', nick: 'April' },
+];
 
 export default {
   name: 'RecordPorinsView',
@@ -122,7 +167,7 @@ export default {
       targets: [],
       excludedTargets: ['대표님'],
       amount: '',
-      optionList: ITEM_LIST,
+      optionList: LIST,
       targetList: USER_LIST,
     };
   },
@@ -141,6 +186,9 @@ export default {
       this.excludedTargets = this.$route.params.excludedTargets
         ? this.$route.params.excludedTargets
         : [];
+      this.content = this.$route.params.content
+        ? this.$route.params.content
+        : '';
       this.amount = Number(this.$route.params.amount.replace('-', ''));
     }
   },
