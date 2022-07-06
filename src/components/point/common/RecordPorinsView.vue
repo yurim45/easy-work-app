@@ -24,9 +24,9 @@
       @handleValue="handleValue($event)"
     />
     <input-view
-      label="사용내역"
+      label="내용"
       name="useHistory"
-      placeholder="포인트 사용내역을 기입하세요"
+      placeholder="포인트 사용내용을 기입하세요"
       :inputValue="useHistory"
       @handleValue="handleValue($event)"
     />
@@ -99,6 +99,21 @@ import {
 } from '@/components/common/index';
 import { getNumFormat } from '@/util';
 
+export const LIST = [
+  { value: '식대초과', label: '식대초과', icon: '🍚' },
+  { value: '식음료', label: '식음료', icon: '🍻' },
+  { value: '문화', label: '문화', icon: '🎪' },
+  { value: '물품', label: '물품', icon: '🛍' },
+];
+
+const USER_LIST = [
+  { value: 'Warren', label: '워렌' },
+  { value: 'With', label: '위드' },
+  { value: 'Jude', label: '주드' },
+  { value: 'James', label: '제임스' },
+  { value: 'April', label: '프릴' },
+];
+
 export default {
   name: 'RecordPorinsView',
   components: {
@@ -109,6 +124,8 @@ export default {
     InputView,
     InputSearchView,
   },
+  inheritAttrs: false,
+
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
@@ -118,20 +135,26 @@ export default {
       targets: [],
       excludedTargets: [],
       amount: '',
-      optionList: [
-        { value: '식대초과', label: '식대초과', icon: '🍚' },
-        { value: '식음료', label: '식음료', icon: '🍻' },
-        { value: '문화', label: '문화', icon: '🎪' },
-        { value: '물품', label: '물품', icon: '🛍' },
-      ],
-      targetList: [
-        { value: 'Warren', label: '워렌' },
-        { value: 'With', label: '위드' },
-        { value: 'Jude', label: '주드' },
-        { value: 'James', label: '제임스' },
-        { value: 'April', label: '프릴' },
-      ],
+      optionList: LIST,
+      targetList: USER_LIST,
     };
+  },
+  created() {
+    console.log(
+      USER_LIST.map(
+        (user) =>
+          user[this.$route.params.targets?.filter((el) => el === user.label)]
+      )
+    );
+    if (Object.keys(this.$route.params)?.length !== 0) {
+      this.date = this.$route.params.date;
+      this.useItem = this.$route.params.useItem;
+      this.usePlace = this.$route.params.usePlace;
+      this.useHistory = this.$route.params.useHistory;
+      (this.targets = ['Warren']), //this.$route.params.targets;
+        // this.excludedTargets = this.$route.params.excludedTargets;
+        (this.amount = Number(this.$route.params.amount.replace('-', '')));
+    }
   },
   computed: {
     amt: function () {
@@ -161,7 +184,6 @@ export default {
       return 0;
     },
   },
-
   methods: {
     handleValue(value) {
       switch (value.name) {

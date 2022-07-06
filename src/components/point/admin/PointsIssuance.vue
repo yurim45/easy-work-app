@@ -14,7 +14,7 @@
       type="number"
       label="인당금액"
       name="amount"
-      placeholder="총 사용한 포인트를 입력하세요"
+      placeholder="인당 포인트를 입력하세요"
       :inputValue="amount"
       @handleValue="handleValue($event)"
     />

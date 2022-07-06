@@ -1,51 +1,56 @@
 <template>
   <ul>
     <li v-for="history in historyList" :key="history.id">
-      <span class="date">{{ date(history) }}</span>
-      <div class="history">
-        <div class="icon">{{ history.useItem.icon }}</div>
-        <div class="historyDetail">
-          <p
+      <button type="button" @click="goToEditPoint(history)">
+        <span class="date">{{ date(history) }}</span>
+        <div class="history">
+          <div class="icon">{{ itemIcon(history.useItem) }}</div>
+          <div class="historyDetail">
+            <p
+              v-if="
+                history.useItem.value !== '보내기' &&
+                history.useItem.value !== '받기'
+              "
+            >
+              {{ history.usePlace }}
+            </p>
+            <p v-if="history.useItem.value === '보내기'">보내기</p>
+            <p v-if="history.useItem.value === '받기'">받기</p>
+            <div class="users">
+              <template v-for="(target, i) in history.targets" :key="i"
+                ><span v-if="i < 3" class="target">{{
+                  target
+                }}</span> </template
+              ><span v-if="history.targets.length > 3" class="targetOver"
+                >(외 {{ history.targets.length - 3 }}명)</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="amt">
+          <div
+            class="perAmount"
+            :class="{ red: history.amount < '0', blue: history.amount > '0' }"
+          >
+            {{ perAmount(history) }} P
+          </div>
+          <div
             v-if="
               history.useItem.value !== '보내기' &&
               history.useItem.value !== '받기'
             "
           >
-            {{ history.usePlace }}
-          </p>
-          <p v-if="history.useItem.value === '보내기'">보내기</p>
-          <p v-if="history.useItem.value === '받기'">받기</p>
-          <div class="users">
-            <template v-for="(target, i) in history.targets" :key="i"
-              ><span v-if="i < 3" class="target">{{ target }}</span> </template
-            ><span v-if="history.targets.length > 3" class="targetOver"
-              >(외 {{ history.targets.length - 3 }}명)</span
-            >
+            {{ amount(history) }} P
           </div>
         </div>
-      </div>
-      <div class="amt">
-        <div
-          class="perAmount"
-          :class="{ red: history.amount < '0', blue: history.amount > '0' }"
-        >
-          {{ perAmount(history) }} P
-        </div>
-        <div
-          v-if="
-            history.useItem.value !== '보내기' &&
-            history.useItem.value !== '받기'
-          "
-        >
-          {{ amount(history) }} P
-        </div>
-      </div>
+      </button>
     </li>
   </ul>
 </template>
 
 <script>
 import { getNumFormat } from '@/util';
+import { LIST } from '../common/RecordPorinsView.vue';
 export default {
   name: 'PointHistory',
   data() {
@@ -54,7 +59,7 @@ export default {
         {
           id: 1,
           date: '2022-04-05',
-          useItem: { icon: '🍚', value: '식대초과' },
+          useItem: '식대초과',
           usePlace: '꼬기파티',
           targets: ['프릴', '워렌', '위드', '제임스', '주드'],
           amount: -3000,
@@ -62,7 +67,7 @@ export default {
         {
           id: 2,
           date: '2022-04-06',
-          useItem: { icon: '🍻', value: '식음료' },
+          useItem: '식음료',
           usePlace: '치킨앤맥주',
           targets: ['제임스', '주드', '위드'],
           amount: -3000,
@@ -70,7 +75,7 @@ export default {
         {
           id: 3,
           date: '2022-04-07',
-          useItem: { icon: '🎪', value: '문화' },
+          useItem: '문화',
           usePlace: '탑건',
           targets: ['케빈', '찰스', '프릴', '제임스', '주드', '위드'],
           amount: -4000,
@@ -78,7 +83,7 @@ export default {
         {
           id: 4,
           date: '2022-04-10',
-          useItem: { icon: '🛍', value: '물품' },
+          useItem: '물품',
           usePlace: '물품 샀어요',
           targets: ['주드', '위드'],
           amount: -4000,
@@ -86,7 +91,7 @@ export default {
         {
           id: 4,
           date: '2022-04-11',
-          useItem: { icon: '💎', value: '보내기' },
+          useItem: '보내기',
           usePlace: '',
           targets: ['주드'],
           amount: -5000,
@@ -94,7 +99,7 @@ export default {
         {
           id: 4,
           date: '2022-04-20',
-          useItem: { icon: '🎁', value: '받기' },
+          useItem: '받기',
           usePlace: '',
           targets: ['프릴'],
           amount: 5000,
@@ -112,9 +117,23 @@ export default {
     amount: function () {
       return (history) => getNumFormat(history.amount);
     },
+    itemIcon() {
+      return (useItem) => {
+        return [
+          ...LIST,
+          { value: '보내기', label: '보내기', icon: '💎' },
+          { value: '받기', label: '받기', icon: '🎁' },
+        ].filter((el) => el.value === useItem)[0]?.icon;
+      };
+    },
   },
   methods: {
-    handleNumFormat() {},
+    goToEditPoint(history) {
+      this.$router.push({
+        name: 'pointRecord',
+        params: history,
+      });
+    },
   },
 };
 </script>
@@ -126,9 +145,10 @@ ul {
   border-top: 5px solid var(--line);
 }
 
-li {
+li > button {
   @include flex(space-between);
   padding: 20px;
+  width: 100%;
 }
 
 .history {
