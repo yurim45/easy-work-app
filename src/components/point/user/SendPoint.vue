@@ -75,13 +75,13 @@ export default {
     };
   },
   computed: {
-    icon: function () {
+    icon() {
       return (user) => user.name.substring(0, 1);
     },
-    userPoint: function () {
+    userPoint() {
       return (point) => getNumFormat(point);
     },
-    isDisabled: function () {
+    isDisabled() {
       return this.amount > 0 && this.amount <= this.me.point ? false : true;
     },
   },

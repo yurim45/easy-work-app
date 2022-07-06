@@ -47,14 +47,16 @@ export default {
     },
   },
   methods: {
-    debounceHandleValue: debounce(function (event) {
-      this.resultValue = [...this.resultValue, event.target.value];
-      this.$emit('handleValue', {
-        name: this.name,
-        value: this.resultValue,
-      });
-      this.iValue = '';
-    }, 1000),
+    debounceHandleValue() {
+      debounce(function (event) {
+        this.resultValue = [...this.resultValue, event.target.value];
+        this.$emit('handleValue', {
+          name: this.name,
+          value: this.resultValue,
+        });
+        this.iValue = '';
+      }, 800);
+    },
 
     deleteValue(value) {
       this.resultValue = this.resultValue.filter((el) => el !== value);

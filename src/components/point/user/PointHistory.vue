@@ -5,6 +5,7 @@
         type="button"
         @click="goToEditPoint(history)"
         :class="{ disabled: isEditDisabled(history) }"
+        :disabled="isEditDisabled(history)"
       >
         <span class="date">{{ date(history) }}</span>
         <div class="history">
@@ -62,13 +63,13 @@ export default {
     };
   },
   computed: {
-    date: function () {
+    date() {
       return (history) => history.date.substring(5).replace('-', '.');
     },
-    perAmount: function () {
+    perAmount() {
       return (history) => getNumFormat(history.amount / history.targets.length);
     },
-    amount: function () {
+    amount() {
       return (history) => getNumFormat(history.amount);
     },
     itemIcon() {

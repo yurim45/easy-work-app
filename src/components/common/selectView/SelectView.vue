@@ -40,7 +40,7 @@ export default {
     };
   },
   watch: {
-    sValue: function () {
+    sValue() {
       if (this.sValue.length < USER_LIST.length + 1) {
         this.checkedAll = false;
       } else if (this.sValue.length === USER_LIST.length + 1) {

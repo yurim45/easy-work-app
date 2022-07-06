@@ -40,6 +40,14 @@ const routes = [
         /* webpackChunkName: 'adminpoint', webpackPrefetch: true */ '../components/point/admin/PointsIssuance.vue'
       ),
   },
+  {
+    path: '/admin/status',
+    name: 'PorinsStatus',
+    component: () =>
+      import(
+        /* webpackChunkName: 'adminpoint', webpackPrefetch: true */ '../components/point/admin/PorinsStatus.vue'
+      ),
+  },
 ];
 
 const router = createRouter({

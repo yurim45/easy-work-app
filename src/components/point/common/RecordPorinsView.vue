@@ -194,10 +194,10 @@ export default {
   },
 
   computed: {
-    amt: function () {
+    amt() {
       return getNumFormat(this.amount);
     },
-    perAmount: function () {
+    perAmount() {
       if (this.amount && this.targets?.length) {
         return getNumFormat(
           (this.amount ?? 0) /
@@ -206,10 +206,10 @@ export default {
       }
       return 0;
     },
-    totalTarget: function () {
+    totalTarget() {
       return this.targets.length + this.excludedTargets.length;
     },
-    totalAmount: function () {
+    totalAmount() {
       if (this.perAmount && this.targets?.length) {
         return getNumFormat(
           ((this.amount ?? 0) /
