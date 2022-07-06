@@ -25,9 +25,9 @@
     />
     <input-view
       label="내용"
-      name="useHistory"
+      name="content"
       placeholder="포인트 사용내용을 기입하세요"
-      :inputValue="useHistory"
+      :inputValue="content"
       @handleValue="handleValue($event)"
     />
     <select-view
@@ -108,9 +108,16 @@ export const LIST = [
 
 const USER_LIST = [
   { value: 'Warren', label: '워렌' },
+  { value: 'Kevin', label: '케빈' },
   { value: 'With', label: '위드' },
+  { value: 'Sera', label: '세라' },
+  { value: 'Anna', label: '안나' },
+  { value: 'Rooney', label: '루니' },
   { value: 'Jude', label: '주드' },
+  { value: 'Charles', label: '찰스' },
+  { value: 'Henry', label: '헨리' },
   { value: 'James', label: '제임스' },
+  { value: 'Roy', label: '로이' },
   { value: 'April', label: '프릴' },
 ];
 
@@ -131,7 +138,7 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       useItem: null,
       usePlace: '',
-      useHistory: '',
+      content: '',
       targets: [],
       excludedTargets: [],
       amount: '',
@@ -140,20 +147,19 @@ export default {
     };
   },
   created() {
-    console.log(
-      USER_LIST.map(
-        (user) =>
-          user[this.$route.params.targets?.filter((el) => el === user.label)]
-      )
-    );
     if (Object.keys(this.$route.params)?.length !== 0) {
       this.date = this.$route.params.date;
       this.useItem = this.$route.params.useItem;
       this.usePlace = this.$route.params.usePlace;
       this.useHistory = this.$route.params.useHistory;
-      (this.targets = ['Warren']), //this.$route.params.targets;
-        // this.excludedTargets = this.$route.params.excludedTargets;
-        (this.amount = Number(this.$route.params.amount.replace('-', '')));
+      this.targets = this.$route.params.targets
+        ?.map(
+          (target) =>
+            USER_LIST.filter((user) => user.label === target)[0]?.value
+        )
+        .flat();
+      // this.excludedTargets = this.$route.params.excludedTargets;
+      this.amount = Number(this.$route.params.amount.replace('-', ''));
     }
   },
   computed: {
@@ -196,8 +202,8 @@ export default {
         case 'usePlace':
           this.usePlace = value.value;
           return;
-        case 'useHistory':
-          this.useHistory = value.value;
+        case 'content':
+          this.content = value.value;
           return;
         case 'targets':
           this.targets = value.value;
