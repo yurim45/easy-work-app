@@ -162,6 +162,7 @@ export default {
       this.amount = Number(this.$route.params.amount.replace('-', ''));
     }
   },
+
   computed: {
     amt: function () {
       return getNumFormat(this.amount);

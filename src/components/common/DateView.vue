@@ -1,7 +1,7 @@
 <template>
   <div class="date">
     <label v-if="label">{{ label }}</label>
-    <input type="date" v-model="date" @input="handleValue()" />
+    <input type="date" v-model="dDate" @input="handleValue()" />
   </div>
 </template>
 
@@ -15,13 +15,13 @@ export default {
   },
   data() {
     return {
-      date: new Date().toISOString().substr(0, 10),
+      dDate: this.inputValue,
       iName: this.name,
     };
   },
   methods: {
     handleValue() {
-      this.$emit('handleValue', { name: this.iName, value: this.date });
+      this.$emit('handleValue', { name: this.iName, value: this.dDate });
     },
   },
 };
