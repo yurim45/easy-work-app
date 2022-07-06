@@ -9,7 +9,7 @@
             <button @click="seletUser(user)" class="userInfo">
               <div class="icon">{{ icon(user) }}</div>
               <div class="user">
-                <strong class="name">{{ user.name }}({{ user.nick }})</strong>
+                <strong class="name">{{ user.name }}({{ user.value }})</strong>
                 <span class="point">{{ userPoint(user.point) }} P</span>
               </div>
             </button>
@@ -18,7 +18,7 @@
       </section>
       <section class="inputPoints" v-if="target">
         <p class="selecedUser">
-          {{ this.target.name }}({{ target.nick }}) 님에게
+          {{ this.target.name }}({{ target.value }}) 님에게
         </p>
         <input-view
           type="number"
@@ -52,7 +52,7 @@
 <script>
 import { ButtonView, InputView } from '@/components/common/index';
 import { getNumFormat } from '@/util';
-import { USER_LIST } from '../common/RecordPorinsView.vue';
+import { USER_LIST } from '@/constants/index';
 
 export default {
   name: 'SendPointModal',

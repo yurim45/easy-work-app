@@ -39,13 +39,6 @@
       :optionList="targetList"
       @handleValue="handleValue($event)"
     />
-    <!-- <input-view
-      label="제외인원"
-      name="excludedTargets"
-      placeholder="포인트 차감 제외 대상자를 입력하세요"
-      :inputValue="excludedTargets"
-      @handleValue="handleValue($event)"
-    /> -->
     <input-search-view
       label="제외인원"
       name="excludedTargets"
@@ -164,7 +157,7 @@ export default {
       usePlace: '',
       content: '',
       targets: [],
-      excludedTargets: [],
+      excludedTargets: ['대표님'],
       amount: '',
       optionList: LIST,
       targetList: USER_LIST,
@@ -234,11 +227,7 @@ export default {
           this.targets = value.value;
           return;
         case 'excludedTargets':
-          // this.excludedTargets = [...this.excludedTargets, value.value];
-          console.log('excludedTargets', [
-            ...this.excludedTargets,
-            value.value,
-          ]);
+          this.excludedTargets = value.value;
           return;
         case 'amount':
           this.amount = value.value;

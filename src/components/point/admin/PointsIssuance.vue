@@ -33,7 +33,7 @@
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
 import { ButtonView, InputView, SelectView } from '@/components/common/index';
 import { getNumFormat } from '@/util';
-import { USER_LIST } from '../common/RecordPorinsView.vue';
+import { USER_LIST } from '@/constants/index';
 
 export default {
   name: 'PointsIssuance',

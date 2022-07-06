@@ -20,6 +20,7 @@
 
 <script>
 import Multiselect from '@vueform/multiselect';
+import { USER_LIST } from '@/constants';
 
 export default {
   name: 'SelectView',
@@ -40,9 +41,9 @@ export default {
   },
   watch: {
     sValue: function () {
-      if (this.sValue.length < 5) {
+      if (this.sValue.length < USER_LIST.length + 1) {
         this.checkedAll = false;
-      } else if (this.sValue.length === 5) {
+      } else if (this.sValue.length === USER_LIST.length + 1) {
         this.checkedAll = true;
       }
     },
@@ -59,9 +60,6 @@ export default {
         this.$refs.multiselect.clear();
         this.$emit('handleValue', { name: this.name, value: this.sValue });
       }
-    },
-    searchChange() {
-      console.log('searchChange');
     },
   },
 };
