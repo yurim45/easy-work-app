@@ -4,7 +4,7 @@
       <button
         type="button"
         @click="goToEditPoint(history)"
-        :class="{ disabled: history.writer !== me.name }"
+        :class="{ disabled: isEditDisabled(history) }"
       >
         <span class="date">{{ date(history) }}</span>
         <div class="history">
@@ -49,6 +49,7 @@
 <script>
 import { getNumFormat } from '@/util';
 import { LIST } from '../common/RecordPorinsView.vue';
+import { POINT_HISTORY } from '@/constants';
 export default {
   name: 'PointHistory',
   data() {
@@ -57,62 +58,7 @@ export default {
         name: 'April',
         point: 23000,
       },
-      historyList: [
-        {
-          id: 1,
-          writer: 'April',
-          date: '2022-04-05',
-          useItem: '식대초과',
-          usePlace: '꼬기파티',
-          targets: ['프릴', '워렌', '위드', '제임스', '주드'],
-          amount: -3000,
-        },
-        {
-          id: 2,
-          writer: 'With',
-          date: '2022-04-06',
-          useItem: '식음료',
-          usePlace: '치킨앤맥주',
-          targets: ['제임스', '루니', '위드'],
-          amount: -3000,
-        },
-        {
-          id: 3,
-          writer: 'April',
-          date: '2022-04-07',
-          useItem: '문화',
-          usePlace: '탑건',
-          targets: ['케빈', '찰스', '프릴', '제임스', '주드', '위드'],
-          amount: -4000,
-        },
-        {
-          id: 4,
-          writer: 'With',
-          date: '2022-04-10',
-          useItem: '물품',
-          usePlace: '물품 샀어요',
-          targets: ['주드', '로이'],
-          amount: -4000,
-        },
-        {
-          id: 5,
-          writer: 'April',
-          date: '2022-04-11',
-          useItem: '보내기',
-          usePlace: '',
-          targets: ['주드'],
-          amount: -5000,
-        },
-        {
-          id: 6,
-          writer: 'Jude',
-          date: '2022-04-20',
-          useItem: '받기',
-          usePlace: '',
-          targets: ['헨리'],
-          amount: 5000,
-        },
-      ],
+      historyList: POINT_HISTORY,
     };
   },
   computed: {
@@ -133,6 +79,10 @@ export default {
           { value: '받기', label: '받기', icon: '🎁' },
         ].filter((el) => el.value === useItem)[0]?.icon;
       };
+    },
+    isEditDisabled() {
+      return (history) =>
+        history.writer !== this.me.name || history.useItem === '보내기';
     },
   },
   methods: {

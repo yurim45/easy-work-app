@@ -77,7 +77,15 @@
       </div>
     </div>
 
-    <button-view label="기록하기" @onClick="onSubmitSendPoints" />
+    <div class="btnWrapper">
+      <button-view
+        v-if="isDeleteButtonView"
+        label="삭제하기"
+        @onClick="deletePointHistory"
+        class="deleteButton"
+      />
+      <button-view label="기록하기" @onClick="onSubmitSendPoints" />
+    </div>
   </footer>
 </template>
 
@@ -91,52 +99,7 @@ import {
   InputSearchView,
 } from '@/components/common/index';
 import { getNumFormat } from '@/util';
-
-export const LIST = [
-  { value: '식대초과', label: '식대초과', icon: '🍚' },
-  { value: '식음료', label: '식음료', icon: '🍻' },
-  { value: '문화', label: '문화', icon: '🎪' },
-  { value: '물품', label: '물품', icon: '🛍' },
-];
-
-export const USER_LIST = [
-  {
-    value: 'Warren',
-    label: '워렌',
-    point: 1945,
-    name: '원정연',
-    nick: 'Warren',
-  },
-  { value: 'Kevin', label: '케빈', point: 1945, name: '차영민', nick: 'Kevin' },
-  { value: 'With', label: '위드', point: 1945, name: '예상기', nick: 'With' },
-  { value: 'Sera', label: '세라', point: 1945, name: '신새나', nick: 'Sera' },
-  { value: 'Anna', label: '안나', point: 1945, name: '조현정', nick: 'Anna' },
-  {
-    value: 'Rooney',
-    label: '루니',
-    point: 1945,
-    name: '이기태',
-    nick: 'Rooney',
-  },
-  { value: 'Jude', label: '주드', point: 1945, name: '양주엽', nick: 'Jude' },
-  {
-    value: 'Charles',
-    label: '찰스',
-    point: 1945,
-    name: '이창희',
-    nick: 'Charles',
-  },
-  { value: 'Henry', label: '헨리', point: 1945, name: '황규영', nick: 'Henry' },
-  {
-    value: 'James',
-    label: '제임스',
-    point: 1945,
-    name: '오태석',
-    nick: 'James',
-  },
-  { value: 'Roy', label: '로이', point: 1945, name: '김석호', nick: 'Roy' },
-  { value: 'April', label: '프릴', point: 1945, name: '김유림', nick: 'April' },
-];
+import { ITEM_LIST, USER_LIST } from '@/constants';
 
 export default {
   name: 'RecordPorinsView',
@@ -159,7 +122,7 @@ export default {
       targets: [],
       excludedTargets: ['대표님'],
       amount: '',
-      optionList: LIST,
+      optionList: ITEM_LIST,
       targetList: USER_LIST,
     };
   },
@@ -175,7 +138,9 @@ export default {
             USER_LIST.filter((user) => user.label === target)[0]?.value
         )
         .flat();
-      // this.excludedTargets = this.$route.params.excludedTargets;
+      this.excludedTargets = this.$route.params.excludedTargets
+        ? this.$route.params.excludedTargets
+        : [];
       this.amount = Number(this.$route.params.amount.replace('-', ''));
     }
   },
@@ -194,7 +159,6 @@ export default {
       return 0;
     },
     totalTarget: function () {
-      console.log(this.targets.length, this.excludedTargets.length);
       return this.targets.length + this.excludedTargets.length;
     },
     totalAmount: function () {
@@ -206,6 +170,9 @@ export default {
         );
       }
       return 0;
+    },
+    isDeleteButtonView() {
+      return Object.keys(this.$route.params)?.length !== 0 ? true : false;
     },
   },
   methods: {
@@ -244,6 +211,9 @@ export default {
         this.excludedTargets,
         this.amount
       );
+    },
+    deletePointHistory() {
+      console.log('삭제하기', this.$route.params);
     },
   },
 };
@@ -293,5 +263,14 @@ main {
   font-size: 18px;
   font-weight: 600;
   border-top: 1px solid var(--line);
+}
+
+.btnWrapper {
+  @include flex(space-around);
+}
+
+.deleteButton {
+  margin-right: 30px;
+  background: var(--deepGrey);
 }
 </style>
