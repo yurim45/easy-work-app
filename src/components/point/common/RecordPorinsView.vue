@@ -259,9 +259,11 @@ export default {
         this.excludedTargets,
         this.amount
       );
+      this.$router.push('/point');
     },
     deletePointHistory() {
       console.log('삭제하기', this.$route.params);
+      this.$router.push('/point');
     },
   },
 };
