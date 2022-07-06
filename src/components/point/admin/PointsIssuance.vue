@@ -33,6 +33,7 @@
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
 import { ButtonView, InputView, SelectView } from '@/components/common/index';
 import { getNumFormat } from '@/util';
+import { USER_LIST } from '../common/RecordPorinsView.vue';
 
 export default {
   name: 'PointsIssuance',
@@ -45,13 +46,7 @@ export default {
   data() {
     return {
       targets: [],
-      targetList: [
-        { value: 'Warren', label: '워렌' },
-        { value: 'With', label: '위드' },
-        { value: 'Jude', label: '주드' },
-        { value: 'James', label: '제임스' },
-        { value: 'April', label: '프릴' },
-      ],
+      targetList: USER_LIST,
       amount: '',
     };
   },

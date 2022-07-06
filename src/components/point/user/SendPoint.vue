@@ -5,7 +5,7 @@
       <section class="selectTarget" v-if="!target">
         <h4>누구에게 포인트를 보낼까요?</h4>
         <ul>
-          <li v-for="user in users" :key="user.id">
+          <li v-for="(user, i) in users" :key="i">
             <button @click="seletUser(user)" class="userInfo">
               <div class="icon">{{ icon(user) }}</div>
               <div class="user">
@@ -52,6 +52,7 @@
 <script>
 import { ButtonView, InputView } from '@/components/common/index';
 import { getNumFormat } from '@/util';
+import { USER_LIST } from '../common/RecordPorinsView.vue';
 
 export default {
   name: 'SendPointModal',
@@ -67,13 +68,7 @@ export default {
         name: '프릴',
         point: 23000,
       },
-      users: [
-        { id: 1, point: 1945, name: '워렌', nick: 'Warren' },
-        { id: 2, point: 1945, name: '위드', nick: 'With' },
-        { id: 3, point: 1945, name: '프릴', nick: 'April' },
-        { id: 4, point: 1945, name: '제임스', nick: 'James' },
-        { id: 5, point: 1945, name: '주드', nick: 'Jude' },
-      ],
+      users: USER_LIST,
       target: '',
       amount: '',
       message: '',
@@ -127,9 +122,11 @@ export default {
 
 main {
   width: 100%;
+  height: 100%;
   padding: 30px 20px;
   background: var(--white);
   border-radius: 10px;
+  overflow: scroll;
 }
 
 h3 {
@@ -159,7 +156,7 @@ h3 {
 }
 
 .name {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -168,7 +165,7 @@ h3 {
 }
 
 .selecedUser {
-  margin: 20px 0;
+  margin: 20px 0 40px;
   font-size: 20px;
   font-weight: 600;
 }

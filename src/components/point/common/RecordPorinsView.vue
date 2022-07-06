@@ -106,19 +106,43 @@ export const LIST = [
   { value: '물품', label: '물품', icon: '🛍' },
 ];
 
-const USER_LIST = [
-  { value: 'Warren', label: '워렌' },
-  { value: 'Kevin', label: '케빈' },
-  { value: 'With', label: '위드' },
-  { value: 'Sera', label: '세라' },
-  { value: 'Anna', label: '안나' },
-  { value: 'Rooney', label: '루니' },
-  { value: 'Jude', label: '주드' },
-  { value: 'Charles', label: '찰스' },
-  { value: 'Henry', label: '헨리' },
-  { value: 'James', label: '제임스' },
-  { value: 'Roy', label: '로이' },
-  { value: 'April', label: '프릴' },
+export const USER_LIST = [
+  {
+    value: 'Warren',
+    label: '워렌',
+    point: 1945,
+    name: '원정연',
+    nick: 'Warren',
+  },
+  { value: 'Kevin', label: '케빈', point: 1945, name: '차영민', nick: 'Kevin' },
+  { value: 'With', label: '위드', point: 1945, name: '예상기', nick: 'With' },
+  { value: 'Sera', label: '세라', point: 1945, name: '신새나', nick: 'Sera' },
+  { value: 'Anna', label: '안나', point: 1945, name: '조현정', nick: 'Anna' },
+  {
+    value: 'Rooney',
+    label: '루니',
+    point: 1945,
+    name: '이기태',
+    nick: 'Rooney',
+  },
+  { value: 'Jude', label: '주드', point: 1945, name: '양주엽', nick: 'Jude' },
+  {
+    value: 'Charles',
+    label: '찰스',
+    point: 1945,
+    name: '이창희',
+    nick: 'Charles',
+  },
+  { value: 'Henry', label: '헨리', point: 1945, name: '황규영', nick: 'Henry' },
+  {
+    value: 'James',
+    label: '제임스',
+    point: 1945,
+    name: '오태석',
+    nick: 'James',
+  },
+  { value: 'Roy', label: '로이', point: 1945, name: '김석호', nick: 'Roy' },
+  { value: 'April', label: '프릴', point: 1945, name: '김유림', nick: 'April' },
 ];
 
 export default {
