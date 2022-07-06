@@ -82,7 +82,7 @@ export default {
       return (point) => getNumFormat(point);
     },
     isDisabled: function () {
-      return this.amount > 0 && this.amount < this.me.point ? false : true;
+      return this.amount > 0 && this.amount <= this.me.point ? false : true;
     },
   },
   methods: {
