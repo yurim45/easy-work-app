@@ -103,13 +103,13 @@ export default {
     };
   },
   computed: {
-    date() {
+    date: function () {
       return (history) => history.date.substring(5).replace('-', '.');
     },
-    perAmount() {
+    perAmount: function () {
       return (history) => getNumFormat(history.amount / history.targets.length);
     },
-    amount() {
+    amount: function () {
       return (history) => getNumFormat(history.amount);
     },
   },

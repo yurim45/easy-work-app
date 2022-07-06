@@ -24,6 +24,7 @@
           type="number"
           label="보낼 포인트"
           name="amount"
+          placeholder="보낼 포인트를 입력하세요."
           :inputValue="amount"
           @handleValue="handleValue($event)"
         />
@@ -55,6 +56,11 @@ import { getNumFormat } from '@/util';
 export default {
   name: 'SendPointModal',
   components: { ButtonView, InputView },
+  props: {
+    closePage: {
+      type: Function,
+    },
+  },
   data() {
     return {
       me: {
@@ -73,19 +79,14 @@ export default {
       message: '',
     };
   },
-  props: {
-    closePage: {
-      type: Function,
-    },
-  },
   computed: {
-    icon() {
+    icon: function () {
       return (user) => user.name.substring(0, 1);
     },
-    userPoint() {
+    userPoint: function () {
       return (point) => getNumFormat(point);
     },
-    isDisabled() {
+    isDisabled: function () {
       return this.amount > 0 && this.amount < this.me.point ? false : true;
     },
   },

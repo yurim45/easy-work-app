@@ -12,7 +12,7 @@
       :options="optionList"
       :placeholder="placeholder"
       :mode="mode"
-      @select="handleValue()"
+      @click="handleValue()"
       ref="multiselect"
     />
   </div>
@@ -54,8 +54,10 @@ export default {
     selectAll() {
       if (this.checkedAll) {
         this.$refs.multiselect.selectAll();
+        this.$emit('handleValue', { name: this.name, value: this.sValue });
       } else {
         this.$refs.multiselect.clear();
+        this.$emit('handleValue', { name: this.name, value: this.sValue });
       }
     },
     searchChange() {

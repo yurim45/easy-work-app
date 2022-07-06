@@ -38,7 +38,7 @@ export default {
     };
   },
   computed: {
-    userPoint() {
+    userPoint: function () {
       return getNumFormat(this.me.point);
     },
   },

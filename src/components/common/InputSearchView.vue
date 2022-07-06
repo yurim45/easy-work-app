@@ -4,11 +4,18 @@
     <input
       :type="type"
       v-model="iValue"
-      @input="handleValue()"
+      @change="handleValue()"
       :placeholder="placeholder"
     />
-    <ul v-if="isOpen">
-      <li v-for="(value, i) in iValue" :key="i">{{ value }}</li>
+    <ul v-if="isOpen" class="tagList">
+      <li
+        v-for="(value, i) in iValue"
+        :key="i"
+        class="tag"
+        @click="deleteValue(value)"
+      >
+        {{ value }} X
+      </li>
     </ul>
   </div>
 </template>
@@ -28,14 +35,23 @@ export default {
   },
   data() {
     return {
-      iValue: this.inputValue,
-      isOpen: true,
-      searchValue: [],
+      iValue: [...this.inputValue],
+      isOpen: false,
     };
+  },
+  watch: {
+    iValue: function () {
+      return (this.isOpen = this.iValue.length > 0 ? true : false);
+    },
   },
   methods: {
     handleValue() {
-      this.$emit('handleSearchValue', { name: this.name, value: this.iValue });
+      this.iValue = [...this.inputValue, this.iValue];
+      this.$emit('handleValue', { name: this.name, value: this.iValue });
+    },
+    deleteValue(value) {
+      this.iValue = this.iValue.filter((el) => el !== value);
+      this.$emit('handleValue', { name: this.name, value: this.iValue });
     },
   },
 };
@@ -52,5 +68,14 @@ label {
 
 input {
   @include stInput;
+}
+
+.tagList {
+  @include flex(center, start, row);
+  margin: -10px 7px 30px;
+}
+
+.tag {
+  @include stTag;
 }
 </style>

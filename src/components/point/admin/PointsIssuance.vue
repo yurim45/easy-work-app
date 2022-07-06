@@ -56,12 +56,12 @@ export default {
     };
   },
   computed: {
-    totalAmount() {
+    totalAmount: function () {
       return getNumFormat(this.amount * this.targets.length);
     },
   },
   methods: {
-    handleValue(value) {
+    handleValue: function (value) {
       switch (value.name) {
         case 'targets':
           this.targets = value.value;
@@ -71,7 +71,7 @@ export default {
           return;
       }
     },
-    onSubmitIssuancePoints() {
+    onSubmitIssuancePoints: function () {
       console.log(this.targets, this.amount);
     },
   },

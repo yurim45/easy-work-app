@@ -39,20 +39,20 @@
       :optionList="targetList"
       @handleValue="handleValue($event)"
     />
-    <input-view
-      label="제외인원"
-      name="excludedTargets"
-      placeholder="포인트 차감 제외 대상자를 입력하세요"
-      :inputValue="excludedTargets"
-      @handleValue="handleValue($event)"
-    />
-    <!-- <input-search-view
+    <!-- <input-view
       label="제외인원"
       name="excludedTargets"
       placeholder="포인트 차감 제외 대상자를 입력하세요"
       :inputValue="excludedTargets"
       @handleValue="handleValue($event)"
     /> -->
+    <input-search-view
+      label="제외인원"
+      name="excludedTargets"
+      placeholder="포인트 차감 제외 대상자를 입력하세요"
+      :inputValue="excludedTargets"
+      @handleValue="handleValue($event)"
+    />
     <input-view
       type="number"
       label="사용금액"
@@ -95,7 +95,7 @@ import {
   ButtonView,
   InputView,
   SelectView,
-  // InputSearchView,
+  InputSearchView,
 } from '@/components/common/index';
 import { getNumFormat } from '@/util';
 
@@ -107,7 +107,7 @@ export default {
     ButtonView,
     SelectView,
     InputView,
-    // InputSearchView,
+    InputSearchView,
   },
   data() {
     return {
@@ -116,7 +116,7 @@ export default {
       usePlace: '',
       useHistory: '',
       targets: [],
-      excludedTargets: ['대표님', '하울'],
+      excludedTargets: [],
       amount: '',
       optionList: [
         { value: '식대초과', label: '식대초과', icon: '🍚' },
@@ -134,10 +134,10 @@ export default {
     };
   },
   computed: {
-    amt() {
+    amt: function () {
       return getNumFormat(this.amount);
     },
-    perAmount() {
+    perAmount: function () {
       if (this.amount && this.targets?.length) {
         return getNumFormat(
           (this.amount ?? 0) /
@@ -146,10 +146,11 @@ export default {
       }
       return 0;
     },
-    totalTarget() {
+    totalTarget: function () {
+      console.log(this.targets.length, this.excludedTargets.length);
       return this.targets.length + this.excludedTargets.length;
     },
-    totalAmount() {
+    totalAmount: function () {
       if (this.perAmount && this.targets?.length) {
         return getNumFormat(
           ((this.amount ?? 0) /
@@ -180,7 +181,11 @@ export default {
           this.targets = value.value;
           return;
         case 'excludedTargets':
-          this.excludedTargets = value.value;
+          // this.excludedTargets = [...this.excludedTargets, value.value];
+          console.log('excludedTargets', [
+            ...this.excludedTargets,
+            value.value,
+          ]);
           return;
         case 'amount':
           this.amount = value.value;
