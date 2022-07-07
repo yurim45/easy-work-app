@@ -2,16 +2,14 @@
   <basic-header title="포인트 현황" />
   <main>
     <h3>누적(연간) 발행 포인트</h3>
-    {{ totalIssuance }}
+    <div class="value">{{ totalIssuance }}</div>
     <h3>누적(연간) 사용 포인트</h3>
-    {{ totalUsed }}
+    <div class="value">{{ totalUsed }}</div>
     <h3>현재 잔여 포인트</h3>
-
-    <h3>인별 포인트 현황</h3>
-
-    <h3>포인트 사용내역</h3>
-
-    <h3>항목별 사용내역</h3>
+    <div class="value">{{ totalUsed }}</div>
+    <user-point />
+    <admin-point-history />
+    <use-item-status />
   </main>
 </template>
 
@@ -19,11 +17,19 @@
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
 import { USER_LIST } from '@/constants';
 import { getNumFormat } from '@/util';
+import UserPoint from './UserPoint.vue';
+import AdminPointHistory from './AdminPointHistory.vue';
+import UseItemStatus from './UseItemStatus.vue';
 
 export default {
-  components: { BasicHeader },
+  components: {
+    BasicHeader,
+    UserPoint,
+    AdminPointHistory,
+    UseItemStatus,
+  },
   name: 'PorinsStatus',
-  data() {
+  date() {
     return {};
   },
   computed: {
@@ -39,11 +45,17 @@ export default {
 
 <style scoped lang="scss">
 main {
-  @include stLayout;
 }
 
 h3 {
+  padding: 20px 30px;
+  background: var(--lightGrey);
   font-size: 18px;
   font-weight: 600;
+  border-bottom: 0.5px solid var(--line);
+}
+
+.value {
+  padding: 20px 30px;
 }
 </style>

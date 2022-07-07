@@ -24,7 +24,7 @@
                   target
                 }}</span> </template
               ><span v-if="history.targets.length > 3" class="targetOver"
-                >(외 {{ history.targets.length - 3 }}명)</span
+                >(외 {{ otherTargets(history) }}명)</span
               >
             </div>
           </div>
@@ -71,6 +71,10 @@ export default {
     },
     amount() {
       return (history) => getNumFormat(history.amount);
+    },
+    otherTargets() {
+      return (history) =>
+        history.targets.length + history.excludedTargets.length - 3;
     },
     itemIcon() {
       return (useItem) => {

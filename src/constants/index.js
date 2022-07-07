@@ -19,6 +19,7 @@ export const USER_LIST = [
   { value: 'April', label: '프릴', point: 1945, name: '김유림' },
 ];
 
+// 삭제 예정
 export const POINT_HISTORY = [
   {
     id: 1,

@@ -24,7 +24,6 @@ header {
     @include flex;
     margin: auto;
     padding: 25px 20px;
-    max-width: 1200px;
     height: 30px;
   }
 }

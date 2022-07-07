@@ -10,6 +10,7 @@
     'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     sans-serif;
   font-size: 16px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 터치하이라이트 제거
 }
 
 input,
@@ -102,8 +103,14 @@ input[type='checkbox']:checked::before {
   transform: scale(1) translate(-50%, -50%);
 }
 
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 :root {
   --primary: #db0234;
+  --secondary: #fff9f9;
   --line: #d1d5db;
   --dim: #d5d5d5;
   --red: #f85151;

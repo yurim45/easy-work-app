@@ -6,6 +6,7 @@ import DateView from './DateView.vue';
 import RadioView from './RadioView.vue';
 import SelectView from './selectView/SelectView.vue';
 import Gnb from './Gnb.vue';
+import AccordionView from './AccordionView.vue';
 
 export {
   ButtonView,
@@ -16,4 +17,5 @@ export {
   RadioView,
   SelectView,
   Gnb,
+  AccordionView,
 };

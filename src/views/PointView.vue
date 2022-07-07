@@ -55,7 +55,6 @@ export default {
 
 <style scoped lang="scss">
 .point {
-  max-width: 1200px;
   margin: auto;
 }
 

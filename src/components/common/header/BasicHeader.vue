@@ -38,6 +38,8 @@ export default {
 <style scoped lang="scss">
 .header {
   @include flex(space-between);
+  margin: 0 auto;
+  max-width: 800px;
   height: 52px;
   padding: 0 20px;
   background: var(--white);

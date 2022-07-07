@@ -83,6 +83,7 @@ main {
   left: 0;
   bottom: 0;
   width: 100%;
+  margin-top: 100px;
   padding: 25px;
   background: var(--lightGrey);
 

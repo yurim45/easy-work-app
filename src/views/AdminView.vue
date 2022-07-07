@@ -1,19 +1,16 @@
 <template>
   <basic-header title="관리자 페이지" />
   <main>
-    <h1>Hello!</h1>
-    <h2>메뉴</h2>
-    <ul class="menu">
-      <li @click.prevent.self>
-        포인트 관리
-        <ul @click.prevent.self class="subMenu">
-          <li @click.stop="goToStatus">포인트 현황</li>
-          <li @click.stop="goToIssuance">포인트 발급</li>
-          <li @click.stop="goToRecord">사용내역 기록</li>
-        </ul>
-      </li>
-      <li>(예정)휴가 관리</li>
-    </ul>
+    <div class="menu">
+      <div class="subMenuTitle">포인트 관리</div>
+      <ul class="subMenu">
+        <li @click.stop="goToStatus">포인트 현황</li>
+        <li @click.stop="goToIssuance">포인트 발급</li>
+        <li @click.stop="goToRecord">사용내역 기록</li>
+      </ul>
+
+      <div class="subMenuTitle">(예정)휴가 관리</div>
+    </div>
   </main>
 </template>
 
@@ -38,17 +35,21 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  @include stLayout;
+  background: var(--lightGrey);
 }
 
-.menu {
-  li {
-    margin: 20px;
-    cursor: pointer;
-  }
+.subMenuTitle {
+  padding: 20px 30px;
+  background: var(--primary);
+  color: var(--white);
 }
 
 .subMenu {
-  margin-bottom: 40px;
+  li {
+    padding: 20px 50px;
+    background: var(--lightGrey);
+    border-bottom: 0.5px solid var(--line);
+    cursor: pointer;
+  }
 }
 </style>
