@@ -7,14 +7,15 @@
 
     <gnb />
   </main>
+  <footer-view />
 </template>
 
 <script>
 import HomeHeader from '@/components/common/header/HomeHeader.vue';
-import { Gnb } from '@/components/common/index';
+import { Gnb, FooterView } from '@/components/common/index';
 
 export default {
-  components: { HomeHeader, Gnb },
+  components: { HomeHeader, Gnb, FooterView },
   name: 'HomeView',
   data() {
     return {

@@ -7,6 +7,7 @@ import RadioView from './RadioView.vue';
 import SelectView from './selectView/SelectView.vue';
 import Gnb from './Gnb.vue';
 import AccordionView from './AccordionView.vue';
+import FooterView from './FooterView.vue';
 
 export {
   ButtonView,
@@ -18,4 +19,5 @@ export {
   SelectView,
   Gnb,
   AccordionView,
+  FooterView,
 };
