@@ -10,7 +10,9 @@
               <div class="icon">{{ icon(user) }}</div>
               <div class="user">
                 <strong class="name">{{ user.name }}({{ user.value }})</strong>
-                <span class="point">{{ userPoint(user.point) }} P</span>
+                <span :class="{ point: true, red: remainingPoints(user) < '0' }"
+                  >{{ remainingPoints(user) }} P</span
+                >
               </div>
             </button>
           </li>
@@ -83,6 +85,9 @@ export default {
     },
     isDisabled() {
       return this.amount > 0 && this.amount <= this.me.point ? false : true;
+    },
+    remainingPoints() {
+      return (user) => getNumFormat(user.totalPoint - user.usePoint);
     },
   },
   methods: {
@@ -183,5 +188,9 @@ h3 {
   :first-child {
     background: var(--deepGrey);
   }
+}
+
+.red {
+  color: var(--primary);
 }
 </style>

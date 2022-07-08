@@ -49,8 +49,8 @@
 
 <script>
 import { getNumFormat } from '@/util';
-import { LIST } from '../common/RecordPorinsView.vue';
-import { POINT_HISTORY } from '@/constants';
+import { ITEM_LIST, POINT_HISTORY } from '@/constants';
+
 export default {
   name: 'PointHistory',
   data() {
@@ -79,7 +79,7 @@ export default {
     itemIcon() {
       return (useItem) => {
         return [
-          ...LIST,
+          ...ITEM_LIST,
           { value: '보내기', label: '보내기', icon: '💎' },
           { value: '받기', label: '받기', icon: '🎁' },
         ].filter((el) => el.value === useItem)[0]?.icon;

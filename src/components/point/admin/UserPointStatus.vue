@@ -1,23 +1,25 @@
 <template>
   <accordion-view title="인별 포인트 현황">
-    <div class="value">
+    <section class="value">
       <ul>
         <li class="userInfo">
           <span class="empty">ㅤ</span>
-          <strong class="name">이름</strong>
-          <span class="point">적립</span>
-          <span class="point">사용</span>
-          <span class="point">잔여</span>
+          <span class="label">이름</span>
+          <span class="label">적립</span>
+          <span class="label">사용</span>
+          <span class="label">잔여</span>
         </li>
         <li v-for="user in users" :key="user.value" class="userInfo">
           <span class="icon">{{ icon(user) }}</span>
           <strong class="name">{{ user.name }}</strong>
-          <span class="point">{{ userPoint(user.point) }} P</span>
-          <span class="point">{{ userPoint(user.point) }} P</span>
-          <span class="point">{{ userPoint(user.point) }} P</span>
+          <span class="point">{{ userPoint(user.totalPoint) }} P</span>
+          <span class="point">{{ userPoint(user.usePoint) }} P</span>
+          <span class="point" :class="{ red: remainingPoints(user) < '0' }"
+            >{{ remainingPoints(user) }} P</span
+          >
         </li>
       </ul>
-    </div>
+    </section>
   </accordion-view>
 </template>
 
@@ -39,6 +41,9 @@ export default {
     },
     userPoint() {
       return (point) => getNumFormat(point);
+    },
+    remainingPoints() {
+      return (user) => getNumFormat(user.totalPoint - user.usePoint);
     },
   },
 };
@@ -67,6 +72,13 @@ export default {
   width: 40px;
 }
 
+.label {
+  width: 80px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .name {
   width: 80px;
   font-size: 13px;
@@ -76,6 +88,10 @@ export default {
 .point {
   width: 80px;
   font-size: 13px;
-  text-align: center;
+  text-align: right;
+}
+
+.red {
+  color: var(--primary);
 }
 </style>

@@ -16,6 +16,7 @@
 
 <script>
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
+
 export default {
   components: { BasicHeader },
   name: 'AdminView',

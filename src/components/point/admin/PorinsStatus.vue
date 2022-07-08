@@ -2,12 +2,12 @@
   <basic-header title="포인트 현황" />
   <main>
     <h3>누적(연간) 발행 포인트</h3>
-    <div class="value">{{ totalIssuance }}</div>
+    <div class="value">{{ totalIssuance }} P</div>
     <h3>누적(연간) 사용 포인트</h3>
-    <div class="value">{{ totalUsed }}</div>
+    <div class="value">{{ totalUsed }} P</div>
     <h3>현재 잔여 포인트</h3>
-    <div class="value">{{ totalUsed }}</div>
-    <user-point />
+    <div class="value">{{ remainingPoints }} P</div>
+    <user-point-status />
     <admin-point-history />
     <use-item-status />
   </main>
@@ -17,14 +17,14 @@
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
 import { USER_LIST } from '@/constants';
 import { getNumFormat } from '@/util';
-import UserPoint from './UserPoint.vue';
+import UserPointStatus from './UserPointStatus.vue';
 import AdminPointHistory from './AdminPointHistory.vue';
 import UseItemStatus from './UseItemStatus.vue';
 
 export default {
   components: {
     BasicHeader,
-    UserPoint,
+    UserPointStatus,
     AdminPointHistory,
     UseItemStatus,
   },
@@ -34,10 +34,25 @@ export default {
   },
   computed: {
     totalIssuance() {
-      return getNumFormat(USER_LIST.length * 50000);
+      return getNumFormat(
+        USER_LIST.map((user) => user.totalPoint).reduce(
+          (prev, curr) => prev + curr
+        )
+      );
     },
     totalUsed() {
-      return getNumFormat(USER_LIST.length * 30000);
+      return getNumFormat(
+        USER_LIST.map((user) => user.usePoint).reduce(
+          (prev, curr) => prev + curr
+        )
+      );
+    },
+    remainingPoints() {
+      return getNumFormat(
+        USER_LIST.map((user) => user.totalPoint - user.usePoint).reduce(
+          (prev, curr) => prev + curr
+        )
+      );
     },
   },
 };

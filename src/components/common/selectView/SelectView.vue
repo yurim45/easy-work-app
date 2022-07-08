@@ -41,9 +41,9 @@ export default {
   },
   watch: {
     sValue() {
-      if (this.sValue.length < USER_LIST.length + 1) {
+      if (this.sValue.length < USER_LIST.length) {
         this.checkedAll = false;
-      } else if (this.sValue.length === USER_LIST.length + 1) {
+      } else if (this.sValue.length === USER_LIST.length) {
         this.checkedAll = true;
       }
     },
