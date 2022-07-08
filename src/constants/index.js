@@ -13,6 +13,7 @@ export const USER_LIST = [
   { value: 'Anna', label: '안나', point: 1945, name: '조현정' },
   { value: 'Rooney', label: '루니', point: 1945, name: '이기태' },
   { value: 'Charles', label: '찰스', point: 1945, name: '이창희' },
+  { value: 'Jude', label: '주드', point: 1945, name: '양주엽' },
   { value: 'Henry', label: '헨리', point: 1945, name: '황규영' },
   { value: 'James', label: '제임스', point: 1945, name: '오태석' },
   { value: 'Roy', label: '로이', point: 1945, name: '김석호' },

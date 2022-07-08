@@ -85,7 +85,7 @@
         @onClick="deletePointHistory"
         class="deleteButton"
       />
-      <button-view label="기록하기" @onClick="onSubmitSendPoints" />
+      <button-view :label="buttonLabel" @onClick="onSubmitSendPoints" />
     </div>
   </footer>
 </template>
@@ -196,6 +196,11 @@ export default {
   },
 
   computed: {
+    buttonLabel() {
+      return Object.keys(this.$route.params)?.length !== 0
+        ? '수정하기'
+        : '기록하기';
+    },
     amt() {
       return getNumFormat(this.amount);
     },
