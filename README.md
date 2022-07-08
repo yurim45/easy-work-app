@@ -23,7 +23,20 @@
 
   - 휴가 관리(예정)
 
-- 관리자 모드(예정)
+- 관리자 모드
+
+  - 포인트 페이지
+
+    - 포인트 현황
+
+      - 누적 발급/사용/잔여 포인트
+      - 포인트 사용내역
+      - 인별 포인트 현황
+      - 항목별 사용 현황
+
+    - 포인트 발급
+
+  - 휴가 관리(예정)
 
 <br />
 
@@ -33,3 +46,4 @@
 
 ![](https://velog.velcdn.com/images/april_5/post/983ad36c-bbd2-472b-b69a-818f4f4f9394/image.gif)
 ![](https://velog.velcdn.com/images/april_5/post/58d85c2e-7271-4511-a452-ceca598ace8c/image.gif)
+![](https://velog.velcdn.com/images/april_5/post/66ba4d82-bceb-476e-b365-20a80027dfa7/image.gif)
