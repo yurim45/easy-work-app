@@ -7,6 +7,15 @@
       @keyup="debounceHandleValue($event)"
       :placeholder="placeholder"
     />
+    <ul class="filterList" v-if="isListOpen">
+      <li
+        v-for="(value, i) in filteredList"
+        :key="i"
+        @click="selectValue(value)"
+      >
+        {{ value }}
+      </li>
+    </ul>
     <ul v-if="isOpen" class="tagList">
       <li
         v-for="(value, i) in resultValue"
@@ -34,11 +43,14 @@ export default {
     name: String,
     placeholder: String,
     inputValue: [Array],
+    list: Array,
   },
   data() {
     return {
       iValue: '',
       resultValue: [...this.inputValue],
+      filteredList: [],
+      isListOpen: false,
     };
   },
   computed: {
@@ -47,17 +59,26 @@ export default {
     },
   },
   methods: {
-    debounceHandleValue() {
-      debounce(function (event) {
-        this.resultValue = [...this.resultValue, event.target.value];
-        this.$emit('handleValue', {
-          name: this.name,
-          value: this.resultValue,
-        });
-        this.iValue = '';
-      }, 800);
-    },
+    debounceHandleValue: debounce(function (event) {
+      this.iValue = event?.target?.value;
+      this.filteredList = this.list?.filter((el) => el.includes(this.iValue));
+      this.isListOpen = this.filteredList.length > 0;
+      if (this.filteredList.length === 0) {
+        this.selectValue(this.iValue);
+      }
+    }, 500),
 
+    selectValue(value) {
+      this.resultValue = [...this.resultValue, value].filter(
+        (v, i, self) => self.indexOf(v) === i
+      );
+      this.$emit('handleValue', {
+        name: this.name,
+        value: this.resultValue,
+      });
+      this.iValue = '';
+      this.isListOpen = false;
+    },
     deleteValue(value) {
       this.resultValue = this.resultValue.filter((el) => el !== value);
       this.$emit('handleValue', { name: this.name, value: this.resultValue });
@@ -88,5 +109,20 @@ input {
 
 .tag {
   @include stTag;
+}
+
+.filterList {
+  margin-top: -15px;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  z-index: 100;
+
+  li {
+    padding: 15px;
+    font-size: 14px;
+    border-bottom: 0.5px solid var(--line);
+  }
 }
 </style>

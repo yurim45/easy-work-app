@@ -44,6 +44,7 @@
       name="excludedTargets"
       placeholder="포인트 차감 제외 대상자를 입력하세요"
       :inputValue="excludedTargets"
+      :list="excludedTargetList"
       @handleValue="handleValue($event)"
     />
     <input-view
@@ -165,7 +166,8 @@ export default {
       usePlace: '',
       content: '',
       targets: [],
-      excludedTargets: ['대표님'],
+      excludedTargets: [],
+      excludedTargetList: ['대표님', '하울'],
       amount: '',
       optionList: LIST,
       targetList: USER_LIST,
