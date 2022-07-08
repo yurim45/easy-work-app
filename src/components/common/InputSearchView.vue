@@ -5,6 +5,7 @@
       :type="type"
       :value="iValue"
       @keyup="debounceHandleValue($event)"
+      @keyup.enter="selectValue($event.target.value)"
       :placeholder="placeholder"
     />
     <ul class="filterList" v-if="isListOpen">
@@ -60,15 +61,14 @@ export default {
   },
   methods: {
     debounceHandleValue: debounce(function (event) {
+      if (!event?.target?.value) return;
       this.iValue = event?.target?.value;
       this.filteredList = this.list?.filter((el) => el.includes(this.iValue));
       this.isListOpen = this.filteredList.length > 0;
-      if (this.filteredList.length === 0) {
-        this.selectValue(this.iValue);
-      }
     }, 500),
 
     selectValue(value) {
+      if (!value) return;
       this.resultValue = [...this.resultValue, value].filter(
         (v, i, self) => self.indexOf(v) === i
       );
