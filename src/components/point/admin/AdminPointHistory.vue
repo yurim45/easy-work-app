@@ -1,7 +1,25 @@
 <template>
   <accordion-view title="포인트 사용내역">
     <section>
-      <div class="period">조회 기간:</div>
+      <div class="period">
+        <div class="periodLabel">
+          <span>📅 조회 기간</span>
+          <button-view label="조회" @onClick="onSubmit" />
+        </div>
+        <div class="periodDate">
+          <date-view
+            name="startDate"
+            :inputValue="startDate"
+            @handleValue="handleValue($event)"
+          />
+          <span>~</span>
+          <date-view
+            name="endDate"
+            :inputValue="endDate"
+            @handleValue="handleValue($event)"
+          />
+        </div>
+      </div>
       <ul>
         <li class="labels">
           <span class="label">날짜</span>
@@ -58,10 +76,33 @@
 
 <script>
 import AccordionView from '@/components/common/AccordionView.vue';
+import { DateView, ButtonView } from '@/components/common/index';
 
 export default {
   name: 'AdminPointHistory',
-  components: { AccordionView },
+  components: { AccordionView, DateView, ButtonView },
+  data() {
+    return {
+      startDate: `${new Date().toISOString().substr(0, 8)}01`,
+      endDate: new Date().toISOString().substr(0, 10),
+    };
+  },
+  computed: {},
+  methods: {
+    handleValue(value) {
+      switch (value.name) {
+        case 'startDate':
+          this.startDate = value.value;
+          return;
+        case 'endDate':
+          this.endDate = value.value;
+          return;
+      }
+    },
+    onSubmit() {
+      console.log(this.startDate, this.endDate);
+    },
+  },
 };
 </script>
 
@@ -70,8 +111,27 @@ section {
 }
 
 .period {
-  margin: 20px 20px 40px;
-  padding: 10px;
+  margin: 10px 0;
+}
+
+.periodLabel {
+  @include flex(space-between);
+  padding: 10px 10px 0;
+  font-weight: 600;
+
+  .button {
+    width: 50px;
+    height: 25px;
+  }
+}
+
+.periodDate {
+  @include flex(space-between);
+  padding: 0 10px;
+
+  span {
+    margin-bottom: 10px;
+  }
 }
 
 .labels,
