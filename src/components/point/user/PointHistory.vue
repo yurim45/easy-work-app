@@ -71,7 +71,16 @@ export default {
       return (history) => history.date.substring(5).replace('-', '.');
     },
     perAmount() {
-      return (history) => getNumFormat(history.amount / history.targets.length);
+      return (history) => {
+        if (['보내기', '받기']?.includes(history.useItem)) {
+          return getNumFormat(history.amount / history.targets.length);
+        } else {
+          return getNumFormat(
+            history.amount /
+              (history.targets.length + history.excludedTargets.length)
+          );
+        }
+      };
     },
     amount() {
       return (history) => getNumFormat(history.amount);

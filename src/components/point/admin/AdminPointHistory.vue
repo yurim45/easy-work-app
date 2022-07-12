@@ -64,10 +64,10 @@
             </div>
           </span>
           <span class="labelLayout">
-            <span class="point">{{ item.amount }}</span>
-            <span class="point">{{ item.amount }}</span>
+            <span class="point">{{ amount(item) }} P</span>
+            <span class="point">{{ perAmount(item) }} P</span>
           </span>
-          <span class="point">{{ item.amount }}</span>
+          <span class="point">{{ usePoint(item) }} P</span>
         </li>
       </ul>
     </section>
@@ -78,6 +78,7 @@
 import AccordionView from '@/components/common/AccordionView.vue';
 import { DateView, ButtonView } from '@/components/common/index';
 import { ADMIN_POINT_HISTORY } from '@/constants';
+import { getNumFormat } from '@/util';
 
 export default {
   name: 'AdminPointHistory',
@@ -101,6 +102,22 @@ export default {
     },
     otherTargets() {
       return (item) => item.targets.length + item.excludedTargets.length - 3;
+    },
+    amount() {
+      return (item) => getNumFormat(item.amount);
+    },
+    perAmount() {
+      return (item) =>
+        getNumFormat(
+          item.amount / (item.targets.length + item.excludedTargets.length)
+        );
+    },
+    usePoint() {
+      return (item) =>
+        getNumFormat(
+          (item.amount / (item.targets.length + item.excludedTargets.length)) *
+            item.targets.length
+        );
     },
   },
   methods: {
@@ -182,7 +199,7 @@ section {
 }
 
 .users {
-  width: 120px;
+  width: 110px;
 }
 
 .user {
@@ -202,8 +219,14 @@ section {
 }
 
 .point {
-  width: 60px;
+  width: 70px;
   font-size: 13px;
+}
+
+.value {
+  .point {
+    text-align: right;
+  }
 }
 
 .labelLayout {
