@@ -5,7 +5,7 @@
       <div>서울특별시 중구 중림동 중림로 31</div>
       <span>02-704-9718</span>
     </div>
-    <p>Copyright ⓒ 2022.ATNP All rights reserved.</p>
+    <p>Copyright ⓒ 2022. ATNP All rights reserved.</p>
   </footer>
 </template>
 

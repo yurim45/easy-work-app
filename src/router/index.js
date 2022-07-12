@@ -37,15 +37,23 @@ const routes = [
     name: 'pointsIssuance',
     component: () =>
       import(
-        /* webpackChunkName: 'adminpoint', webpackPrefetch: true */ '../components/point/admin/PointsIssuance.vue'
+        /* webpackChunkName: 'adminPoint', webpackPrefetch: true */ '../components/point/admin/PointsIssuance.vue'
       ),
   },
   {
     path: '/admin/status',
-    name: 'PorinsStatus',
+    name: 'PointStatus',
     component: () =>
       import(
-        /* webpackChunkName: 'adminpoint', webpackPrefetch: true */ '../components/point/admin/PorinsStatus.vue'
+        /* webpackChunkName: 'adminPoint', webpackPrefetch: true */ '../components/point/admin/PointStatus.vue'
+      ),
+  },
+  {
+    path: '/day-off',
+    name: 'dayOff',
+    component: () =>
+      import(
+        /* webpackChunkName: 'dayOff', webpackPrefetch: true */ '../views/DayOff.vue'
       ),
   },
 ];

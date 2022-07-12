@@ -28,7 +28,7 @@ export default {
     AdminPointHistory,
     UseItemStatus,
   },
-  name: 'PorinsStatus',
+  name: 'PointStatus',
   date() {
     return {};
   },

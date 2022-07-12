@@ -1,8 +1,9 @@
 <template>
   <nav class="gnb">
-    <router-link to="/">HOME</router-link>
-    <router-link to="/point">ATNP 포인트</router-link>
-    <router-link to="/admin">관리자</router-link>
+    <router-link to="/">🏡 HOME</router-link>
+    <router-link to="/point">💎 ATNP 포인트</router-link>
+    <router-link to="/day-off">🏖 휴가/휴직 관리</router-link>
+    <router-link to="/admin">💡 관리자</router-link>
   </nav>
 </template>
 
