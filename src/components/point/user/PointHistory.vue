@@ -20,12 +20,13 @@
             <p v-else-if="history.useItem === '받기'">받기</p>
             <div class="users">
               <template v-for="(target, i) in history.targets" :key="i"
-                ><span v-if="i < 3" class="target">{{
-                  target
-                }}</span> </template
-              ><span v-if="history.targets.length > 3" class="targetOver"
-                >(외 {{ otherTargets(history) }}명)</span
-              >
+                ><span v-if="i < 3" class="target">
+                  {{ target }}
+                </span>
+              </template>
+              <span v-if="history.targets.length > 3" class="targetOver">
+                (외 {{ otherTargets(history) }}명)
+              </span>
             </div>
           </div>
         </div>
@@ -59,8 +60,11 @@ export default {
         name: 'April',
         point: 23000,
       },
-      historyList: POINT_HISTORY,
+      historyList: [],
     };
+  },
+  mounted() {
+    this.historyList = POINT_HISTORY;
   },
   computed: {
     date() {
@@ -156,9 +160,7 @@ li > button {
 
 .target {
   margin-right: 6px;
-  padding: 3px;
   @include stIcon;
-  font-size: 11px;
 }
 
 .targetOver {

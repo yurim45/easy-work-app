@@ -69,7 +69,7 @@ export default {
   border-radius: 50%;
 }
 .empty {
-  width: 40px;
+  width: 30px;
 }
 
 .label {
@@ -80,7 +80,7 @@ export default {
 }
 
 .name {
-  width: 80px;
+  width: 50px;
   font-size: 13px;
   text-align: center;
 }

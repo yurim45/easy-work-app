@@ -102,7 +102,7 @@ export const POINT_HISTORY = [
     usePlace: '꼬기파티',
     content: '밥 많이 먹었어요',
     targets: ['프릴', '워렌', '위드', '제임스', '주드'],
-    excludedTargets: [],
+    excludedTargets: ['대표님'],
     amount: -3000,
   },
   {
@@ -124,7 +124,7 @@ export const POINT_HISTORY = [
     usePlace: '탑건',
     content: '영화봤어요',
     targets: ['케빈', '찰스', '프릴', '제임스', '주드', '위드'],
-    excludedTargets: [],
+    excludedTargets: ['하울'],
     amount: -4000,
   },
   {
@@ -157,5 +157,48 @@ export const POINT_HISTORY = [
     targets: ['헨리'],
     content: '00 샀어요~',
     amount: 5000,
+  },
+];
+
+export const ADMIN_POINT_HISTORY = [
+  {
+    id: 1,
+    date: '2022-04-05',
+    useItem: '식대초과',
+    usePlace: '꼬기파티',
+    content: '밥 많이 먹었어요',
+    targets: ['프릴', '워렌', '위드', '제임스', '주드'],
+    excludedTargets: ['대표님'],
+    amount: -3000,
+  },
+  {
+    id: 2,
+    date: '2022-04-06',
+    useItem: '식음료',
+    usePlace: '치킨앤맥주',
+    content: '',
+    targets: ['제임스', '루니', '위드'],
+    excludedTargets: [],
+    amount: -3000,
+  },
+  {
+    id: 3,
+    date: '2022-04-07',
+    useItem: '문화',
+    usePlace: '탑건',
+    content: '영화봤어요',
+    targets: ['케빈', '찰스', '프릴', '제임스', '주드', '위드'],
+    excludedTargets: [],
+    amount: -4000,
+  },
+  {
+    id: 4,
+    date: '2022-04-10',
+    useItem: '물품',
+    content: '00 샀어요~',
+    usePlace: '물품 샀어요',
+    targets: ['주드', '로이'],
+    excludedTargets: ['하울'],
+    amount: -4000,
   },
 ];

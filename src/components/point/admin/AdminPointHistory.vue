@@ -22,52 +22,52 @@
       </div>
       <ul>
         <li class="labels">
-          <span class="label">날짜</span>
+          <span class="dateLabel">날짜</span>
           <span class="labelLayout">
-            <span class="label">구분</span>
-            <span class="label">사용처</span>
+            <span class="items">구분</span>
+            <span class="items">사용처</span>
           </span>
           <span class="labelLayout">
-            <span class="label">참여자</span>
-            <span class="label">제외자</span>
+            <span class="users">참여자</span>
+            <span class="users">제외자</span>
           </span>
           <span class="labelLayout">
-            <span class="label">사용</span>
-            <span class="label">인당차감</span>
+            <span class="point">사용</span>
+            <span class="point">인당차감</span>
           </span>
-          <span class="label">차감사용</span>
+          <span class="label point">차감사용</span>
         </li>
-        <li class="value">
-          <span class="label">04.07</span>
+        <li class="value" v-for="item in history" :key="item.id">
+          <span class="dateLabel">{{ date(item) }}</span>
           <span class="labelLayout">
-            <span class="label">식대초과</span>
-            <span class="label">도마</span>
+            <span class="items">{{ item.useItem }}</span>
+            <span class="items">{{ item.usePlace }}</span>
           </span>
           <span class="labelLayout">
-            <span class="label">프릴, 제임스, 찰스</span>
-            <span class="label">하울</span>
+            <div class="users">
+              <template v-for="(user, i) in item.targets" :key="i">
+                <span v-if="i < 3" class="user">
+                  {{ userIcon(user) }}
+                </span>
+              </template>
+              <span v-if="item.targets.length > 3" class="targetOver">
+                (외 {{ otherTargets(item) }}명)
+              </span>
+            </div>
+            <div class="users">
+              <span
+                class="user"
+                v-for="(user, i) in item.excludedTargets"
+                :key="i"
+                >{{ userIcon(user) }}
+              </span>
+            </div>
           </span>
           <span class="labelLayout">
-            <span class="label">4000</span>
-            <span class="label">{{ 4000 / 4 }}</span>
+            <span class="point">{{ item.amount }}</span>
+            <span class="point">{{ item.amount }}</span>
           </span>
-          <span class="label">{{ (4000 / 4) * 3 }}</span>
-        </li>
-        <li class="value">
-          <span class="label">04.07</span>
-          <span class="labelLayout">
-            <span class="label">식대초과</span>
-            <span class="label">도마</span>
-          </span>
-          <span class="labelLayout">
-            <span class="label">프릴, 제임스, 찰스</span>
-            <span class="label">하울</span>
-          </span>
-          <span class="labelLayout">
-            <span class="label">4000</span>
-            <span class="label">{{ 4000 / 4 }}</span>
-          </span>
-          <span class="label">{{ (4000 / 4) * 3 }}</span>
+          <span class="point">{{ item.amount }}</span>
         </li>
       </ul>
     </section>
@@ -77,6 +77,7 @@
 <script>
 import AccordionView from '@/components/common/AccordionView.vue';
 import { DateView, ButtonView } from '@/components/common/index';
+import { ADMIN_POINT_HISTORY } from '@/constants';
 
 export default {
   name: 'AdminPointHistory',
@@ -85,9 +86,23 @@ export default {
     return {
       startDate: `${new Date().toISOString().substr(0, 8)}01`,
       endDate: new Date().toISOString().substr(0, 10),
+      history: [],
     };
   },
-  computed: {},
+  mounted() {
+    this.history = ADMIN_POINT_HISTORY;
+  },
+  computed: {
+    date() {
+      return (item) => item.date.substring(5).replace('-', '.');
+    },
+    userIcon() {
+      return (user) => user.substring(0, 1);
+    },
+    otherTargets() {
+      return (item) => item.targets.length + item.excludedTargets.length - 3;
+    },
+  },
   methods: {
     handleValue(value) {
       switch (value.name) {
@@ -108,10 +123,12 @@ export default {
 
 <style scoped lang="scss">
 section {
+  margin-bottom: 50px;
 }
 
 .period {
   margin: 10px 0;
+  padding: 0 20px;
 }
 
 .periodLabel {
@@ -122,15 +139,15 @@ section {
   .button {
     width: 50px;
     height: 25px;
+    font-size: 14px;
   }
 }
 
 .periodDate {
   @include flex(space-between);
-  padding: 0 10px;
 
   span {
-    margin-bottom: 10px;
+    margin: 0 10px 10px;
   }
 }
 
@@ -142,7 +159,51 @@ section {
 }
 
 .labels {
+  font-weight: 600;
   border-bottom: 5px solid var(--line);
+}
+
+.items,
+.users {
+  @include flex(cetner, start);
+}
+
+.dateLabel {
+  width: 45px;
+  font-size: 13px;
+}
+
+.items {
+  width: 80px;
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.users {
+  width: 120px;
+}
+
+.user {
+  display: inilne-block;
+  margin-right: 2px;
+  width: 20px;
+  height: 20px;
+  @include stIcon;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.targetOver {
+  color: var(--text-gray);
+  font-size: 12px;
+  letter-spacing: -0.8px;
+}
+
+.point {
+  width: 60px;
+  font-size: 13px;
 }
 
 .labelLayout {

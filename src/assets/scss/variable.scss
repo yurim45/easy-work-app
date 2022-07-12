@@ -37,8 +37,10 @@
 }
 
 @mixin stIcon() {
+  padding: 3px;
   background: #e9f6ff;
   color: #2f86c5;
+  font-size: 11px;
 }
 
 @mixin stLabel() {

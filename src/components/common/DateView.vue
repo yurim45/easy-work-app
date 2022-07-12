@@ -30,6 +30,7 @@ export default {
 <style scoped lang="scss">
 .date {
   @include flex(center, start, column);
+  width: 100%;
 }
 
 label {
