@@ -1,9 +1,9 @@
 <template>
   <section>
     <div class="head">
-      <button-view label="<" />
+      <button-view label="<" @onClick="clickPrevButton" />
       <h3 class="subtitle">{{ year }}년 {{ month }}월</h3>
-      <button-view label=">" />
+      <button-view label=">" @onClick="clickNextButton" />
     </div>
     <table class="calneder">
       <thead>
@@ -13,7 +13,7 @@
         <tr v-for="(date, idx) in dates" :key="idx">
           <td
             class="day"
-            :class="{ today: today === day }"
+            :class="{ today: isToday(day) }"
             v-for="(day, subIdx) in date"
             :key="subIdx"
           >
@@ -41,9 +41,20 @@ export default {
   },
   mounted() {
     this.calenderData();
-    console.log(this.dates);
   },
-  computed: {},
+  watch: {
+    month() {
+      this.calenderData();
+    },
+  },
+  computed: {
+    isToday() {
+      return (day) =>
+        this.today === day &&
+        this.month === new Date().getMonth() + 1 &&
+        this.year === new Date().getFullYear();
+    },
+  },
   methods: {
     calenderData() {
       const [firstDay, lastDate, prevLastDate] = this.getFirstDayLastDate(
@@ -83,8 +94,9 @@ export default {
         }
         day += 1;
       }
+      // 마지막 주 계산
       if (weekOfDays.length > 0 && weekOfDays.length < 7) {
-        for (let j = 1; j < 7; j++) {
+        for (let j = 1; j <= 7 - weekOfDays.length; j++) {
           weekOfDays.push(j);
         }
       }
@@ -93,21 +105,38 @@ export default {
       }
       return dates;
     },
-    clickPrebButton() {},
+    clickPrevButton() {
+      this.month--;
+      if (this.month === 0) {
+        this.month = 12;
+        this.year -= 1;
+      }
+    },
+    clickNextButton() {
+      this.month++;
+      if (this.month === 13) {
+        this.month = 1;
+        this.year += 1;
+      }
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
+section {
+  padding: 0 10px;
+}
+
 .head {
   @include flex;
 
   button {
-    width: 25px;
-    height: 25px;
-    padding-bottom: 3px;
+    width: 20px;
+    height: 20px;
+    padding-bottom: 4px;
     font-weight: 700;
-    border-radius: 8px;
+    border-radius: 4px;
   }
 }
 

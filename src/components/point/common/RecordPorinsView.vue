@@ -63,10 +63,10 @@
     <div class="list">
       <span class="itemTitle">차감대상</span>
       <div>
-        <strong class="targets">{{ totalTarget }}명</strong
-        ><span class="targetInfo" v-if="excludedTargets.length > 0"
-          >(외부 {{ excludedTargets.length }}명 포함)</span
-        >
+        <strong class="targets">{{ totalTarget }}명</strong>
+        <span class="targetInfo" v-if="excludedTargets.length > 0">
+          (외부 {{ excludedTargets.length }}명 포함)
+        </span>
       </div>
     </div>
     <div class="itemResult">
