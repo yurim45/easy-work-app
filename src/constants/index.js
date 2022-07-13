@@ -162,16 +162,6 @@ export const POINT_HISTORY = [
 
 export const ADMIN_POINT_HISTORY = [
   {
-    id: 1,
-    date: '2022-04-05',
-    useItem: '식대초과',
-    usePlace: '꼬기파티',
-    content: '밥 많이 먹었어요',
-    targets: ['프릴', '워렌', '위드', '제임스', '주드'],
-    excludedTargets: ['대표님'],
-    amount: -3000,
-  },
-  {
     id: 2,
     date: '2022-04-06',
     useItem: '식음료',
