@@ -56,6 +56,14 @@ const routes = [
         /* webpackChunkName: 'dayOff', webpackPrefetch: true */ '../views/DayOff.vue'
       ),
   },
+  {
+    path: '/day-off/auunal-apply',
+    name: 'AuunalApply',
+    component: () =>
+      import(
+        /* webpackChunkName: 'dayOff', webpackPrefetch: true */ '../components/day-off/AuunalApply.vue'
+      ),
+  },
 ];
 
 const router = createRouter({

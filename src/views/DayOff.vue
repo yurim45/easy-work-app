@@ -1,15 +1,22 @@
 <template>
   <basic-header title="Day Off" />
-  <main>유저 페이지</main>
+  <main><user-status /></main>
 </template>
 
 <script>
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
+import { UserStatus } from '@/components/day-off/main/index';
 
 export default {
   name: 'DayOff',
-  components: { BasicHeader },
+  components: { BasicHeader, UserStatus },
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+main {
+  padding: 13px 16px;
+  height: 100vh;
+  background: var(--back);
+}
+</style>
