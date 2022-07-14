@@ -18,6 +18,9 @@
             :key="subIdx"
           >
             {{ day }}
+            <ul>
+              <li>프릴, 연</li>
+            </ul>
           </td>
         </tr>
       </tbody>
@@ -27,6 +30,7 @@
 
 <script>
 import ButtonView from '@/components/common/ButtonView.vue';
+import { DAY_OFF_DATA } from '@/constants';
 export default {
   components: { ButtonView },
   name: 'CalenderView',
@@ -37,10 +41,12 @@ export default {
       month: new Date().getMonth() + 1,
       dates: [],
       today: new Date().getDate(),
+      data: [],
     };
   },
   mounted() {
     this.calenderData();
+    this.data = DAY_OFF_DATA;
   },
   watch: {
     month() {
@@ -125,7 +131,7 @@ export default {
 
 <style scoped lang="scss">
 section {
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .head {

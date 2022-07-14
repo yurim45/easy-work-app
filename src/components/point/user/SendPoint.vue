@@ -187,6 +187,7 @@ h3 {
 
   :first-child {
     background: var(--deepGrey);
+    margin-right: 12px;
   }
 }
 

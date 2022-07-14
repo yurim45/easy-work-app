@@ -120,7 +120,7 @@ export default {
 ul {
   margin-top: 20px;
   font-size: 16px;
-  border-top: 5px solid var(--line);
+  border-top: 15px solid var(--back);
 }
 
 li > button {
@@ -155,7 +155,7 @@ li > button {
   padding-left: 20px;
 
   p {
-    padding-bottom: 5px;
+    font-size: 17px;
     font-weight: 600;
   }
 }

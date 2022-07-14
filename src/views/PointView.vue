@@ -2,15 +2,15 @@
   <basic-header title="ATNP 포인트" />
   <main class="point">
     <div class="content">
-      <h2>Hello! {{ me.name }} 👋</h2>
-      <p>
-        {{ me.name }}의 잔여 포인트: <strong>{{ userPoint }} P</strong>
+      <p class="title">
+        <span> {{ me.name }}의 잔여 포인트</span> <br />
+        <strong>{{ userPoint }} P</strong>
       </p>
     </div>
 
     <div class="btnWrapper">
       <button-view label="보내기" @onClick="sendPointOpen" />
-      <router-link class="button" to="/point/record">기록하기</router-link>
+      <router-link class="writeButton" to="/point/record">기록하기</router-link>
     </div>
 
     <send-point v-if="isSendPoint" @closePage="closePage" />
@@ -54,6 +54,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.title {
+  span {
+    font-size: 14px;
+  }
+  strong {
+    font-size: 28px;
+    font-weight: 700;
+  }
+}
+
 .point {
   margin: auto;
 }
@@ -78,17 +88,24 @@ p {
 .btnWrapper {
   @include flex(space-around);
   padding: 0 30px 25px;
+  font-size: 17px;
+  font-weight: 700;
 
   :first-child {
-    background: var(--deepGrey);
+    height: 48px;
+    background: rgba(219, 0, 53, 0.15);
+    color: var(--text-red);
+    font-size: 17px;
+    font-weight: 700;
   }
 }
 
-.button {
+.writeButton {
   @include flex;
-  min-width: 120px;
-  height: 40px;
-  background: var(--primary);
+  width: 100%;
+  height: 48px;
+  margin-left: 12px;
+  background: var(--red);
   color: var(--white);
   border-radius: 10px;
 

@@ -5,6 +5,7 @@ export const ITEM_LIST = [
   { value: '물품', label: '물품', icon: '🛍' },
 ];
 
+// 삭제 예정
 export const USER_LIST = [
   {
     value: 'Warren',
@@ -160,6 +161,7 @@ export const POINT_HISTORY = [
   },
 ];
 
+// 삭제 예정
 export const ADMIN_POINT_HISTORY = [
   {
     id: 2,
@@ -190,5 +192,15 @@ export const ADMIN_POINT_HISTORY = [
     targets: ['주드', '로이'],
     excludedTargets: ['하울'],
     amount: -4000,
+  },
+];
+
+// 삭제 예정
+export const DAY_OFF_DATA = [
+  {
+    user: '프릴',
+    dayOffItem: '오후반차',
+    startDate: '2022-07-20',
+    endDate: '2022-07-20',
   },
 ];
