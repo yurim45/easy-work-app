@@ -38,8 +38,7 @@ export default {
   },
   methods: {
     goToApply(value) {
-      console.log('====', value);
-      this.$router.push({ name: 'AuunalApply', params: value });
+      this.$router.push({ name: 'AuunalApply', params: { value } });
     },
   },
 };

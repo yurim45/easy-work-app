@@ -14,6 +14,7 @@
       :mode="mode"
       @click="handleValue()"
       ref="multiselect"
+      :disabled="isDisabled"
     />
   </div>
 </template>
@@ -32,6 +33,7 @@ export default {
     mode: String,
     selectValue: [Array, String],
     placeholder: String,
+    isDisabled: Boolean,
   },
   data() {
     return {

@@ -5,6 +5,20 @@ export const ITEM_LIST = [
   { value: '물품', label: '물품', icon: '🛍' },
 ];
 
+export const ANNUAL_LIST = [
+  { value: 'annual', label: '연차' },
+  { value: 'special', label: '연말정산 특별휴가' },
+  { value: 'summer', label: '여름휴가' },
+  { value: 'alone', label: '혼떠' },
+  { value: 'apple', label: 'Apple' },
+];
+
+export const HARF_ANNUAL_LIST = [
+  { value: 'annual', label: '종일' },
+  { value: 'morningAnnual', label: '오전반차' },
+  { value: 'afternoonAnnual', label: '오후반차' },
+];
+
 // 삭제 예정
 export const USER_LIST = [
   {
