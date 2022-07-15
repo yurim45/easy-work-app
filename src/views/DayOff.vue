@@ -1,15 +1,18 @@
 <template>
   <basic-header title="Day Off" />
-  <main><user-status /></main>
+  <main>
+    <user-status />
+    <special-vacation />
+  </main>
 </template>
 
 <script>
 import BasicHeader from '@/components/common/header/BasicHeader.vue';
-import { UserStatus } from '@/components/day-off/main/index';
+import { UserStatus, SpecialVacation } from '@/components/day-off/main/index';
 
 export default {
   name: 'DayOff',
-  components: { BasicHeader, UserStatus },
+  components: { BasicHeader, UserStatus, SpecialVacation },
 };
 </script>
 
