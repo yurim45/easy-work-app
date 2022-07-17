@@ -31,6 +31,7 @@ export default {
 .date {
   @include flex(center, start, column);
   width: 100%;
+  min-width: 50px;
 }
 
 label {

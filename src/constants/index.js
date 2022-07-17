@@ -11,6 +11,12 @@ export const ANNUAL_LIST = [
   { value: 'summer', label: '여름휴가' },
   { value: 'alone', label: '혼떠' },
   { value: 'apple', label: 'Apple' },
+  { value: 'cc', label: '경조휴가' },
+  { value: 'official', label: '공가' },
+  { value: 'maternity', label: '출산휴가' },
+  { value: 'paternity', label: '배우자 출산휴가' },
+  { value: 'family', label: '가족 돌봄 휴가' },
+  { value: 'physiological', label: '보건휴가' },
 ];
 
 export const HARF_ANNUAL_LIST = [
@@ -216,5 +222,45 @@ export const DAY_OFF_DATA = [
     dayOffItem: '오후반차',
     startDate: '2022-07-20',
     endDate: '2022-07-20',
+  },
+];
+
+// 삭제 예정
+export const USER_ANNUAL_LIST = [
+  {
+    id: 1,
+    user: 'april',
+    dayOffItem: '오후반차',
+    useYear: '2021',
+    startDate: '2021-12-26',
+    endDate: '2021-12-26',
+    isApprove: true,
+  },
+  {
+    id: 2,
+    user: 'april',
+    dayOffItem: '연차',
+    useYear: '2022',
+    startDate: '2022-03-20',
+    endDate: '2022-03-20',
+    isApprove: true,
+  },
+  {
+    id: 3,
+    user: 'april',
+    dayOffItem: '오후반차',
+    useYear: '2022',
+    startDate: '2022-07-20',
+    endDate: '2022-07-20',
+    isApprove: true,
+  },
+  {
+    id: 4,
+    user: 'april',
+    useYear: '2022',
+    dayOffItem: '여름휴가',
+    startDate: '2022-08-20',
+    endDate: '2022-08-20',
+    isApprove: false,
   },
 ];

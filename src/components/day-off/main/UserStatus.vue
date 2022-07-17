@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h3>연차 휴가</h3>
+    <h3>연차휴가</h3>
     <p>나의 잔여 연차</p>
     <strong>8.5개</strong>
     <ul class="annualList">
@@ -28,11 +28,11 @@ import {
   IconAnnual,
   IconMorningAnnual,
   IconAfternoonAnnual,
-} from '../icons/index';
+} from '../icons/annual/index';
 
 export default {
-  components: { IconAnnual, IconMorningAnnual, IconAfternoonAnnual },
   name: 'UserStatus',
+  components: { IconAnnual, IconMorningAnnual, IconAfternoonAnnual },
   data() {
     return {};
   },

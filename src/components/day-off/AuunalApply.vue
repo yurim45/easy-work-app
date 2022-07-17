@@ -27,7 +27,8 @@
         name="startDate"
         :inputValue="startDate"
         @handleValue="handleValue($event)"
-      /><span v-if="isView">~</span>
+      />
+      <span v-if="isView">~</span>
       <date-view
         v-if="isView"
         name="endDate"
@@ -99,6 +100,22 @@ export default {
         case 'afternoonAnnual':
           this.annualItem = 'annual';
           this.harfAnnualItem = 'afternoonAnnual';
+          return;
+        case 'special':
+          this.annualItem = 'special';
+          this.harfAnnualItem = 'annual';
+          return;
+        case 'summer':
+          this.annualItem = 'summer';
+          this.harfAnnualItem = 'annual';
+          return;
+        case 'alone':
+          this.annualItem = 'alone';
+          this.harfAnnualItem = 'annual';
+          return;
+        case 'apple':
+          this.annualItem = 'apple';
+          this.harfAnnualItem = 'annual';
           return;
       }
     }
