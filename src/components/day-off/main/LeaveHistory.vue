@@ -23,8 +23,9 @@
             <strong>{{ use.dayOffItem }} </strong
             ><span v-if="!use.isApprove">(승인대기)</span>
             <div class="day">
-              {{ date(use.startDate) }} ~ {{ date(use.endDate)
-              }}<span class="useDay">(-3)</span>
+              {{ date(use.startDate) }} ~ {{ date(use.endDate) }}
+              <!-- [willFix]:  -->
+              <span class="useDay">(-3)</span>
             </div>
           </div>
         </div>
