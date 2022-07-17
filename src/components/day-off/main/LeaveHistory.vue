@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      year: ['2022'],
+      year: null,
       yearList: [
         { value: '2022', label: '2022년도' },
         { value: '2021', label: '2021년도' },
@@ -75,9 +75,8 @@ export default {
     },
   },
   created() {
-    this.useList = USER_ANNUAL_LIST.filter(
-      (use) => use.useYear === this.year[0]
-    );
+    this.year = '2022';
+    this.useList = USER_ANNUAL_LIST.filter((use) => use.useYear === this.year);
   },
   computed: {
     date() {
