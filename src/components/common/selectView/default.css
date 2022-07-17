@@ -213,8 +213,8 @@
   margin: 0 var(--ms-px, 0.875rem) 0 0;
 }
 .multiselect-clear {
-  /* display: flex; */
-  display: none; /* 전체삭제 */
+  display: flex;
+  /* display: none; 전체삭제 */
   flex-grow: 0;
   flex-shrink: 0;
   opacity: 1;
