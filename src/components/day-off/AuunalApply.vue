@@ -35,22 +35,43 @@
         @handleValue="handleValue($event)"
       />
     </div>
-    <footer>
-      <button-view label="신청하기" @onClick="onSubmitAnnualApply" />
-    </footer>
+    <input-view
+      label="사유"
+      name="content"
+      placeholder="간략하게 사유를 작성하세요"
+      :inputValue="content"
+      @handleValue="handleValue($event)"
+    />
   </main>
+  <footer class="result">
+    <div class="list">
+      <span class="itemTitle">보유연차</span>
+      <strong>5일 </strong>
+    </div>
+    <div class="list">
+      <span class="itemTitle">차감연차</span>
+      <strong class="red">-{{ dateDiff }}일 </strong>
+    </div>
+    <div class="itemResult">
+      <div class="list"><span>잔여 연차</span><strong> 4일</strong></div>
+    </div>
+    <button-view label="신청하기" @onClick="onSubmitAnnualApply" />
+  </footer>
 </template>
 
 <script>
 import BasicHeader from '../common/header/BasicHeader.vue';
-import SelectView from '../common/selectView/SelectView.vue';
-import DateView from '../common/DateView.vue';
-import ButtonView from '../common/ButtonView.vue';
+import {
+  DateView,
+  ButtonView,
+  InputView,
+  SelectView,
+} from '@/components/common/index';
 import { ANNUAL_LIST, HARF_ANNUAL_LIST } from '@/constants';
 
 export default {
   name: 'AuunalApply',
-  components: { BasicHeader, SelectView, ButtonView, DateView },
+  components: { BasicHeader, SelectView, ButtonView, DateView, InputView },
   data() {
     return {
       annualItem: '',
@@ -60,6 +81,7 @@ export default {
       isDisabled: false,
       startDate: new Date().toISOString().substr(0, 10),
       endDate: new Date().toISOString().substr(0, 10),
+      content: '',
     };
   },
   created() {
@@ -88,6 +110,19 @@ export default {
         ? false
         : true;
     },
+    dateDiff() {
+      if (
+        this.harfAnnualItem === 'morningAnnual' ||
+        this.harfAnnualItem === 'afternoonAnnual'
+      ) {
+        return 0.5;
+      } else {
+        const elapsedMSec =
+          new Date(this.endDate).getTime() - new Date(this.startDate).getTime();
+        const elapsedDay = elapsedMSec / 1000 / 60 / 60 / 24 + 1;
+        return elapsedDay;
+      }
+    },
   },
   methods: {
     handleValue(value) {
@@ -98,6 +133,9 @@ export default {
         case 'harfAnnualItem':
           this.harfAnnualItem = value.value;
           return;
+        case 'content':
+          this.content = value.value;
+          return;
       }
     },
     onSubmitAnnualApply() {
@@ -105,7 +143,8 @@ export default {
         this.annualItem,
         this.harfAnnualItem,
         this.startDate,
-        this.endDate
+        this.endDate,
+        this.content
       );
     },
   },
@@ -123,5 +162,32 @@ main {
   span {
     margin: 0 10px 10px;
   }
+}
+
+.result {
+  max-width: 900px;
+  margin: 80px auto 0;
+  padding: 25px;
+  background: var(--lightGrey);
+}
+
+.list {
+  @include flex(space-between);
+  margin: 10px 0;
+}
+
+.red {
+  color: var(--text-red);
+}
+
+.itemTitle {
+  @include stLabel;
+}
+
+.itemResult {
+  padding: 10px 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border-top: 1px solid var(--line);
 }
 </style>

@@ -11,6 +11,7 @@
 
 @mixin stLayout() {
   padding: 24px 22px 10px;
+  min-height: calc(100vh - 360px);
 }
 
 @mixin stFormBox() {

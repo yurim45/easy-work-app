@@ -27,6 +27,7 @@ export default {
 
 <style scoped lang="scss">
 main {
+  min-height: calc(100vh - 330px);
   text-align: center;
 }
 
