@@ -11,16 +11,19 @@
       :isDisabled="isDisabled"
       @handleValue="handleValue($event)"
     />
-    <select-view
-      label="반차여부"
-      name="harfAnnualItem"
-      mode="single"
-      placeholder="반차 여부를 선택하세요"
-      :selectValue="harfAnnualItem"
-      :optionList="harfAnnualList"
-      :isDisabled="isDisabled"
-      @handleValue="handleValue($event)"
-    />
+    <template v-if="annualItem === 'annual'">
+      <select-view
+        label="반차여부"
+        name="harfAnnualItem"
+        mode="single"
+        placeholder="반차 여부를 선택하세요"
+        :selectValue="harfAnnualItem"
+        :optionList="harfAnnualList"
+        :isDisabled="isDisabled"
+        @handleValue="handleValue($event)"
+      />
+    </template>
+
     <label>사용일자</label>
     <div class="period">
       <date-view
@@ -103,19 +106,33 @@ export default {
           return;
         case 'special':
           this.annualItem = 'special';
-          this.harfAnnualItem = 'annual';
           return;
         case 'summer':
           this.annualItem = 'summer';
-          this.harfAnnualItem = 'annual';
           return;
         case 'alone':
           this.annualItem = 'alone';
-          this.harfAnnualItem = 'annual';
           return;
         case 'apple':
           this.annualItem = 'apple';
-          this.harfAnnualItem = 'annual';
+          return;
+        case 'cc':
+          this.annualItem = 'cc';
+          return;
+        case 'official':
+          this.annualItem = 'official';
+          return;
+        case 'maternity':
+          this.annualItem = 'maternity';
+          return;
+        case 'paternity':
+          this.annualItem = 'paternity';
+          return;
+        case 'family':
+          this.annualItem = 'family';
+          return;
+        case 'physiological':
+          this.annualItem = 'physiological';
           return;
       }
     }

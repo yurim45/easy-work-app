@@ -10,7 +10,7 @@ export const ANNUAL_LIST = [
   { value: 'special', label: '연말정산 특별휴가' },
   { value: 'summer', label: '여름휴가' },
   { value: 'alone', label: '혼떠' },
-  { value: 'apple', label: 'Apple' },
+  { value: 'apple', label: 'Apple vacation' },
   { value: 'cc', label: '경조휴가' },
   { value: 'official', label: '공가' },
   { value: 'maternity', label: '출산휴가' },
