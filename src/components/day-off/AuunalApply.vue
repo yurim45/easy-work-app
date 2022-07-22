@@ -137,6 +137,14 @@ export default {
       }
     }
   },
+  watch: {
+    endDate() {
+      this.dateDiff();
+    },
+    startDate() {
+      this.dateDiff();
+    },
+  },
   computed: {
     isView() {
       return this.harfAnnualItem === 'morningAnnual' ||
@@ -151,10 +159,13 @@ export default {
       ) {
         return 0.5;
       } else {
-        const elapsedMSec =
-          new Date(this.endDate).getTime() - new Date(this.startDate).getTime();
-        const elapsedDay = elapsedMSec / 1000 / 60 / 60 / 24 + 1;
-        return elapsedDay;
+        const sDate = new Date(this.startDate);
+        const eDate = new Date(this.endDate);
+        const diffDate = sDate.getTime() - eDate.getTime();
+
+        console.log(this.startDate, this.endDate);
+        console.log(Math.abs(diffDate / (1000 * 60 * 60 * 24)) + 1);
+        return Math.abs(diffDate / (1000 * 60 * 60 * 24)) + 1; // 밀리세컨 * 초 * 분 * 시 = 일
       }
     },
   },
