@@ -138,11 +138,14 @@ export default {
     }
   },
   watch: {
-    endDate() {
-      this.dateDiff();
-    },
     startDate() {
-      this.dateDiff();
+      if (this.startDate > this.endDate) {
+        this.endDate = this.startDate;
+      }
+      this.dateDiff;
+    },
+    endDate() {
+      this.dateDiff;
     },
   },
   computed: {
@@ -163,8 +166,6 @@ export default {
         const eDate = new Date(this.endDate);
         const diffDate = sDate.getTime() - eDate.getTime();
 
-        console.log(this.startDate, this.endDate);
-        console.log(Math.abs(diffDate / (1000 * 60 * 60 * 24)) + 1);
         return Math.abs(diffDate / (1000 * 60 * 60 * 24)) + 1; // 밀리세컨 * 초 * 분 * 시 = 일
       }
     },
@@ -180,6 +181,12 @@ export default {
           return;
         case 'content':
           this.content = value.value;
+          return;
+        case 'startDate':
+          this.startDate = value.value;
+          return;
+        case 'endDate':
+          this.endDate = value.value;
           return;
       }
     },

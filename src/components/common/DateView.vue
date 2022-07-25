@@ -19,6 +19,11 @@ export default {
       iName: this.name,
     };
   },
+  watch: {
+    inputValue() {
+      this.dDate = this.inputValue;
+    },
+  },
   methods: {
     handleValue() {
       this.$emit('handleValue', { name: this.iName, value: this.dDate });
