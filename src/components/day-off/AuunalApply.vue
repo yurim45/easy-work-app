@@ -50,14 +50,16 @@
   <footer class="result">
     <div class="list">
       <span class="itemTitle">보유연차</span>
-      <strong>5일 </strong>
+      <strong>{{ myDayOff }}일 </strong>
     </div>
     <div class="list">
       <span class="itemTitle">차감연차</span>
       <strong class="red">-{{ dateDiff }}일 </strong>
     </div>
     <div class="itemResult">
-      <div class="list"><span>잔여 연차</span><strong> 4일</strong></div>
+      <div class="list">
+        <span>잔여 연차</span><strong> {{ remaining }}일</strong>
+      </div>
     </div>
     <button-view label="신청하기" @onClick="onSubmitAnnualApply" />
   </footer>
@@ -86,6 +88,7 @@ export default {
       startDate: new Date().toISOString().substr(0, 10),
       endDate: new Date().toISOString().substr(0, 10),
       content: '',
+      myDayOff: 5,
     };
   },
   created() {
@@ -164,10 +167,25 @@ export default {
       } else {
         const sDate = new Date(this.startDate);
         const eDate = new Date(this.endDate);
-        const diffDate = sDate.getTime() - eDate.getTime();
+        let count = 0;
 
-        return Math.abs(diffDate / (1000 * 60 * 60 * 24)) + 1; // 밀리세컨 * 초 * 분 * 시 = 일
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+          const tempDate = sDate;
+          if (tempDate.getTime() > eDate.getTime()) {
+            return count;
+          } else {
+            const tmp = tempDate.getDay();
+            if (!(tmp === 0 || tmp === 6)) {
+              count++;
+            }
+            tempDate.setDate(sDate.getDate() + 1);
+          }
+        }
       }
+    },
+    remaining() {
+      return this.myDayOff - this.dateDiff;
     },
   },
   methods: {
