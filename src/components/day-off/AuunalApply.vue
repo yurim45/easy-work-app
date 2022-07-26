@@ -49,16 +49,20 @@
   </main>
   <footer class="result">
     <div class="list">
-      <span class="itemTitle">보유연차</span>
+      <span class="itemTitle" v-if="annualItem === 'annual'">보유연차</span>
+      <span class="itemTitle" v-if="annualItem !== 'annual'">휴가일수</span>
       <strong>{{ myDayOff }}일 </strong>
     </div>
     <div class="list">
-      <span class="itemTitle">차감연차</span>
+      <span class="itemTitle" v-if="annualItem === 'annual'">차감연차</span>
+      <span class="itemTitle" v-if="annualItem !== 'annual'">사용휴가</span>
       <strong class="red">-{{ dateDiff }}일 </strong>
     </div>
     <div class="itemResult">
       <div class="list">
-        <span>잔여 연차</span><strong> {{ remaining }}일</strong>
+        <span v-if="annualItem === 'annual'">잔여 연차</span>
+        <span v-if="annualItem !== 'annual'">잔여 휴가</span>
+        <strong> {{ remaining }}일</strong>
       </div>
     </div>
     <button-view label="신청하기" @onClick="onSubmitAnnualApply" />
@@ -109,12 +113,15 @@ export default {
           return;
         case 'special':
           this.annualItem = 'special';
+          this.myDayOff = 5;
           return;
         case 'summer':
           this.annualItem = 'summer';
+          this.myDayOff = 3;
           return;
         case 'alone':
           this.annualItem = 'alone';
+          this.myDayOff = 1;
           return;
         case 'apple':
           this.annualItem = 'apple';

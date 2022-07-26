@@ -1,45 +1,46 @@
 <template>
-  <section class="section">
+  <section class="section" v-if="me.specialVacation.status">
     <h3>특별휴가</h3>
     <ul class="annualList">
-      <li>
+      <li v-if="me.specialVacation.special">
         <div class="title">
           <icon-special />
           <div>
             <strong>연말정산 특별휴가</strong>
             <div class="day">
-              <span>5일</span> <span class="dueDate">(D-3)</span>
+              <span>{{ me.specialVacation.special }}일</span>
+              <span class="dueDate">(D-3)</span>
             </div>
           </div>
         </div>
         <button class="apply" @click="goToApply('special')">신청</button>
       </li>
-      <li>
+      <li v-if="me.specialVacation.summer">
         <div class="title">
           <icon-summer />
           <div>
             <strong>여름휴가</strong>
-            <div class="day">3일</div>
+            <div class="day">{{ me.specialVacation.summer }}일</div>
           </div>
         </div>
         <button class="apply" @click="goToApply('summer')">신청</button>
       </li>
-      <li>
+      <li v-if="me.specialVacation.alone">
         <div class="title">
           <icon-alone />
           <div>
             <strong>혼떠</strong>
-            <div class="day">1일</div>
+            <div class="day">{{ me.specialVacation.alone }}일</div>
           </div>
         </div>
         <button class="apply" @click="goToApply('alone')">신청</button>
       </li>
-      <li>
+      <li v-if="me.specialVacation.apple">
         <div class="title">
           <icon-apple />
           <div>
             <strong>Apple vacation</strong>
-            <div class="day">30일</div>
+            <div class="day">{{ me.specialVacation.apple }}일</div>
           </div>
         </div>
 
@@ -56,6 +57,7 @@ import {
   IconSpecial,
   IconSummer,
 } from '../icons/special/index';
+import { ME_DAYOFF } from '@/constants';
 
 export default {
   name: 'SpecialVacation',
@@ -64,6 +66,11 @@ export default {
     IconAlone,
     IconSummer,
     IconApple,
+  },
+  data() {
+    return {
+      me: ME_DAYOFF,
+    };
   },
   methods: {
     goToApply(value) {

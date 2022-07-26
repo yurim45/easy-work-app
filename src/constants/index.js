@@ -25,6 +25,17 @@ export const HARF_ANNUAL_LIST = [
   { value: 'afternoonAnnual', label: '오후반차' },
 ];
 
+export const ME_DAYOFF = {
+  dayOff: 8.5,
+  specialVacation: {
+    status: true,
+    special: 5,
+    summer: 3,
+    alone: 1,
+    apple: 0,
+  },
+};
+
 // 삭제 예정
 export const USER_LIST = [
   {

@@ -2,7 +2,7 @@
   <section class="section">
     <h3>연차휴가</h3>
     <p>나의 잔여 연차</p>
-    <strong>8.5개</strong>
+    <strong>{{ me.dayOff }}개</strong>
     <ul class="annualList">
       <li>
         <button class="annual" @click="goToApply('annual')">
@@ -29,12 +29,15 @@ import {
   IconMorningAnnual,
   IconAfternoonAnnual,
 } from '../icons/annual/index';
+import { ME_DAYOFF } from '@/constants';
 
 export default {
   name: 'UserStatus',
   components: { IconAnnual, IconMorningAnnual, IconAfternoonAnnual },
   data() {
-    return {};
+    return {
+      me: ME_DAYOFF,
+    };
   },
   methods: {
     goToApply(value) {
