@@ -61,7 +61,7 @@
     <div class="itemResult">
       <div class="list">
         <span v-if="annualItem === 'annual'">잔여 연차</span>
-        <span v-if="annualItem !== 'annual'">잔여 휴가</span>
+        <span v-if="annualItem !== 'annual'">잔여 연차</span>
         <strong> {{ remaining }}일</strong>
       </div>
     </div>
