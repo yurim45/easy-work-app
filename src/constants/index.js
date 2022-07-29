@@ -25,6 +25,24 @@ export const HARF_ANNUAL_LIST = [
   { value: 'afternoonAnnual', label: '오후반차' },
 ];
 
+// 삭제 예정
+export const MY_INFO = {
+  nick: 'with',
+  EnNick: '위드',
+  name: '예상기',
+  title: 'Developer',
+  point: { totalPoint: 350000, usePoint: 304410 },
+  dayOff: 8.5,
+  specialVacation: {
+    status: true,
+    special: 0,
+    summer: 3,
+    alone: 1,
+    apple: 0,
+  },
+};
+
+// 삭제 예정
 export const ME_DAYOFF = {
   dayOff: 8.5,
   specialVacation: {

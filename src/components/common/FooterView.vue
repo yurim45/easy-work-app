@@ -18,7 +18,7 @@ export default {
 <style scoped lang="scss">
 .footer {
   max-width: 900px;
-  margin: 100px auto 0;
+  margin: 0 auto;
   padding: 30px 30px 20px;
   background: var(--black);
   color: var(--grey);
