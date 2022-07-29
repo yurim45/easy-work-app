@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 main {
   width: 100%;
-  padding: 45px 25px;
+  padding: 45px 26px;
   background: #fafafa;
 
   h3 {
