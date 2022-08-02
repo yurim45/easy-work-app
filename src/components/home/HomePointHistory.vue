@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     goToEditPoint(history) {
-      if (history.writer === this.me.name) {
+      if (history.writer === this.me.nick) {
         this.$router.push({
           name: 'pointRecord',
           params: history,
