@@ -5,6 +5,10 @@
 
 - 사이트 주소: https://easywork.today/
 
+## Deploy Status.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/66cdb219-296e-4862-a9db-989c89c43792/deploy-status)](https://app.netlify.com/sites/easy-work-app/deploys)
+
+
 <br />
 
 ✔️ 기간: 2022.06.28 ~ 계속 구현 중
