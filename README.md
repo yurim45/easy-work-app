@@ -1,15 +1,22 @@
 # easy-work-app
 
 `vue`를 배우면서 `PWA`를 적용한 사내용 프로그램 제작. <br />
-[netlify](https://app.netlify.com/)를 이용하여 배포 완료.
 
-- 사이트 주소: https://easywork.today/
+- 사이트 주소: https://atnpeasywork.link/
+
 
 <br />
 
-✔️ 기간: 2022.06.28 ~ 계속 구현 중
+✔️ 기간: 2022.08.09 ~ 10.11, 약 2개월간
 
-✔️ **Skills** : `Vue`, `Javascript`, `Sass/Scss`,
+✔️ 인원: 총 3명 (UX/UI디자이너 1명, Frontend 1명, Backend 1명)
+
+✔️ 🌈Frontend: `vuejs`, `JS`, `graphql`, `apollo`, `sass`
+
+✔️ 🧩Backend: `nestjs`, `TS`, `postgresql`, `aws`, `nginx`, `Docker`
+
+✔️ [회고](https://velog.io/@april_5/%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%88%EB%AC%B4%EB%A6%AC%EB%A5%BC-%EC%95%9E%EB%91%90%EA%B3%A0)
+
 
 ✔️ 기능 구현:
 
@@ -38,7 +45,9 @@
 
     - 포인트 발급
 
-  - 휴가 관리(예정)
+  - 휴가 관리
+  
+      - 유급 휴가 발급 등
 
 <br />
 
@@ -46,6 +55,9 @@
 
 <br />
 
-![](https://velog.velcdn.com/images/april_5/post/983ad36c-bbd2-472b-b69a-818f4f4f9394/image.gif)
-![](https://velog.velcdn.com/images/april_5/post/58d85c2e-7271-4511-a452-ceca598ace8c/image.gif)
-![](https://velog.velcdn.com/images/april_5/post/66ba4d82-bceb-476e-b365-20a80027dfa7/image.gif)
+![](https://velog.velcdn.com/images/april_5/post/489d839d-68d8-44b8-b180-79482590e8b7/image.gif)
+![](https://velog.velcdn.com/images/april_5/post/db7567d5-4a99-483c-b0d2-1a229137a7d4/image.gif)
+
+![](https://velog.velcdn.com/images/april_5/post/e509668b-fe51-4a92-8ae6-d52b791be252/image.gif)
+![](https://velog.velcdn.com/images/april_5/post/5a6f1d90-2ee6-4bec-b138-e41193baf923/image.gif)
+
