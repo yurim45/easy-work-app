@@ -27,9 +27,9 @@ export const HARF_ANNUAL_LIST = [
 
 // 삭제 예정
 export const MY_INFO = {
-  nick: 'with',
-  EnNick: '위드',
-  name: '예상기',
+  nick: 'april',
+  EnNick: '프릴',
+  name: '김유림',
   title: 'Developer',
   point: { totalPoint: 350000, usePoint: 304410 },
   dayOff: 8.5,
