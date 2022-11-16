@@ -8,14 +8,6 @@ https://atnpeasywork.link/
 - 일주일 정도 공부하며 배포까지 완료
 - 회고: [사이드 프로젝트 마무리를 앞두고..](https://velog.io/@april_5/%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%88%EB%AC%B4%EB%A6%AC%EB%A5%BC-%EC%95%9E%EB%91%90%EA%B3%A0)
 
-![easy1.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/43f6a2d1-623f-463a-acb5-ab6ba797563c/easy1.gif)
-
-![easy2.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/975d4f5d-914e-4c51-bc60-a1ccd099bb94/easy2.gif)
-
-![easy4.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c040753a-a79f-4d03-8cba-65e42b7fcfc2/easy4.gif)
-
-![easy3.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2ac580d5-4faf-438c-9826-de8c65a4bc17/easy3.gif)
-
 ✔️ 기간: 2022.08.09 ~ 10.11, 약 2개월간
 
 ✔️ 인원:  총 3명  (🎨디자인/기획 1명, 🌈프론트엔드 1명, 🧩백엔드 1명) 
@@ -65,3 +57,5 @@ https://atnpeasywork.link/
 - 사용자 인터페이스에 대한 작업을 수행.
 
 <br /><br />
+![easy1](https://user-images.githubusercontent.com/63839302/202059625-b19fab4e-c5e0-4709-a760-4bf893a9af61.gif)
+![easy2](https://user-images.githubusercontent.com/63839302/202059637-806e700a-4c81-40a3-9a32-87f50ab2df99.gif)
