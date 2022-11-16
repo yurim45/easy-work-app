@@ -10,73 +10,109 @@
 }
 
 @mixin stLayout() {
-  padding: 24px 22px 10px;
-  min-height: calc(100vh - 360px);
+  padding: 0 30px;
+}
+
+@mixin stHeader() {
+  position: fixed;
+  padding: 10px 30px;
+  width: 100%;
+  max-width: 600px;
+  height: 60px;
+  background: var(--white);
+  z-index: 200;
+}
+
+@mixin stPageTitle() {
+  margin: 5px 0 25px;
+  @include title800_26;
 }
 
 @mixin stFormBox() {
-  padding: 20px 24px;
-  background: var(--white);
-  border-radius: 24px;
-
-  h3 {
-    margin-bottom: 24px;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.2px;
-  }
-}
-
-@mixin stTag() {
-  margin-right: 5px;
-  padding: 6px 8px;
-  background: var(--primary);
+  padding: 22px;
+  background: var(--blue500);
   color: var(--white);
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 4px;
-  white-space: nowrap;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.07);
+  border-radius: 20px;
 }
 
 @mixin stButton() {
   width: 100%;
-  height: 55px;
-  background: var(--black);
-  color: var(--white);
+  height: 40px;
+  background: var(--blue200);
   border-radius: 10px;
 
   &:disabled {
     background: var(--dim);
   }
+
+  &:active {
+    background: var(--blue300);
+  }
 }
 
-@mixin stIcon() {
-  padding: 3px;
-  background: #e9f6ff;
-  color: #2f86c5;
-  font-size: 11px;
+@mixin stLoginButton() {
+  @include flex;
+  width: 100%;
+  height: 52px;
+  background: var(--blue500);
+  @include title700_17;
+  color: var(--white);
+  border-radius: 7px;
+
+  &:disabled {
+    background: var(--dim);
+  }
+
+  &:active {
+    background: var(--blue600);
+  }
 }
 
 @mixin stLabel() {
-  font-size: 16px;
-  font-weight: 600;
+  @include title700_15;
 }
 
 @mixin stInput() {
-  margin: 10px 0 20px;
   width: 100%;
-  height: 40px;
-  padding: 15px 10px 15px 15px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
+  height: 46px;
+  padding: 12px 14px;
+  background: var(--white);
+  @include body600_14;
+  border: 1px solid var(--inputLine);
+  border-radius: 7px;
 
-  &:focus {
-    border: 2px solid var(--primary);
+  &:disabled {
+    background: var(--line);
+    border: 1px solid var(--inputLine);
+    color: var(--gray999);
+    @include body600_14;
   }
 
   &::placeholder {
-    color: #9ca3af;
-    font-size: 14px;
-    letter-spacing: -0.2px;
+    @include body400_14;
+    color: var(--gray999);
   }
+}
+
+@mixin stTag() {
+  margin-right: 7px;
+  padding: 2px 7px;
+  background: var(--blue300);
+  @include body500_13;
+  color: var(--blue-txt);
+  border-radius: 5px;
+}
+
+@mixin stProfile() {
+  @include flex;
+  width: 100%;
+  height: 100%;
+  background: var(--blue500);
+  color: var(--white);
+  border-radius: 50%;
+}
+
+@mixin stFooter() {
+  padding: 24px 30px;
 }

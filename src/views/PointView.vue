@@ -1,116 +1,153 @@
 <template>
-  <basic-header title="ATNP 포인트" />
-  <main class="point">
-    <div class="content">
-      <p class="title">
-        <span> {{ me.name }}의 잔여 포인트</span> <br />
-        <strong>{{ userPoint }} P</strong>
-      </p>
-    </div>
-
-    <div class="btnWrapper">
-      <button-view label="보내기" @onClick="sendPointOpen" />
-      <router-link class="writeButton" to="/point/record">기록하기</router-link>
-    </div>
-
-    <send-point v-if="isSendPoint" @closePage="closePage" />
-    <point-history />
-  </main>
+  <send-point
+    v-if="isAlramOn"
+    :onclick="checkAlram"
+    :type="type"
+    :body="pointDetail"
+  />
+  <back-header @click="goToHome" />
+  <swiper
+    class="mySwiper"
+    slides-per-view="1"
+    :space-between="0"
+    @swiper="onSwiper"
+    @slideChange="onSlideChange"
+  >
+    <swiper-slide> <atnp-point-view :isImgView="isImgView" /> </swiper-slide>
+    <swiper-slide> <sp-point-view :isImgView="isImgView" /> </swiper-slide>
+  </swiper>
 </template>
 
 <script>
-import { ButtonView } from '@/components/common/index';
-import SendPoint from '@/components/point/user/SendPoint.vue';
-import PointHistory from '@/components/point/user/PointHistory.vue';
-import BasicHeader from '@/components/common/header/BasicHeader.vue';
-import { getNumFormat } from '@/util';
+import { onMounted, ref, watch } from 'vue';
+import { useQuery } from '@vue/apollo-composable';
+import { QUERY_POINT_BILL } from '@/graphql/point';
+import { QUERY_MESSAGE_LIST } from '@/graphql';
+import router from '@/router';
+import { useRoute } from 'vue-router';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { BackHeader } from '@/components/common/index.js';
+import { SendPoint } from '@/components/point/components/index.js';
+import SpPointView from '@/components/point/SpPointView.vue';
+import AtnpPointView from '@/components/point/AtnpPointView.vue';
+
+import 'swiper/css';
 
 export default {
   name: 'PointView',
-  components: { ButtonView, SendPoint, PointHistory, BasicHeader },
-  data() {
-    return {
-      me: {
-        name: 'April',
-        point: 50000,
-      },
-      isSendPoint: false,
+  components: {
+    BackHeader,
+    SendPoint,
+    SpPointView,
+    Swiper,
+    SwiperSlide,
+    AtnpPointView,
+  },
+  setup() {
+    const route = useRoute();
+
+    const isAlramOn = ref(false);
+    const pointData = ref([]);
+    const pointDetail = ref(null);
+    const type = ref(null);
+    const isImgView = ref(true);
+
+    const { result: messageList } = useQuery(QUERY_MESSAGE_LIST);
+    const { result: detailData } = useQuery(QUERY_POINT_BILL, {
+      id: +route?.query.id,
+    });
+
+    onMounted(() => {
+      if (route.query.id) {
+        handelIsAlramOn();
+        handlePointDetail();
+      }
+
+      if (route.query.messageId) {
+        handelIsAlramOn();
+      }
+    });
+
+    watch(messageList, () => {
+      handelIsAlramOn();
+    });
+
+    watch(detailData, () => {
+      handlePointDetail();
+    });
+
+    const handelIsAlramOn = () => {
+      if (messageList.value) {
+        messageList.value?.getMessageList.messageList
+          .find((v) => v.id === +route.query.messageId)
+          ?.text?.includes('선물')
+          ? (type.value = 'arrive')
+          : (type.value = 'create');
+        const isCheck = messageList.value?.getMessageList.messageList.find(
+          (v) => v.id === +route.query.messageId
+        )?.isCheck;
+        if (isCheck === false) {
+          isAlramOn.value = true;
+        } else {
+          isAlramOn.value = false;
+        }
+      }
     };
-  },
-  computed: {
-    userPoint() {
-      return getNumFormat(this.me.point);
-    },
-  },
-  methods: {
-    sendPointOpen() {
-      this.isSendPoint = true;
-    },
-    closePage() {
-      this.isSendPoint = false;
-    },
+
+    const handlePointDetail = () => {
+      if (detailData.value) {
+        if (detailData.value.pointBill.error) {
+          alert(detailData.value.pointBill.error);
+          router.go(-1);
+        }
+        pointDetail.value = {
+          id: route.query.messageId,
+          to: detailData.value.pointBill.point?.targets[0].nickname,
+          point: detailData.value.pointBill.point?.eachExpense,
+          content: detailData.value.pointBill.point?.content,
+          from: detailData.value.pointBill.point?.writer.nickname,
+        };
+      }
+    };
+
+    const checkAlram = () => {
+      isAlramOn.value = false;
+    };
+
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+
+    const onSlideChange = () => {
+      isImgView.value = !isImgView.value;
+    };
+
+    const goToHome = () => {
+      router.push('/');
+    };
+
+    return {
+      pointData,
+      type,
+      goToHome,
+      isAlramOn,
+      pointDetail,
+      checkAlram,
+      onSwiper,
+      onSlideChange,
+      isImgView,
+    };
   },
 };
 </script>
 
-<style scoped lang="scss">
-.title {
-  span {
-    font-size: 14px;
-  }
-  strong {
-    font-size: 28px;
-    font-weight: 700;
-  }
-}
-
-.point {
-  margin: auto;
-}
-
-.content {
-  padding: 30px 20px;
+<style lang="scss" scoped>
+main {
+  margin-bottom: 50px;
 }
 
 h2 {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-p {
-  max-width: 350px;
-
-  strong {
-    font-size: 22px;
-  }
-}
-
-.btnWrapper {
-  @include flex(space-around);
-  padding: 0 30px 25px;
-  font-size: 17px;
-  font-weight: 700;
-
-  :first-child {
-    height: 48px;
-    background: rgba(219, 0, 53, 0.15);
-    color: var(--text-red);
-    font-size: 17px;
-    font-weight: 700;
-  }
-}
-
-.writeButton {
-  @include flex;
-  width: 100%;
-  height: 48px;
-  margin-left: 12px;
-  background: var(--red);
-  color: var(--white);
-  border-radius: 10px;
-
-  &:visited {
-    color: var(--white);
-  }
+  @include stLayout;
+  @include stPageTitle;
 }
 </style>

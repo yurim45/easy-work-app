@@ -2,15 +2,17 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "moduleResolution": "node",
     "baseUrl": "./",
+    "moduleResolution": "node",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["src/*"],
       "@assets": ["./src/assets/*"],
       "@components": ["./src/components/*"],
       "@util": ["./src/util/*"],
       "@store": ["./src/store/*"],
-      "@views": ["./src/views/*"]
+      "@views": ["./src/views/*"],
+      "@graphql": ["./src/graphql/*"],
+      "@constants": ["./src/constants/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   }

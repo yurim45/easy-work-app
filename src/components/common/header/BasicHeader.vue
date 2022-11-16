@@ -1,66 +1,113 @@
 <template>
   <header class="header">
-    <router-link to="/"><icon-home /></router-link>
-    <div>{{ title }}</div>
-    <button type="button" @click="handleMenu"><icon-hamberger /></button>
-  </header>
-  <div v-if="isMenuOpen" class="menu">
-    <button type="button" @click="handleMenu" class="close">
-      <icon-close />
+    <button type="button" @click="onClickAdmin">
+      <icon-back v-if="isAdmin" />
+      <icon-alert v-if="!isAdmin" :isOn="isAlertOn" @click="goToNewsPage" />
     </button>
-    <gnb />
-  </div>
+    <button type="button" @click="goToMenu">
+      <icon-menu />
+    </button>
+  </header>
+  <div class="empty" />
+  <div v-if="isView" class="line"></div>
 </template>
 
 <script>
-import { IconHamberger, IconHome, IconClose } from '@/components/icons/index';
-import { Gnb } from '@/components/common/index';
+import { onMounted, onUnmounted, ref } from 'vue';
+import { useStore } from 'vuex';
+import { throttle } from 'lodash';
+import router from '@/router/index';
+import { ID_TOKEN_KEY } from '@/common/token';
+import { IconMenu, IconAlert, IconBack } from '@/components/common/icons/index';
+import { MENU_LIST } from '@/constants/index.js';
 
 export default {
   name: 'BasicHeader',
-  components: { IconHamberger, IconHome, Gnb, IconClose },
+  components: { IconMenu, IconAlert, IconBack },
   props: {
-    title: String,
-  },
-  data() {
-    return {
-      isMenuOpen: false,
-    };
-  },
-  methods: {
-    handleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
+    isAdmin: {
+      type: Boolean,
+      default: true,
     },
+    isAlertOn: Boolean,
+    onClickAdmin: Function,
+  },
+  setup(props) {
+    const store = useStore();
+
+    const isView = ref(false);
+    const menuList = ref(MENU_LIST);
+
+    onMounted(() => {
+      const token = window.localStorage.getItem(ID_TOKEN_KEY);
+      if (!token) {
+        alert('로그인을 해주세요');
+        router.push('/login');
+      }
+
+      window.addEventListener('scroll', handleScroll);
+    });
+
+    onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+
+    const handleScroll = throttle(() => {
+      const { scrollY } = window;
+      if (scrollY > 5) {
+        isView.value = true;
+      } else {
+        isView.value = false;
+      }
+    }, [300]);
+
+    const goToMenu = () => {
+      if (props.isAdmin) {
+        router.push('/admin');
+      } else {
+        router.push('/menu');
+      }
+    };
+
+    const goToPage = (url) => {
+      if (url === '/') {
+        router.push(url);
+      }
+      router.push(url);
+    };
+
+    const goToNewsPage = () => {
+      router.push('/news');
+    };
+
+    return {
+      store,
+      isView,
+      goToPage,
+      goToNewsPage,
+      menuList,
+      goToMenu,
+    };
   },
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .header {
   @include flex(space-between);
-  margin: 0 auto;
-  max-width: 800px;
-  height: 52px;
-  padding: 0 20px;
-  background: var(--white);
-  font-weight: 600;
-  border-bottom: 1px solid #f5f5f5;
+  @include stHeader;
+
+  button {
+    height: 40px;
+  }
 }
 
-.menu {
+.empty {
+  height: 60px;
+}
+
+.line {
   position: fixed;
-  top: 52px;
   width: 100%;
-  height: calc(100% - 52px);
-  padding: 80px 30px;
-  background: var(--white);
-  z-index: 100;
-}
-
-.close {
-  position: fixed;
-  top: 80px;
-  right: 40px;
-  z-index: 200;
+  height: 1px;
+  background: var(--dim);
 }
 </style>

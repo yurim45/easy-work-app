@@ -1,0 +1,90 @@
+@mixin 특수800_34() {
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 35px;
+  letter-spacing: -0.2px;
+}
+
+@mixin title800_26() {
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 35px;
+  letter-spacing: -0.2px;
+}
+
+@mixin title800_20() {
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.2px;
+}
+
+@mixin title700_17() {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+@mixin title700_15() {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body700_14() {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body600_15() {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 23px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body600_14() {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body400_15() {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 23px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body400_14() {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body500_13() {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body400_13() {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: -0.2px;
+}
+
+@mixin body700_11() {
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: -0.2px;
+}

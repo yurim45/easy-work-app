@@ -39,3 +39,22 @@ self.addEventListener('activate', function (event) {
     })
   );
 });
+
+// self.addEventListener('push', (event) => {
+//   console.log('Push');
+
+//   const title = 'My PWA!';
+//   const options = {
+//     body: event.data.text(),
+//   };
+
+//   event.waitUntil(self.registration.showNotification(title, options));
+// });
+
+// self.addEventListener('notificationclick', function (event) {
+//   const options = {
+//     body: event.data.text ?? 'test',
+//     lang: 'ko-KR',
+//   };
+//   self.registration.showNotification('Easywork', options);
+// });

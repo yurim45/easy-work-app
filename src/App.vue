@@ -2,13 +2,19 @@
   <router-view />
 </template>
 
+<script>
+export default {
+  name: 'App',
+};
+</script>
+
 <style lang="scss">
 #app {
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
-    'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: SUIT, sans-serif;
+  -webkit-font-smoothing: SUIT;
+  -moz-osx-font-smoothing: SUIT;
+
+  max-width: 600px;
+  margin: auto;
 }
 </style>

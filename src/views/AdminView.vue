@@ -1,55 +1,65 @@
 <template>
-  <basic-header title="관리자 페이지" />
+  <back-header :onClick="goToPage" :hasDelete="false" />
   <main>
-    <div class="menu">
-      <div class="subMenuTitle">포인트 관리</div>
-      <ul class="subMenu">
-        <li @click.stop="goToStatus">포인트 현황</li>
-        <li @click.stop="goToIssuance">포인트 발급</li>
-        <li @click.stop="goToRecord">사용내역 기록</li>
-      </ul>
-
-      <div class="subMenuTitle">(예정)휴가 관리</div>
-    </div>
+    <h2>Admin</h2>
+    <ul class="menuList">
+      <li
+        v-if="store.getters.me.role === 'Root'"
+        @click="goToAdminPage('/admin/day-off')"
+      >
+        Day Off
+      </li>
+      <li @click="goToAdminPage('/admin/point')">ATNP Point</li>
+      <li
+        v-if="store.getters.me.role !== 'User'"
+        @click="goToAdminPage('/admin/supply')"
+      >
+        Supply
+      </li>
+    </ul>
   </main>
 </template>
 
 <script>
-import BasicHeader from '@/components/common/header/BasicHeader.vue';
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+import BackHeader from '@/components/common/header/BackHeader.vue';
+import { MENU_LIST } from '@/constants/index.js';
+import router from '@/router';
 
 export default {
-  components: { BasicHeader },
   name: 'AdminView',
-  methods: {
-    goToStatus() {
-      this.$router.push('/admin/status');
-    },
-    goToIssuance() {
-      this.$router.push('/admin/issuance');
-    },
-    goToRecord() {
-      this.$router.push('/point/record');
-    },
+  components: { BackHeader },
+  setup() {
+    const store = useStore();
+    const menuList = ref(MENU_LIST);
+
+    const goToPage = () => {
+      router.push('/menu');
+    };
+
+    const goToAdminPage = (url) => {
+      router.push(url);
+    };
+
+    return { store, menuList, goToPage, goToAdminPage };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-main {
-  background: var(--lightGrey);
+h2 {
+  @include stLayout;
+  @include stPageTitle;
+  margin-bottom: 30px;
 }
 
-.subMenuTitle {
-  padding: 20px 30px;
-  background: var(--primary);
-  color: var(--white);
-}
+.menuList {
+  padding: 0 30px;
 
-.subMenu {
   li {
-    padding: 20px 50px;
-    background: var(--lightGrey);
-    border-bottom: 0.5px solid var(--line);
+    margin: 28px 0;
+    @include title800_20;
     cursor: pointer;
   }
 }

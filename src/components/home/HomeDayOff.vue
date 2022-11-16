@@ -1,106 +1,169 @@
 <template>
-  <main>
-    <h3>남은연차</h3>
-    <strong>{{ me.dayOff }}일</strong>
-    <ul class="annualList">
-      <li>
-        <button class="annual" @click="goToApply('morningAnnual')">
-          <img alt="오전반차" src="@/assets/images/morningAnnual.png" />
-        </button>
+  <section>
+    <sub-title subTitle="Day Off" url="/day-off" />
+    <ul class="icon">
+      <li @click="checkDayoff('HalfOffAM')">
+        <img alt="오전반차" src="@/assets/images/day-off/morningAnnual.png" />
       </li>
-      <li>
-        <button class="annual" @click="goToApply('afternoonAnnual')">
-          <img alt="오후반차" src="@/assets/images/afternoonAnnual.png" />
-        </button>
+      <li class="center" @click="checkDayoff('HalfOffPM')">
+        <img alt="오후반차" src="@/assets/images/day-off/afternoonAnnual.png" />
       </li>
-      <li>
-        <button class="annual" @click="goToApply('annual')">
-          <img alt="연차" src="@/assets/images/annual.png" />
-        </button>
+      <li @click="checkDayoff('FullOff')">
+        <img alt="일일연차" src="@/assets/images/day-off/annual.png" />
       </li>
     </ul>
-    <ul class="annualList specialVacation">
-      <h3>특별휴가</h3>
-      <li v-if="me.specialVacation.special">
-        <button class="annual" @click="goToApply('special')">
-          <img alt="연말정산 특별휴가" src="@/assets/images/annual.png" />
-        </button>
-      </li>
-      <li v-if="me.specialVacation.summer">
-        <button class="annual" @click="goToApply('summer')">
-          <img alt="여름휴가" src="@/assets/images/summer.png" />
-        </button>
-      </li>
-      <li v-if="me.specialVacation.alone">
-        <button class="annual" @click="goToApply('alone')">
-          <img alt="멍떠 혼떠" src="@/assets/images/alone.png" />
-        </button>
-      </li>
-      <li v-if="me.specialVacation.apple">
-        <button class="annual" @click="goToApply('apple')">
-          <img alt="apple" src="@/assets/images/annual.png" />
-        </button>
-      </li>
-    </ul>
-  </main>
+  </section>
+  <modal-view
+    v-if="isOpen"
+    :onClcikCancel="onClcikCancel"
+    :onClcik="onSubmitDayOff"
+    checkLabel="신청"
+    cancelLabel="취소"
+    ><modal-inner
+      :title="`${dayoffText}를 신청하시겠습니까?`"
+      :data="innerData"
+    />
+  </modal-view>
+  <alert-view v-if="isMessageOpen" :onClcik="onClcik">
+    <message-inner :message="resMessage" />
+  </alert-view>
 </template>
 
 <script>
-import { MY_INFO } from '@/constants';
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
+import { useMutation } from '@vue/apollo-composable';
+import { MUTATION_USE_DAYOFF } from '@/graphql/dayOff.js';
+import moment from 'moment';
+import {
+  SubTitle,
+  ModalView,
+  ModalInner,
+  MessageInner,
+  AlertView,
+} from '@/components/common/index';
+import { _DAYOFF_CODE } from '@/constants';
 
 export default {
   name: 'HomeDayOff',
-  data() {
-    return {
-      me: MY_INFO,
+  components: { SubTitle, ModalView, ModalInner, MessageInner, AlertView },
+  setup() {
+    const store = useStore();
+
+    const isMessageOpen = ref(false);
+    const resMessage = ref(null);
+    const isOpen = ref(false);
+    const innerData = ref([]);
+    const state = ref({
+      date: null,
+      startDate: null,
+      endDate: null,
+      dayoff: null,
+      dayoffCode: null,
+      dateDiff: null,
+      content: null,
+    });
+
+    const myDayoff = computed(
+      () => (store.getters.me.dayoffCnt ?? 0) - state.value.dateDiff
+    );
+    const dayoffText = computed(() => _DAYOFF_CODE[state.value.dayoffCode]);
+
+    const onClcikCancel = () => {
+      isOpen.value = false;
     };
-  },
-  methods: {
-    goToApply(value) {
-      this.$router.push({ name: 'AuunalApply', params: { value } });
-    },
+
+    const checkDayoff = (value) => {
+      state.value = {
+        date: moment().format('YYYY.MM.DD'),
+        startDate: moment().format('YYYY.MM.DD'),
+        endDate: moment().format('YYYY.MM.DD'),
+        dayoff: 'FullOff',
+        dayoffCode: value,
+        dateDiff: value === 'FullOff' ? 1 : 0.5,
+        content: `개인사유로 ${_DAYOFF_CODE[value]} 사용합니다.`,
+      };
+      innerData.value = [
+        { text: '신청자', value: store.getters.me.nickname },
+        { text: '작성일', value: state.value.date },
+        { text: '휴가종류', value: '연차' },
+        { text: '반차여부', value: dayoffText.value },
+        { text: '시작일자', value: state.value.startDate },
+        { text: '종료일자', value: state.value.endDate },
+        { text: '사용연차', value: `-${state.value.dateDiff}` },
+        { text: '사용 후 잔여연차', value: myDayoff.value },
+        {
+          text: '사유',
+          value: `개인사유로 ${_DAYOFF_CODE[value]} 사용합니다.`,
+        },
+      ];
+      isOpen.value = true;
+    };
+
+    const { mutate: useDayoff } = useMutation(MUTATION_USE_DAYOFF, () => ({
+      variables: {
+        startDate: state.value.startDate,
+        endDate: state.value.endDate,
+        category: state.value.dayoffCode,
+        reason: state.value.content,
+      },
+    }));
+
+    const onSubmitDayOff = () => {
+      useDayoff()
+        .then(({ data }) => {
+          if (data.useDayoff.ok) {
+            alert('신청 완료했습니다.');
+          }
+          if (data.useDayoff.error) {
+            resMessage.value = data.giveSpecialDayoff.error;
+            isMessageOpen.value = true;
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          alert('등록에 실패했습니다.');
+        });
+      isOpen.value = false;
+    };
+
+    const onClcik = () => {
+      isMessageOpen.value = false;
+    };
+
+    return {
+      isOpen,
+      state,
+      innerData,
+      store,
+      myDayoff,
+      dayoffText,
+      onClcik,
+      resMessage,
+      isMessageOpen,
+      checkDayoff,
+      onClcikCancel,
+      onSubmitDayOff,
+    };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-main {
-  width: 100%;
-  padding: 45px 26px;
-  background: #fafafa;
-
-  h3 {
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 18px;
-  }
-
-  strong {
-    display: inline-block;
-    margin: 8px auto 30px;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 36px;
-    text-decoration-line: underline;
-  }
-}
-
-.annualList {
-  li {
-    padding: 6px 0;
-  }
+.icon {
+  @include flex;
+  @include stLayout;
 
   img {
     width: 100%;
-    max-width: 200px;
   }
 }
 
-.specialVacation {
-  margin-top: 30px;
+.center {
+  margin: 0 11px;
+}
 
-  h3 {
-    margin-bottom: 10px;
-  }
+.footer {
+  @include stFooter;
 }
 </style>

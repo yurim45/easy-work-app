@@ -4,7 +4,8 @@
   "start_url": "/",
   "name": "ATNP EasyWork",
   "short_name": "ATNP",
-  "background_color": "#fff",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
