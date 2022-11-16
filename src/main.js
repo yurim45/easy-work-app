@@ -12,8 +12,9 @@ const cache = new InMemoryCache();
 // HTTP connection to the API
 const httpLink = new HttpLink({
   // You should use an absolute URL here
-  uri: 'https://atnpeasywork.link/graphql',
+  uri: process.env.BASE_URL
 });
+
 
 // add the authorization to the headers
 const authMiddleware = new ApolloLink((operation, forward) => {
